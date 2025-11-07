@@ -35,6 +35,20 @@ a {
   text-decoration: none;
 }
 
+.AccordionTrigger {
+  cursor: pointer;
+}
+
+.AccordionContent {
+  overflow: hidden;
+  transition: height 200ms ease, opacity 200ms ease;
+  opacity: 0;
+}
+
+.AccordionContent[data-state="open"] {
+  opacity: 1;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
