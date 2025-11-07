@@ -10,7 +10,7 @@ export default function AccordionDemo() {
 
       <AccordionRoot defaultOpenId="faq-1">
         <AccordionItem value="faq-1" title="Hur fungerar accordions?">
-          <p>Du klickar, de öppnas, du klickar igen, de stängs. 🎩</p>
+          <p>Du klickar, de öppnas, du klickar igen, de stängs. </p>
         </AccordionItem>
 
         <AccordionItem value="faq-2" title="Kan flera vara öppna samtidigt?">

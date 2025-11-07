@@ -1,9 +1,9 @@
-import styles from "./page.module.css";
+import "@/styles/index.scss";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
+    <div>
+      <main>
         <h1>Test Radix Accordion</h1>
       </main>
     </div>
