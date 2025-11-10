@@ -1,0 +1,18 @@
+@use "../abstracts/tokens";
+
+.form__label {
+    font-size: tokens.$font-size-label;
+    font-weight: 500;
+    margin-bottom: tokens.$space-xs;
+}
+
+.form__input {
+    font-size: tokens.$font-size-body;
+    line-height: 1.5;
+    border: 0.5 solid tokens.$color-text;
+}
+
+.form_input::placeholder {
+    font-size: tokens.$font-size-small;
+    color: tokens.$color-placeholder;
+}

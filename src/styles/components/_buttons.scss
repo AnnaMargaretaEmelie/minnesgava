@@ -2,7 +2,8 @@
 
 .button {
     background: tokens.$color-accent;
-    color: white;
+    color: tokens.$color-text;
+    font-size: tokens.$font-size-button;
     border: none;
     padding: tokens.$space-sm tokens.$space-md;
     border-radius: 0.25rem;
@@ -13,3 +14,5 @@
     }
   }
   
+
+  //.button__icon, .button__label

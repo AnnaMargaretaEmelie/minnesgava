@@ -32,11 +32,10 @@ export function AccordionItem({
       className={className}
       data-open={open}
     >
-      <Accordion.Header>
-        <Accordion.Trigger className={triggerClassName}>
-          {title}
-        </Accordion.Trigger>
-      </Accordion.Header>
+      <Accordion.Trigger className={triggerClassName}>
+        <h2>{title}</h2>
+      </Accordion.Trigger>
+
       <Accordion.Content className={contentClassName}>
         {children}
       </Accordion.Content>

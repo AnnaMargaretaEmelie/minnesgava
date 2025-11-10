@@ -1,0 +1,46 @@
+@use "../abstracts/tokens";
+
+.accordion {
+    max-width: 940px;
+    outline: 3px solid hotpink;
+    margin-bottom: 1.5rem;
+}
+
+.accordion__trigger h2, 
+.accordion__content h3 {
+    font-size: tokens.$font-size-heading-md;
+    font-weight: 500;
+}
+
+.accordion__content p {
+    font-size: tokens.$font-size-body;
+    line-height: 1.5;
+}
+
+.accordion__trigger {
+    display: flex;
+    align-items: flex-start;
+    background-color: tokens.$color-accent;
+    
+}
+
+.accordion__content {
+    display: flex;
+}
+
+[data-radix-accordion-item] {
+    margin-bottom: tokens.$space-sm;
+    overflow: hidden;
+}
+
+[data-radix-accordion-trigger] {
+    all: unset;
+    box-sizing: border-box;
+    background-color: tokens.$color-light-pink;
+    width: 100%;
+    padding: tokens.$space-sm tokens.$space-md;
+    cursor: pointer;
+
+    }
+
+
