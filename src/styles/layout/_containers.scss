@@ -1,9 +1,15 @@
 @use "../abstracts/tokens";
 
-.container {
+.page-container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 940px;
     margin-inline: auto;
     padding-inline: tokens.$space-md;
   }
   
+.content-container {
+  width: 100%;
+  max-width: 620px;
+  margin-inline: auto;
+  padding-inline: tokens.$space-md;
+}

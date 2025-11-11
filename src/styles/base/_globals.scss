@@ -1,10 +1,18 @@
+  @use "../abstracts/tokens";
+
 html, body {
     height: 100%;
     margin-top: 5%;
   }
+
+body {
+  margin: 0 auto;
+  background-color: tokens.$color-bg;
+  color: tokens.$color-text;
+  line-height: 1.5;
+}
   
   img {
     max-width: 100%;
     display: block;
   }
-  

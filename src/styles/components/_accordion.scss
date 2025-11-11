@@ -2,8 +2,7 @@
 
 .accordion {
     max-width: 940px;
-    outline: 3px solid hotpink;
-    margin-bottom: 1.5rem;
+    margin-bottom: 40px;
 }
 
 .accordion__trigger h2, 
@@ -18,29 +17,32 @@
 }
 
 .accordion__trigger {
+    all: unset;
+    box-sizing: border-box;
     display: flex;
-    align-items: flex-start;
-    background-color: tokens.$color-accent;
-    
+    align-items: center;
+    justify-content: space-between;
+    padding-block: calc(tokens.$space-sm);
+    padding-inline: tokens.$space-md;
+    background-color: tokens.$color-light-pink;
+    width: 100%;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+}
+
+.accordion__trigger h2 {
+    margin: 0;
 }
 
 .accordion__content {
     display: flex;
+    padding-block-end: tokens.$space-md;
 }
 
-[data-radix-accordion-item] {
-    margin-bottom: tokens.$space-sm;
+[data-state="open"] {
+    margin-bottom: tokens.$space-md;
     overflow: hidden;
 }
-
-[data-radix-accordion-trigger] {
-    all: unset;
-    box-sizing: border-box;
-    background-color: tokens.$color-light-pink;
-    width: 100%;
-    padding: tokens.$space-sm tokens.$space-md;
-    cursor: pointer;
-
-    }
 
 
