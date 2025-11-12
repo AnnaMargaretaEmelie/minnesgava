@@ -1,0 +1,18 @@
+@use "../abstracts/tokens";
+
+.button {
+    background: tokens.$color-accent;
+    color: tokens.$color-text;
+    font-size: tokens.$font-size-button;
+    border: none;
+    padding: tokens.$space-sm tokens.$space-md;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+  
+
+  //.button__icon, .button__label

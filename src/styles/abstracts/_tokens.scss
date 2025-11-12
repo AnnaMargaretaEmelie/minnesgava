@@ -1,0 +1,31 @@
+
+$color-bg: #ffffff;
+$color-text: #222;
+$color-text-light: #454745;
+$color-placeholder: #808080;
+$color-accent: #ff6695;
+$color-light-pink: #f3dcdc;
+$color-green-teal: #d3f1e8;
+$color-beige: #f2eedd;
+$color-error-border: #F8283B;
+$color-error: #FFF4F5;
+$color-valid: #01a46d;
+
+$space-xs: 0.25rem;
+$space-sm: 0.5rem;
+$space-md: 1rem;
+$space-lg: 2rem;
+
+
+$font-size-sm: 0.875rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.25rem;
+$font-size-hero: 2.75rem;
+
+$font-size-body: $font-size-md;        // 16px
+$font-size-body-lg: $font-size-lg;     // 20px, t.ex. ingress
+$font-size-heading-hero: $font-size-hero; // H1 i hero
+$font-size-heading-md: $font-size-lg;  // H2/H3 (20px)
+$font-size-label: $font-size-md;       // 16px
+$font-size-button: $font-size-md;      // 16px
+$font-size-small: $font-size-sm;       // 14px (placeholder, små texter)
