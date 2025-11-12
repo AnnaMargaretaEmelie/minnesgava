@@ -19,10 +19,11 @@ type AccordionContextType = {
   openId: string | null;
   toggle: (id: string) => void;
   isOpen: (id: string) => boolean;
-  statuses: Record<string, StepStatus>;
+  statuses: StepStatuses;
   getStatus: (id: string) => StepStatus | undefined;
   canTriggerClick: (id: string) => boolean;
-  goNext: (id: string, s: StepStatus) => void;
+  goNext: (currentId: string) => void;
+  setStatus: (id: string, s: StepStatus) => void;
 };
 
 const AccordionCtx = createContext<AccordionContextType | undefined>(undefined);
@@ -35,23 +36,49 @@ export const useAccordion = () => {
 
 type AccordionProps = {
   defaultOpenId?: string | null;
-  order: string[];
+  order?: string[];
   children: React.ReactNode;
 };
+
+type AccordionChildProps = {
+  value: string;
+};
+
+function isAccordionChild(
+  node: React.ReactNode
+): node is React.ReactElement<AccordionChildProps> {
+  return (
+    React.isValidElement(node) &&
+    typeof (node.props as { value?: unknown }).value == "string"
+  );
+}
 
 export function AccordionRoot({
   defaultOpenId = null,
   order,
   children,
 }: AccordionProps) {
+  const stepIds = React.useMemo(() => {
+    if (order && order.length) return order;
+    return React.Children.toArray(children)
+      .filter(isAccordionChild)
+      .map((el) => el.props.value);
+  }, [order, children]);
+
+  if (process.env.NODE_ENV !== "production" && stepIds.length === 0) {
+    console.error(
+      "[AccordionRoot] Hittade inga steg. Skicka order eller ge varje child en value-prop"
+    );
+  }
   const [openId, setOpenId] = useState<string | null>(
-    defaultOpenId ?? order[0]
+    defaultOpenId ?? stepIds[0] ?? null
   );
-  const [statuses, setStatuses] = useState<Record<string, StepStatus>>(() => {
-    const initial: Record<string, StepStatus> = {};
-    order.forEach((id, i) => {
+  const [statuses, setStatuses] = useState<StepStatuses>(() => {
+    const initial: StepStatuses = Object.create(null);
+    stepIds.forEach((id, i) => {
       initial[id] = i === 0 ? "current" : "locked";
     });
+
     return initial;
   });
 
@@ -78,10 +105,10 @@ export function AccordionRoot({
 
   const goNext = useCallback(
     (currentId: string) => {
-      const idx = order.indexOf(currentId);
+      const idx = stepIds.indexOf(currentId);
       if (idx === -1) return;
 
-      const nextId = order[idx + 1];
+      const nextId = stepIds[idx + 1];
       setStatuses((prev) => {
         const next = { ...prev };
         next[currentId] = "complete";
@@ -90,14 +117,9 @@ export function AccordionRoot({
         }
         return next;
       });
-      if (nextId) {
-        setOpenId(nextId);
-      } else {
-        // om det inte finns någon nästa - bestäm vad som händer
-        setOpenId(currentId); //eller null
-      }
+      setOpenId(nextId ?? currentId);
     },
-    [order]
+    [stepIds]
   );
 
   const value = useMemo(
