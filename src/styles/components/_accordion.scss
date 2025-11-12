@@ -2,7 +2,7 @@
 
 .accordion {
     max-width: 940px;
-    margin-bottom: 40px;
+    margin-bottom: tokens.$space-lg;
 }
 
 .accordion__trigger h2, 
