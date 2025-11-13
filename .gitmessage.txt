@@ -1,0 +1,24 @@
+# 📝 Commit message guide
+# -----------------------
+# <type>: <short summary>
+# 
+# Types:
+# feat      → ny funktion
+# fix       → buggfix
+# style     → styling, format
+# refactor  → omstrukturering av kod
+# chore     → bygg/config/underhåll
+# docs      → dokumentation
+# test      → tester
+#
+# Exempel:
+# feat: add animation to accordion open state
+#
+# -----------------------
+# (Skriv din korta commit-titel ovanför)
+# (Lämna en tom rad, sedan en längre beskrivning om du vill)
+#
+# Tips:
+# - Använd imperativ form: “add”, “fix”, “update”
+# - Håll titeln under 72 tecken
+# - Lämna #-raderna orörda — de ignoreras av git

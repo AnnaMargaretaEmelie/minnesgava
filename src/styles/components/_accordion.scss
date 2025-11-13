@@ -2,7 +2,7 @@
 
 .accordion {
     max-width: 940px;
-    margin-bottom: 40px;
+    margin-bottom: tokens.$space-lg;
 }
 
 .accordion__trigger h2, 
@@ -24,25 +24,82 @@
     justify-content: space-between;
     padding-block: calc(tokens.$space-sm);
     padding-inline: tokens.$space-md;
-    background-color: tokens.$color-light-pink;
     width: 100%;
-    margin-bottom: 20px;
-    cursor: pointer;
 
+    h2 {
+        margin: 0;
+    }
 }
 
-.accordion__trigger h2 {
-    margin: 0;
+.accordion__button-row {
+  display: flex;
+  justify-content: center;
+  margin-top: tokens.$space-md;
+}
+
+.accordion__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-block;
+    background-color: tokens.$color-valid;
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M9 12.75L11.25 15L15 9.75M21 12a9 9 0 1 1-18 0a9 9 0 0 1 18 0Z'/></svg>") no-repeat center / contain;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M9 12.75L11.25 15L15 9.75M21 12a9 9 0 1 1-18 0a9 9 0 0 1 18 0Z'/></svg>") no-repeat center / contain;
 }
 
 .accordion__content {
-    display: flex;
-    padding-block-end: tokens.$space-md;
-}
-
-[data-state="open"] {
-    margin-bottom: tokens.$space-md;
+    display: grid;
+    grid-template-rows: 0fr;
     overflow: hidden;
+    padding-block-end: tokens.$space-md;
+    transition: grid-template-rows 180ms cubic-bezier(.2,.6,.2,1);
 }
 
+.accordion__item[data-state="open"] .accordion__content {
+    grid-template-rows: 1fr;
+}
 
+.accordion__content-inner {
+    overflow: hidden;
+    padding: 24px 12px 32px 12px;
+
+}
+
+.accordion__item[data-step-status="current"] .accordion__trigger {
+    background-color: tokens.$color-light-pink;
+    color: tokens.$color-text;
+    cursor: default;
+}
+
+.accordion__item[data-step-status="complete"] .accordion__trigger {
+    background-color: tokens.$color-green-teal;
+    cursor: pointer;
+}
+
+.accordion__item[data-step-status="complete"] .accordion__icon {
+    display: inline-block;
+}
+
+.accordion__item[data-step-status="locked"] .accordion__trigger {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.accordion__item[data-step-status="current"],
+.accordion__item[data-step-status="locked"] {
+  .accordion__icon {
+    display: none;
+  }
+}
+
+.accordion__item {
+  border-bottom: 1px solid rgba(tokens.$color-text, 0.5);
+}
+
+.accordion__item:first-child {
+  border-top: 1px solid rgba(tokens.$color-text, 0.5);
+}
+
+.accordion__item[data-step-status="current"] {
+        border-top: none;
+
+}

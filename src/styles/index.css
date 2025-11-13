@@ -1,0 +1,151 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body, h1, h2, h3, p {
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 1rem;
+  color: #222;
+  background-color: #ffffff;
+  line-height: 1.5;
+}
+
+a {
+  color: #ff6695;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 2.75rem;
+  line-height: 4rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+h2, h3 {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+h4 {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.hero__ingress {
+  font-size: 1.25rem;
+}
+
+html, body {
+  height: 100%;
+  margin-top: 5%;
+}
+
+body {
+  margin: 0 auto;
+  background-color: #ffffff;
+  color: #222;
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.page-container {
+  width: 100%;
+  max-width: 940px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.content-container {
+  width: 100%;
+  max-width: 620px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.button {
+  background: #ff6695;
+  color: #222;
+  font-size: 1rem;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+.button:hover {
+  opacity: 0.9;
+}
+
+.accordion {
+  max-width: 940px;
+  margin-bottom: 2rem;
+}
+.accordion .accordion__item + .accordion__item {
+  border-top: 1px solid #e5e7eb;
+}
+
+.accordion__trigger h2,
+.accordion__content h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.accordion__content p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.accordion__trigger {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  background-color: #f3dcdc;
+  width: 100%;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.accordion__trigger h2 {
+  margin: 0;
+}
+
+.accordion__content {
+  display: flex;
+  padding-block-end: 1rem;
+}
+
+[data-state=open] {
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}/*# sourceMappingURL=index.css.map */
