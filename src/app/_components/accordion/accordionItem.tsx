@@ -30,13 +30,13 @@ export function AccordionItem({
   return (
     <Accordion.Item
       value={value}
-      className={className}
+      className={`accordion__item ${className ?? ""}`}
       data-open={open}
       data-step-status={status}
       data-state={open ? "open" : "closed"}
     >
       <Accordion.Trigger
-        className={triggerClassName}
+        className={`accordion__trigger ${triggerClassName ?? ""}`}
         disabled={triggerIsDisabled}
         onClick={(e) => {
           if (triggerIsDisabled) {
@@ -48,10 +48,13 @@ export function AccordionItem({
         }}
       >
         <h2>{title}</h2>
+        <span className="accordion__icon" />
       </Accordion.Trigger>
 
-      <Accordion.Content className={contentClassName}>
-        {children}
+      <Accordion.Content
+        className={`accordion__content ${contentClassName ?? ""}`}
+      >
+        <div className="accordion__content-inner">{children}</div>
       </Accordion.Content>
       {/* Rendera sammanfattning här */}
       {<div className="accordion__summary"></div>}

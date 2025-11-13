@@ -155,6 +155,7 @@ export function AccordionRoot({
           if (val && !canTriggerClick(val)) return;
           setOpenId(val ?? null);
         }}
+        className="accordion"
       >
         {children}
       </Accordion.Root>

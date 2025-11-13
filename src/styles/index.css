@@ -98,6 +98,9 @@ img {
   max-width: 940px;
   margin-bottom: 2rem;
 }
+.accordion .accordion__item + .accordion__item {
+  border-top: 1px solid #e5e7eb;
+}
 
 .accordion__trigger h2,
 .accordion__content h3 {
