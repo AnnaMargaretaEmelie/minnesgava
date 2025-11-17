@@ -3,10 +3,9 @@
 //logik och state
 import { MOCK_RECIPIENTS, Recipient } from "@/data/recipients.mock";
 import { useState } from "react";
-import RecipientSearch from "./Step1RecipientSearch";
-import Step1RecipientInfo from "./Step1RecipientInfo";
 import Step1ImagePicker from "./Step1ImagePicker";
 import { STEP1_IMAGES } from "@/data/step1Images";
+import { Step1RecipientSection } from "./Step1RecipientSection";
 
 type Step1Contentprops = {
   onComplete?: (data: { recipientId: string; imageId: string }) => void;
@@ -58,15 +57,13 @@ export default function Step1Content({ onComplete }: Step1Contentprops) {
 
   return (
     <>
-      <RecipientSearch
+      <Step1RecipientSection
         searchTerm={searchTerm}
-        onSearchChange={handleSearchChange}
-        results={filteredRecipients}
+        onSearchChange={setSearchTerm}
+        filteredRecipients={filteredRecipients}
+        selectedRecipient={selectedRecipient}
         onSelectRecipient={handleSelectRecipient}
       />
-      {selectedRecipient && (
-        <Step1RecipientInfo recipient={selectedRecipient} />
-      )}
       <Step1ImagePicker
         images={STEP1_IMAGES}
         selectedImageId={selectedImageId}

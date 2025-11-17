@@ -87,7 +87,7 @@ img {
   font-size: 1rem;
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
+  border-radius: 0.15rem;
   cursor: pointer;
 }
 .button:hover {
@@ -97,9 +97,6 @@ img {
 .accordion {
   max-width: 940px;
   margin-bottom: 2rem;
-}
-.accordion .accordion__item + .accordion__item {
-  border-top: 1px solid #e5e7eb;
 }
 
 .accordion__trigger h2,
@@ -121,24 +118,79 @@ img {
   justify-content: space-between;
   padding-block: 0.5rem;
   padding-inline: 1rem;
-  background-color: #f3dcdc;
   width: 100%;
-  margin-bottom: 20px;
-  cursor: pointer;
 }
-
 .accordion__trigger h2 {
   margin: 0;
 }
 
-.accordion__content {
+.accordion__button-row {
   display: flex;
-  padding-block-end: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
-[data-state=open] {
-  margin-bottom: 1rem;
+.accordion__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-block;
+  background-color: #01a46d;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M9 12.75L11.25 15L15 9.75M21 12a9 9 0 1 1-18 0a9 9 0 0 1 18 0Z'/></svg>") no-repeat center/contain;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M9 12.75L11.25 15L15 9.75M21 12a9 9 0 1 1-18 0a9 9 0 0 1 18 0Z'/></svg>") no-repeat center/contain;
+}
+
+.accordion__content {
+  display: grid;
+  grid-template-rows: 0fr;
   overflow: hidden;
+  padding-block-end: 1rem;
+  transition: grid-template-rows 180ms cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+.accordion__item[data-state=open] .accordion__content {
+  grid-template-rows: 1fr;
+}
+
+.accordion__content-inner {
+  overflow: hidden;
+  padding: 24px 12px 32px 12px;
+}
+
+.accordion__item[data-step-status=current] .accordion__trigger {
+  background-color: #f3dcdc;
+  color: #222;
+  cursor: default;
+}
+
+.accordion__item[data-step-status=complete] .accordion__trigger {
+  background-color: #d3f1e8;
+  cursor: pointer;
+}
+
+.accordion__item[data-step-status=complete] .accordion__icon {
+  display: inline-block;
+}
+
+.accordion__item[data-step-status=locked] .accordion__trigger {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.accordion__item[data-step-status=current] .accordion__icon,
+.accordion__item[data-step-status=locked] .accordion__icon {
+  display: none;
+}
+
+.accordion__item {
+  border-bottom: 1px solid rgba(34, 34, 34, 0.5);
+}
+
+.accordion__item:first-child {
+  border-top: 1px solid rgba(34, 34, 34, 0.5);
+}
+
+.accordion__item[data-step-status=current] {
+  border-top: none;
 }
 
 .visually-hidden {
