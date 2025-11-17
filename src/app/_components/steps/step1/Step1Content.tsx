@@ -6,31 +6,11 @@ import { useState } from "react";
 import RecipientSearch from "./Step1RecipientSearch";
 import Step1RecipientInfo from "./Step1RecipientInfo";
 import Step1ImagePicker from "./Step1ImagePicker";
-
-type Step1Image = {
-  id: string;
-  src: string;
-  alt: string;
-};
+import { STEP1_IMAGES } from "@/data/step1Images";
 
 type Step1Contentprops = {
   onComplete?: (data: { recipientId: string; imageId: string }) => void;
 };
-
-const STEP1_IMAGES: Step1Image[] = [
-  {
-    id: "red-rose",
-    src: "/images/red_rose.png",
-    alt: "Röd ros",
-  },
-  {
-    id: "white-lilly",
-    src: "/images/white_lilly.png",
-    alt: "Vit lilja",
-  },
-  { id: "magnolia", src: "/images/magnolia.png", alt: "Magnolia" },
-  { id: "dove", src: "/images/dove.png", alt: "Duva" },
-];
 
 export default function Step1Content({ onComplete }: Step1Contentprops) {
   const [searchTerm, setSearchTerm] = useState("");
