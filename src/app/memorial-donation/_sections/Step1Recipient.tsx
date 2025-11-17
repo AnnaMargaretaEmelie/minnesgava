@@ -1,3 +1,5 @@
+"use client";
+
 import Step1Content from "@/app/_components/steps/step1/Step1Content";
 
 type Step1Copy = {
@@ -10,6 +12,13 @@ type Step1RecipientProps = {
 };
 
 export function Step1Recipient({ copy }: Step1RecipientProps) {
+  function handleStep1Complete(step1Data: {
+    recipientId: string;
+    imageId: string;
+  }) {
+    console.log("Step 1 data: ", step1Data);
+    //gå till nästa steg i Accordion när dne är kopplad
+  }
   const firstBlock = Array.isArray(copy.text) ? copy.text[0] : null;
   const FirstBlockText =
     firstBlock && Array.isArray(firstBlock.children)
@@ -18,8 +27,8 @@ export function Step1Recipient({ copy }: Step1RecipientProps) {
   return (
     <section>
       <h2>{copy.title ?? "Titel saknas"}</h2>
-      <p>{FirstBlockText && <p>{FirstBlockText}</p>}</p>
-      <Step1Content />
+      {FirstBlockText && <p>{FirstBlockText}</p>}
+      <Step1Content onComplete={handleStep1Complete} />
     </section>
   );
 }

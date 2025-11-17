@@ -13,6 +13,10 @@ type Step1Image = {
   alt: string;
 };
 
+type Step1Contentprops = {
+  onComplete?: (data: { recipientId: string; imageId: string }) => void;
+};
+
 const STEP1_IMAGES: Step1Image[] = [
   {
     id: "red-rose",
@@ -28,12 +32,14 @@ const STEP1_IMAGES: Step1Image[] = [
   { id: "dove", src: "/images/dove.png", alt: "Duva" },
 ];
 
-export default function Step1Content() {
+export default function Step1Content({ onComplete }: Step1Contentprops) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRecipient, setSelectedRecipient] = useState<Recipient | null>(
     null
   );
   const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
+
+  const canGoNext = selectedRecipient !== null && selectedImageId !== null;
 
   const filteredRecipients: Recipient[] =
     searchTerm.trim().length === 0
@@ -59,6 +65,17 @@ export default function Step1Content() {
     setSelectedImageId(imageId);
   }
 
+  function handleNext() {
+    if (!canGoNext || !selectedRecipient || !selectedImageId) return;
+
+    const step1Data = {
+      recipientId: selectedRecipient.id,
+      imageId: selectedImageId,
+    };
+    onComplete?.(step1Data);
+    console.log("Step 1 complete", step1Data);
+  }
+
   return (
     <>
       <RecipientSearch
@@ -68,15 +85,16 @@ export default function Step1Content() {
         onSelectRecipient={handleSelectRecipient}
       />
       {selectedRecipient && (
-        <>
-          <Step1RecipientInfo recipient={selectedRecipient} />
-          <Step1ImagePicker
-            images={STEP1_IMAGES}
-            selectedImageId={selectedImageId}
-            onSelectImage={handleSelectImage}
-          />{" "}
-        </>
+        <Step1RecipientInfo recipient={selectedRecipient} />
       )}
+      <Step1ImagePicker
+        images={STEP1_IMAGES}
+        selectedImageId={selectedImageId}
+        onSelectImage={handleSelectImage}
+      />
+      <button type="button" onClick={handleNext} disabled={!canGoNext}>
+        Välj belopp
+      </button>
     </>
   );
 }
