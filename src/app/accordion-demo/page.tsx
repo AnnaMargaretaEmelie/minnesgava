@@ -2,6 +2,7 @@
 
 import { AccordionRoot } from "@/app/_components/accordion/accordion";
 import { AccordionItem } from "@/app/_components/accordion/accordionItem";
+import Step1Content from "../_components/steps/step1/Step1Content";
 
 export default function AccordionDemo() {
   return (
@@ -21,6 +22,7 @@ export default function AccordionDemo() {
               Sök efter personen genom att fylla i namnet, så skickar vi
               minnesbladet direkt till begravningsbyrån.
             </p>
+            <Step1Content />
             <div className="accordion__button-row">
               <button className="button">
                 <span className="button__label">Välj belopp</span>
