@@ -17,7 +17,7 @@ export function Step1Recipient({ copy }: Step1RecipientProps) {
     imageId: string;
   }) {
     console.log("Step 1 data: ", step1Data);
-    //gå till nästa steg i Accordion när dne är kopplad
+    //gå till nästa steg i Accordion när den är kopplad
   }
   const firstBlock = Array.isArray(copy.text) ? copy.text[0] : null;
   const FirstBlockText =

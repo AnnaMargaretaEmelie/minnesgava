@@ -3,34 +3,14 @@
 //logik och state
 import { MOCK_RECIPIENTS, Recipient } from "@/data/recipients.mock";
 import { useState } from "react";
-import RecipientSearch from "./Step1RecipientSearch";
-import Step1RecipientInfo from "./Step1RecipientInfo";
-import Step1ImagePicker from "./Step1ImagePicker";
-
-type Step1Image = {
-  id: string;
-  src: string;
-  alt: string;
-};
+import { STEP1_IMAGES } from "@/data/step1Images";
+import { Step1RecipientSection } from "./Step1RecipientSection";
+import { Step1ImageSection } from "./Step1ImageSection";
+import { StepPrimaryButton } from "../StepPrimaryButton";
 
 type Step1Contentprops = {
-  onComplete?: (data: { recipientId: string; imageId: string }) => void;
+  onComplete: (data: { recipientId: string; imageId: string }) => void;
 };
-
-const STEP1_IMAGES: Step1Image[] = [
-  {
-    id: "red-rose",
-    src: "/images/red_rose.png",
-    alt: "Röd ros",
-  },
-  {
-    id: "white-lilly",
-    src: "/images/white_lilly.png",
-    alt: "Vit lilja",
-  },
-  { id: "magnolia", src: "/images/magnolia.png", alt: "Magnolia" },
-  { id: "dove", src: "/images/dove.png", alt: "Duva" },
-];
 
 export default function Step1Content({ onComplete }: Step1Contentprops) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -53,10 +33,6 @@ export default function Step1Content({ onComplete }: Step1Contentprops) {
           );
         });
 
-  function handleSearchChange(value: string) {
-    setSearchTerm(value);
-  }
-
   function handleSelectRecipient(recipient: Recipient) {
     setSelectedRecipient(recipient);
   }
@@ -66,35 +42,43 @@ export default function Step1Content({ onComplete }: Step1Contentprops) {
   }
 
   function handleNext() {
-    if (!canGoNext || !selectedRecipient || !selectedImageId) return;
+    const isComplete = selectedRecipient && selectedImageId;
+    if (!isComplete) {
+      console.warn("Steg 1 är inte komplett");
+      return;
+    }
 
     const step1Data = {
       recipientId: selectedRecipient.id,
       imageId: selectedImageId,
     };
-    onComplete?.(step1Data);
+
+    onComplete(step1Data);
     console.log("Step 1 complete", step1Data);
   }
 
   return (
     <>
-      <RecipientSearch
+      <Step1RecipientSection
         searchTerm={searchTerm}
-        onSearchChange={handleSearchChange}
-        results={filteredRecipients}
+        onSearchChange={setSearchTerm}
+        filteredRecipients={filteredRecipients}
+        selectedRecipient={selectedRecipient}
         onSelectRecipient={handleSelectRecipient}
       />
-      {selectedRecipient && (
-        <Step1RecipientInfo recipient={selectedRecipient} />
-      )}
-      <Step1ImagePicker
+
+      <Step1ImageSection
         images={STEP1_IMAGES}
         selectedImageId={selectedImageId}
         onSelectImage={handleSelectImage}
+        canGoNext={canGoNext}
+        onNext={handleNext}
       />
-      <button type="button" onClick={handleNext} disabled={!canGoNext}>
-        Välj belopp
-      </button>
+      <StepPrimaryButton
+        label="Välj belopp"
+        onClick={handleNext}
+        disabled={!canGoNext}
+      ></StepPrimaryButton>
     </>
   );
 }
