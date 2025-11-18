@@ -6,6 +6,7 @@ import { useState } from "react";
 import Step1ImagePicker from "./Step1ImagePicker";
 import { STEP1_IMAGES } from "@/data/step1Images";
 import { Step1RecipientSection } from "./Step1RecipientSection";
+import { Step1ImageSection } from "./Step1ImageSection";
 
 type Step1Contentprops = {
   onComplete?: (data: { recipientId: string; imageId: string }) => void;
@@ -64,14 +65,14 @@ export default function Step1Content({ onComplete }: Step1Contentprops) {
         selectedRecipient={selectedRecipient}
         onSelectRecipient={handleSelectRecipient}
       />
-      <Step1ImagePicker
+
+      <Step1ImageSection
         images={STEP1_IMAGES}
         selectedImageId={selectedImageId}
         onSelectImage={handleSelectImage}
+        canGoNext={canGoNext}
+        onNext={handleNext}
       />
-      <button type="button" onClick={handleNext} disabled={!canGoNext}>
-        Välj belopp
-      </button>
     </>
   );
 }
