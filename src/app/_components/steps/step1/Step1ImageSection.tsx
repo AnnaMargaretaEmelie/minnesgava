@@ -15,8 +15,6 @@ export function Step1ImageSection({
   images,
   selectedImageId,
   onSelectImage,
-  canGoNext,
-  onNext,
 }: Step1ImageSectionProps) {
   return (
     <>
