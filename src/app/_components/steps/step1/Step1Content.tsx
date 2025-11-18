@@ -33,10 +33,6 @@ export default function Step1Content({ onComplete }: Step1Contentprops) {
           );
         });
 
-  function handleSearchChange(value: string) {
-    setSearchTerm(value);
-  }
-
   function handleSelectRecipient(recipient: Recipient) {
     setSelectedRecipient(recipient);
   }
