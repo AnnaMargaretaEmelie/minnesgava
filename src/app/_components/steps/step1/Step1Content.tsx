@@ -77,6 +77,7 @@ export default function Step1Content({ onComplete }: Step1Contentprops) {
       <StepPrimaryButton
         label="Välj belopp"
         onClick={handleNext}
+        disabled={!canGoNext}
       ></StepPrimaryButton>
     </>
   );
