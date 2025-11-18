@@ -3,13 +3,13 @@
 //logik och state
 import { MOCK_RECIPIENTS, Recipient } from "@/data/recipients.mock";
 import { useState } from "react";
-import Step1ImagePicker from "./Step1ImagePicker";
 import { STEP1_IMAGES } from "@/data/step1Images";
 import { Step1RecipientSection } from "./Step1RecipientSection";
 import { Step1ImageSection } from "./Step1ImageSection";
+import { StepPrimaryButton } from "../StepPrimaryButton";
 
 type Step1Contentprops = {
-  onComplete?: (data: { recipientId: string; imageId: string }) => void;
+  onComplete: (data: { recipientId: string; imageId: string }) => void;
 };
 
 export default function Step1Content({ onComplete }: Step1Contentprops) {
@@ -46,13 +46,18 @@ export default function Step1Content({ onComplete }: Step1Contentprops) {
   }
 
   function handleNext() {
-    if (!canGoNext || !selectedRecipient || !selectedImageId) return;
+    const isComplete = selectedRecipient && selectedImageId;
+    if (!isComplete) {
+      console.warn("Steg 1 är inte komplett");
+      return;
+    }
 
     const step1Data = {
       recipientId: selectedRecipient.id,
       imageId: selectedImageId,
     };
-    onComplete?.(step1Data);
+
+    onComplete(step1Data);
     console.log("Step 1 complete", step1Data);
   }
 
@@ -73,6 +78,10 @@ export default function Step1Content({ onComplete }: Step1Contentprops) {
         canGoNext={canGoNext}
         onNext={handleNext}
       />
+      <StepPrimaryButton
+        label="Välj belopp"
+        onClick={handleNext}
+      ></StepPrimaryButton>
     </>
   );
 }

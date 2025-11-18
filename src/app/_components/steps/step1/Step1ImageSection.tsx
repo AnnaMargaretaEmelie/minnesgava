@@ -25,9 +25,6 @@ export function Step1ImageSection({
         selectedImageId={selectedImageId}
         onSelectImage={onSelectImage}
       />
-      <button type="button" onClick={onNext} disabled={!canGoNext}>
-        Välj belopp
-      </button>
     </>
   );
 }
