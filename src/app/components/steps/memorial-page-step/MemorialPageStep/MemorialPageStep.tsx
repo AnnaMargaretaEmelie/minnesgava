@@ -4,13 +4,10 @@
 import { MOCK_RECIPIENTS, Recipient } from "@/data/recipients.mock";
 import { useState } from "react";
 import { STEP1_IMAGES } from "@/data/step1Images";
-import { Step1RecipientSection } from "./Step1RecipientSection";
-import { Step1ImageSection } from "./Step1ImageSection";
-import { StepPrimaryButton } from "../StepPrimaryButton";
-
-type MemorialPageStepProps = {
-  onComplete: (data: { recipientId: string; imageId: string }) => void;
-};
+import { Step1RecipientSection } from "../Step1RecipientSection";
+import { Step1ImageSection } from "../Step1ImageSection";
+import { StepPrimaryButton } from "../../StepPrimaryButton";
+import { MemorialPageStepProps } from "./MemorialPageStep.types";
 
 export default function MemorialPageStep({
   onComplete,

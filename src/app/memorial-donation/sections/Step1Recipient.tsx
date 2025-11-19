@@ -1,6 +1,6 @@
 "use client";
 
-import Step1Content from "@/app/components/steps/memorial-page-step/MemorialPageStep";
+import Step1Content from "@/app/components/steps/memorial-page-step/MemorialPageStep/MemorialPageStep";
 
 type Step1Copy = {
   title?: string | null;
