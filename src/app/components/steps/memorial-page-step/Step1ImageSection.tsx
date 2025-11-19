@@ -1,6 +1,6 @@
 "use client";
 
-import Step1ImagePicker from "./Step1ImagePicker";
+import Step1ImagePicker from "./ImagePicker/ImagePicker";
 import { Step1Image } from "@/data/step1Images";
 
 type Step1ImageSectionProps = {
