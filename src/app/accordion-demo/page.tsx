@@ -2,7 +2,7 @@
 
 import { AccordionRoot } from "@/app/components/accordion/accordion";
 import { AccordionItem } from "@/app/components/accordion/accordionItem";
-import Step1Content from "../components/steps/memorial-page-step/Step1Content";
+import Step1Content from "../components/steps/memorial-page-step/MemorialPageStep";
 
 export default function AccordionDemo() {
   return (

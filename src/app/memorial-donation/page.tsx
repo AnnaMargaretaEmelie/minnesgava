@@ -1,7 +1,7 @@
 import { COPY_QUERYResult } from "../../../sanity/types";
 import { COPY_QUERY } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
-import { Step1Recipient } from "./_sections/Step1Recipient";
+import { Step1Recipient } from "./sections/Step1Recipient";
 
 export default async function MemorialDonationPage() {
   const copy = await client.fetch<COPY_QUERYResult>(COPY_QUERY);

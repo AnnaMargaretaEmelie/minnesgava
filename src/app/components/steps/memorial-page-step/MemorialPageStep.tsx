@@ -8,11 +8,13 @@ import { Step1RecipientSection } from "./Step1RecipientSection";
 import { Step1ImageSection } from "./Step1ImageSection";
 import { StepPrimaryButton } from "../StepPrimaryButton";
 
-type Step1Contentprops = {
+type MemorialPageStepProps = {
   onComplete: (data: { recipientId: string; imageId: string }) => void;
 };
 
-export default function Step1Content({ onComplete }: Step1Contentprops) {
+export default function MemorialPageStep({
+  onComplete,
+}: MemorialPageStepProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRecipient, setSelectedRecipient] = useState<Recipient | null>(
     null
@@ -48,13 +50,13 @@ export default function Step1Content({ onComplete }: Step1Contentprops) {
       return;
     }
 
-    const step1Data = {
+    const memorialPageStepData = {
       recipientId: selectedRecipient.id,
       imageId: selectedImageId,
     };
 
-    onComplete(step1Data);
-    console.log("Step 1 complete", step1Data);
+    onComplete(memorialPageStepData);
+    console.log("Memorial Page Step complete", memorialPageStepData);
   }
 
   return (
