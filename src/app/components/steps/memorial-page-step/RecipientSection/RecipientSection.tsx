@@ -2,7 +2,7 @@
 
 import type { RecipientSectionProps } from "./RecipientSection.types";
 import RecipientSearch from "../RecipientSearch/RecipientSearch";
-import Step1RecipientInfo from "../Step1RecipientInfo";
+import RecipientInfo from "../RecipientInfo/RecipientInfo";
 
 export function RecipientSection({
   searchTerm,
@@ -19,9 +19,7 @@ export function RecipientSection({
         results={filteredRecipients}
         onSelectRecipient={onSelectRecipient}
       />
-      {selectedRecipient && (
-        <Step1RecipientInfo recipient={selectedRecipient} />
-      )}
+      {selectedRecipient && <RecipientInfo recipient={selectedRecipient} />}
     </>
   );
 }
