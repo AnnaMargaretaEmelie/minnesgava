@@ -3,9 +3,9 @@
 //logik och state
 import { MOCK_RECIPIENTS, Recipient } from "@/data/recipients.mock";
 import { useState } from "react";
-import { STEP1_IMAGES } from "@/data/step1Images";
+import { MEMORIAL_PAGE_IMAGES } from "@/data/memorialPageImages";
 import { Step1RecipientSection } from "../Step1RecipientSection";
-import { Step1ImageSection } from "../Step1ImageSection";
+import { ImageSection } from "../ImageSection/ImageSection";
 import { StepPrimaryButton } from "../../StepPrimaryButton";
 import { MemorialPageStepProps } from "./MemorialPageStep.types";
 
@@ -66,8 +66,8 @@ export default function MemorialPageStep({
         onSelectRecipient={handleSelectRecipient}
       />
 
-      <Step1ImageSection
-        images={STEP1_IMAGES}
+      <ImageSection
+        images={MEMORIAL_PAGE_IMAGES}
         selectedImageId={selectedImageId}
         onSelectImage={handleSelectImage}
         canGoNext={canGoNext}
