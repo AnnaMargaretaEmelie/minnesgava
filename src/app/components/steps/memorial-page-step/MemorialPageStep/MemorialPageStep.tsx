@@ -4,7 +4,7 @@
 import { MOCK_RECIPIENTS, Recipient } from "@/data/recipients.mock";
 import { useState } from "react";
 import { MEMORIAL_PAGE_IMAGES } from "@/data/memorialPageImages";
-import { Step1RecipientSection } from "../Step1RecipientSection";
+import { RecipientSection } from "../RecipientSection/RecipientSection";
 import { ImageSection } from "../ImageSection/ImageSection";
 import { StepPrimaryButton } from "../../StepPrimaryButton";
 import { MemorialPageStepProps } from "./MemorialPageStep.types";
@@ -58,7 +58,7 @@ export default function MemorialPageStep({
 
   return (
     <>
-      <Step1RecipientSection
+      <RecipientSection
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
         filteredRecipients={filteredRecipients}
