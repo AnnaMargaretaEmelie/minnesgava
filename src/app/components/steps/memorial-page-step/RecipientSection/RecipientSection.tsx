@@ -1,8 +1,9 @@
 "use client";
 
 import type { RecipientSectionProps } from "./RecipientSection.types";
-import RecipientSearch from "../Step1RecipientSearch";
+import RecipientSearch from "../RecipientSearch/RecipientSearch";
 import Step1RecipientInfo from "../Step1RecipientInfo";
+
 export function RecipientSection({
   searchTerm,
   onSearchChange,
