@@ -1,11 +1,23 @@
 import { COPY_QUERYResult } from "../../../sanity/types";
 import { COPY_QUERY } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
-import { Step1Recipient } from "./sections/Step1Recipient";
+import { MemorialPageSection } from "./sections/MemorialPageSection/MemorialPageSection";
 
 export default async function MemorialDonationPage() {
   const copy = await client.fetch<COPY_QUERYResult>(COPY_QUERY);
-  const step1Copy = copy?.step1Recipient?.step1Section;
+  const memorialPageCopy = copy?.step1Recipient?.step1Section;
 
-  return <main>{step1Copy && <Step1Recipient copy={step1Copy} />}</main>;
+  if (!memorialPageCopy) {
+    return (
+      <main>
+        <p>Innehåll saknas</p>
+      </main>
+    );
+  }
+
+  return (
+    <main>
+      <MemorialPageSection copy={memorialPageCopy} />
+    </main>
+  );
 }
