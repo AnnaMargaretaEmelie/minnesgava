@@ -10,15 +10,13 @@ export function ImageSection({
   onSelectImage,
 }: ImageSectionProps) {
   return (
-    <>
-      <section className={styles.ImageSection}>
-        <h2 className={styles.heading}></h2>
-        <ImagePicker
-          images={images}
-          selectedImageId={selectedImageId}
-          onSelectImage={onSelectImage}
-        />
-      </section>
-    </>
+    <section className={styles.ImageSection}>
+      <h2 className={styles.heading}></h2>
+      <ImagePicker
+        images={images}
+        selectedImageId={selectedImageId}
+        onSelectImage={onSelectImage}
+      />
+    </section>
   );
 }

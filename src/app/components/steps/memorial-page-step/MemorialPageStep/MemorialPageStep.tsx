@@ -6,7 +6,7 @@ import { useState } from "react";
 import { MEMORIAL_PAGE_IMAGES } from "@/data/memorialPageImages";
 import { RecipientSection } from "../RecipientSection/RecipientSection";
 import { ImageSection } from "../ImageSection/ImageSection";
-import { StepPrimaryButton } from "../../StepPrimaryButton/StepPrimaryButton";
+import { StepPrimaryButton } from "../../../StepPrimaryButton/StepPrimaryButton";
 import { MemorialPageStepProps } from "./MemorialPageStep.types";
 
 export default function MemorialPageStep({
