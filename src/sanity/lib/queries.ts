@@ -22,21 +22,21 @@ export const COPY_QUERY = defineQuery(`*[_type == 'donationCopy'][0] {
             text
         }
     },
-    step1Recipient {
-        step1Section {
+    memorialCard {
+        introSection {
             title,
             text
         }
     },
-    step2Amount {
-        step2Section{
+    donationAmount {
+        introSection{
             title, 
             text
         },
-        text
+        infoText
     },
-    step3Donor {
-        step3Section{
+    donorDetails {
+        introSection{
             title,
             text
         },
