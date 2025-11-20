@@ -21,13 +21,13 @@ export const donationCopyType = defineType ({
         }),
 
         defineField({
-            name: 'step1Recipient', 
-            title: 'Steg 1 - Minnesblad',
+            name: 'memorialCard', 
+            title: 'Minnesblad',
             options: {collapsible: true},
             type: 'object', 
             fields: [
                 { 
-                    name: 'step1Section', 
+                    name: 'introSection', 
                     title: 'Underrubrik och ingress',
                     type: 'sectionWithTitle',
                 }, 
@@ -35,18 +35,18 @@ export const donationCopyType = defineType ({
         }),
 
         defineField({ 
-            name: 'step2Amount', 
-            title: 'Steg 2 - Gåvobelopp',
+            name: 'donationAmount', 
+            title: 'Gåvobelopp',
             options: {collapsible: true},
             type: 'object', 
             fields: [
                 { 
-                    name: 'step2Section', 
+                    name: 'introSection', 
                     title: 'Underrubrik och ingress',
                     type: 'sectionWithTitle', 
                 }, 
                 {
-                    name: 'text', 
+                    name: 'infoText', 
                     title: 'Information',
                     description: 'Informationsruta om skatteavdrag',
                     type: 'array', 
@@ -56,14 +56,14 @@ export const donationCopyType = defineType ({
                 }),
 
         defineField({
-            name: 'step3Donor', 
-            title: 'Steg 3 - Kontaktuppgifter',
-            description: 'Rubrik och ingress till steg 3',
+            name: 'donorDetails', 
+            title: 'Kontaktuppgifter',
+            description: 'Rubrik och ingress',
             options: {collapsible: true},
             type: 'object', 
             fields: [
                 { 
-                    name:'step3Section', 
+                    name:'introSection', 
                     title: 'Underrubrik och ingress',
                     type:'sectionWithTitle', 
                 },
