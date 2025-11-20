@@ -51,12 +51,12 @@
         },
         "optional": true
       },
-      "step1Recipient": {
+      "memorialCard": {
         "type": "objectAttribute",
         "value": {
           "type": "object",
           "attributes": {
-            "step1Section": {
+            "introSection": {
               "type": "objectAttribute",
               "value": {
                 "type": "inline",
@@ -68,12 +68,12 @@
         },
         "optional": true
       },
-      "step2Amount": {
+      "donationAmount": {
         "type": "objectAttribute",
         "value": {
           "type": "object",
           "attributes": {
-            "step2Section": {
+            "introSection": {
               "type": "objectAttribute",
               "value": {
                 "type": "inline",
@@ -81,7 +81,7 @@
               },
               "optional": true
             },
-            "text": {
+            "infoText": {
               "type": "objectAttribute",
               "value": {
                 "type": "array",
@@ -264,12 +264,12 @@
         },
         "optional": true
       },
-      "step3Donor": {
+      "donorDetails": {
         "type": "objectAttribute",
         "value": {
           "type": "object",
           "attributes": {
-            "step3Section": {
+            "introSection": {
               "type": "objectAttribute",
               "value": {
                 "type": "inline",
