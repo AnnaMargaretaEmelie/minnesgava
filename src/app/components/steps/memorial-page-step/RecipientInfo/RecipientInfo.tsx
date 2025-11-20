@@ -1,9 +1,6 @@
 //info-ruta med vald mottagare
-import type { Recipient } from "@/data/recipients.mock";
-
-type Step1RecipientInfoProps = {
-  recipient: Recipient;
-};
+import { RecipientInfoProps } from "./RecipientInfo.types";
+import styles from "./RecipientInfo.module.scss";
 
 function formatDate(dateString: string) {
   const date = new Date(dateString);
@@ -14,16 +11,14 @@ function formatDate(dateString: string) {
   });
 }
 
-export default function Step1RecipientInfo({
-  recipient,
-}: Step1RecipientInfoProps) {
+export default function RecipientInfo({ recipient }: RecipientInfoProps) {
   const fullName = `${recipient.firstName} ${recipient.lastName}`;
   const birth = formatDate(recipient.birthDate);
   const death = formatDate(recipient.deathDate);
 
   return (
-    <div>
-      <p>{fullName}</p>
+    <div className={styles.wrapper}>
+      <p className={styles.name}>{fullName}</p>
       <p>
         {birth} - {death}
       </p>

@@ -1,8 +1,8 @@
 "use client";
 
-import { AccordionRoot } from "@/app/_components/accordion/accordion";
-import { AccordionItem } from "@/app/_components/accordion/accordionItem";
-import Step1Content from "../_components/steps/step1/Step1Content";
+import { AccordionRoot } from "@/app/components/accordion/accordion";
+import { AccordionItem } from "@/app/components/accordion/accordionItem";
+import Step1Content from "../components/steps/memorial-page-step/MemorialPageStep/MemorialPageStep";
 
 export default function AccordionDemo() {
   return (

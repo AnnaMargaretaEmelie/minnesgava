@@ -3,16 +3,15 @@
 //logik och state
 import { MOCK_RECIPIENTS, Recipient } from "@/data/recipients.mock";
 import { useState } from "react";
-import { STEP1_IMAGES } from "@/data/step1Images";
-import { Step1RecipientSection } from "./Step1RecipientSection";
-import { Step1ImageSection } from "./Step1ImageSection";
-import { StepPrimaryButton } from "../StepPrimaryButton";
+import { MEMORIAL_PAGE_IMAGES } from "@/data/memorialPageImages";
+import { RecipientSection } from "../RecipientSection/RecipientSection";
+import { ImageSection } from "../ImageSection/ImageSection";
+import { StepPrimaryButton } from "../../../StepPrimaryButton/StepPrimaryButton";
+import { MemorialPageStepProps } from "./MemorialPageStep.types";
 
-type Step1Contentprops = {
-  onComplete: (data: { recipientId: string; imageId: string }) => void;
-};
-
-export default function Step1Content({ onComplete }: Step1Contentprops) {
+export default function MemorialPageStep({
+  onComplete,
+}: MemorialPageStepProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRecipient, setSelectedRecipient] = useState<Recipient | null>(
     null
@@ -48,18 +47,18 @@ export default function Step1Content({ onComplete }: Step1Contentprops) {
       return;
     }
 
-    const step1Data = {
+    const memorialPageStepData = {
       recipientId: selectedRecipient.id,
       imageId: selectedImageId,
     };
 
-    onComplete(step1Data);
-    console.log("Step 1 complete", step1Data);
+    onComplete(memorialPageStepData);
+    console.log("Memorial Page Step complete", memorialPageStepData);
   }
 
   return (
     <>
-      <Step1RecipientSection
+      <RecipientSection
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
         filteredRecipients={filteredRecipients}
@@ -67,8 +66,8 @@ export default function Step1Content({ onComplete }: Step1Contentprops) {
         onSelectRecipient={handleSelectRecipient}
       />
 
-      <Step1ImageSection
-        images={STEP1_IMAGES}
+      <ImageSection
+        images={MEMORIAL_PAGE_IMAGES}
         selectedImageId={selectedImageId}
         onSelectImage={handleSelectImage}
         canGoNext={canGoNext}

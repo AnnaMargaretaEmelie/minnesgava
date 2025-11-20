@@ -1,10 +1,6 @@
-export type Step1Image = {
-  id: string;
-  src: string;
-  alt: string;
-};
+import type { ImageItem } from "@/app/components/steps/memorial-page-step/ImagePicker/ImagePicker.types";
 
-export const STEP1_IMAGES: Step1Image[] = [
+export const MEMORIAL_PAGE_IMAGES: ImageItem[] = [
   {
     id: "red-rose",
     src: "/images/red_rose.png",

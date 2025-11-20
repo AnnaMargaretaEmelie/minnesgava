@@ -1,0 +1,23 @@
+.pickerWrapper {
+  display: grid;
+  gap: 8px;
+}
+
+.imageButton {
+  padding: 4px;
+  margin-right: 8px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background: transparent;
+}
+
+.imageButtonSelected {
+  @extend .imageButton; 
+  border: 2px solid black;
+}
+
+.thumbnail {
+  display: block;
+  width: 80px;
+  height: auto;
+}
