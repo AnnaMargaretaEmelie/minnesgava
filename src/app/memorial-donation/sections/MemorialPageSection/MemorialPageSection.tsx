@@ -4,14 +4,17 @@ import MemorialPageStep from "@/app/components/steps/memorial-page-step/Memorial
 import type { MemorialPageSectionProps } from "./MemorialPageSection.types";
 import styles from "./MemorialPageSection.module.scss";
 import { PortableText } from "next-sanity";
+import { useAccordion } from "@/app/components/accordion/accordion";
 
 export function MemorialPageSection({ copy }: MemorialPageSectionProps) {
+  const ctx = useAccordion();
+
   function handleMemorialPageComplete(memorialPageStepData: {
     recipientId: string;
     imageId: string;
   }) {
     console.log("Memorial page data: ", memorialPageStepData);
-    //gå till nästa steg i Accordion när den är kopplad
+    ctx.goNext("memorial-card-step");
   }
 
   return (
