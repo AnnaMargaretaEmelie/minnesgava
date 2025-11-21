@@ -22,12 +22,12 @@ export type DonationCopy = {
   heroIntro?: {
     introSection?: SectionWithTitle;
   };
-  step1Recipient?: {
-    step1Section?: SectionWithTitle;
+  memorialCard?: {
+    introSection?: SectionWithTitle;
   };
-  step2Amount?: {
-    step2Section?: SectionWithTitle;
-    text?: Array<{
+  donationAmount?: {
+    introSection?: SectionWithTitle;
+    infoText?: Array<{
       children?: Array<{
         marks?: Array<string>;
         text?: string;
@@ -46,8 +46,8 @@ export type DonationCopy = {
       _key: string;
     }>;
   };
-  step3Donor?: {
-    step3Section?: SectionWithTitle;
+  donorDetails?: {
+    introSection?: SectionWithTitle;
     integrity?: IntegrityText;
   };
   thankYouText?: {
@@ -274,7 +274,7 @@ export type MESSAGE_QUERYResult = Array<{
   text: string | null;
 }>;
 // Variable: COPY_QUERY
-// Query: *[_type == 'donationCopy'][0] {    heroIntro {        introSection {            title,            text        }    },    step1Recipient {        step1Section {            title,            text        }    },    step2Amount {        step2Section{            title,             text        },        text    },    step3Donor {        step3Section{            title,            text        },        integrity {            text        }    },    thankYouText {        title,        text    }}
+// Query: *[_type == 'donationCopy'][0] {    heroIntro {        introSection {            title,            text        }    },    memorialCard {        introSection {            title,            text        }    },    donationAmount {        introSection{            title,             text        },        infoText    },    donorDetails {        introSection{            title,            text        },        integrity {            text        }    },    thankYouText {        title,        text    }}
 export type COPY_QUERYResult = {
   heroIntro: {
     introSection: {
@@ -299,8 +299,8 @@ export type COPY_QUERYResult = {
       }> | null;
     } | null;
   } | null;
-  step1Recipient: {
-    step1Section: {
+  memorialCard: {
+    introSection: {
       title: string | null;
       text: Array<{
         children?: Array<{
@@ -322,8 +322,8 @@ export type COPY_QUERYResult = {
       }> | null;
     } | null;
   } | null;
-  step2Amount: {
-    step2Section: {
+  donationAmount: {
+    introSection: {
       title: string | null;
       text: Array<{
         children?: Array<{
@@ -344,7 +344,7 @@ export type COPY_QUERYResult = {
         _key: string;
       }> | null;
     } | null;
-    text: Array<{
+    infoText: Array<{
       children?: Array<{
         marks?: Array<string>;
         text?: string;
@@ -363,8 +363,8 @@ export type COPY_QUERYResult = {
       _key: string;
     }> | null;
   } | null;
-  step3Donor: {
-    step3Section: {
+  donorDetails: {
+    introSection: {
       title: string | null;
       text: Array<{
         children?: Array<{
@@ -435,6 +435,6 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == 'donationSettings'][0]{\n    currency,\n    presetAmounts,\n    minAmount\n}": SETTINGS_QUERYResult;
     "*[_type == 'presetMessage'] | order(label asc) [0...20]{\n    label,\n    text\n}": MESSAGE_QUERYResult;
-    "*[_type == 'donationCopy'][0] {\n\n    heroIntro {\n        introSection {\n            title,\n            text\n        }\n    },\n    step1Recipient {\n        step1Section {\n            title,\n            text\n        }\n    },\n    step2Amount {\n        step2Section{\n            title, \n            text\n        },\n        text\n    },\n    step3Donor {\n        step3Section{\n            title,\n            text\n        },\n        integrity {\n            text\n        }\n    },\n    thankYouText {\n        title,\n        text\n    }\n}": COPY_QUERYResult;
+    "*[_type == 'donationCopy'][0] {\n\n    heroIntro {\n        introSection {\n            title,\n            text\n        }\n    },\n    memorialCard {\n        introSection {\n            title,\n            text\n        }\n    },\n    donationAmount {\n        introSection{\n            title, \n            text\n        },\n        infoText\n    },\n    donorDetails {\n        introSection{\n            title,\n            text\n        },\n        integrity {\n            text\n        }\n    },\n    thankYouText {\n        title,\n        text\n    }\n}": COPY_QUERYResult;
   }
 }
