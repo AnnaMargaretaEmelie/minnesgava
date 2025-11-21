@@ -1,10 +1,10 @@
-import type { MemorialPageLayoutProps } from "./MemorialPageLayout.types";
+import type { MemorialDonationLayoutProps } from "./MemorialDonationLayout.types";
 import { MemorialPageSection } from "../sections/MemorialPageSection/MemorialPageSection";
-import styles from "./MemorialPageLayout.module.scss";
+import styles from "./MemorialDonationLayout.module.scss";
 import { AccordionItem } from "@/app/components/accordion/accordionItem";
 import { AccordionRoot } from "@/app/components/accordion/accordion";
 
-export function MemorialPageLayout({ copy }: MemorialPageLayoutProps) {
+export function MemorialDonationLayout({ copy }: MemorialDonationLayoutProps) {
   return (
     <div className={styles.layout}>
       <section className={styles.hero}>HeroSection</section>

@@ -1,7 +1,7 @@
 import { COPY_QUERY } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
 import { COPY_QUERYResult } from "../../../sanity/types";
-import { MemorialPageLayout } from "./MemorialPageLayout/MemorialPageLayout";
+import { MemorialDonationLayout } from "./MemorialDonationLayout/MemorialDonationLayout";
 
 export default async function MemorialDonationPage() {
   const copy = await client.fetch<COPY_QUERYResult>(COPY_QUERY);
@@ -17,7 +17,7 @@ export default async function MemorialDonationPage() {
 
   return (
     <main>
-      <MemorialPageLayout copy={memorialPageCopy} />
+      <MemorialDonationLayout copy={memorialPageCopy} />
     </main>
   );
 }
