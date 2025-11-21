@@ -1,0 +1,54 @@
+/* Uppdatera med tokens mm */
+.recipientSection {
+  display: grid;
+  gap: 12px;
+}
+
+.heading {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.searchField {
+  display: grid;
+  gap: 4px;
+}
+
+.searchLabel {
+  font-size: 0.875rem;
+}
+
+.searchInput {
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.itemButton, .itemButtonSelected {
+  width: 100%;
+  text-align: left;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+}
+
+.itemButtonSelected {
+  border-color: #000;
+  background: #f3f3f3;
+}
+
+.selectedInfo {
+  font-size: 0.875rem;
+  color: #555;
+}/*# sourceMappingURL=RecipientSection.module.css.map */

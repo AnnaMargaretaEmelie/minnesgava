@@ -1,0 +1,16 @@
+/* uppdatera med tokens mm */
+.imageSection {
+  display: grid;
+  gap: 12px;
+}
+
+.heading {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.helperText {
+  font-size: 0.875rem;
+  color: #555;
+}/*# sourceMappingURL=ImageSection.module.css.map */
