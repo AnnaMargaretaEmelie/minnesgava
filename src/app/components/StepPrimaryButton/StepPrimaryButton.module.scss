@@ -1,1 +1,12 @@
+@use "../../../styles/abstracts/tokens";
 
+.stepPrimaryButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: tokens.$space-md;
+}
+
+.stepPrimaryButton .button {
+  width: auto;
+  flex: 0 0 auto; 
+}

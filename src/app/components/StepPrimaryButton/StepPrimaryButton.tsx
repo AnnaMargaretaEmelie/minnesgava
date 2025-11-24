@@ -9,13 +9,16 @@ export function StepPrimaryButton({
   disabled,
 }: PrimaryButtonProps) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      className={styles.button}
-    >
-      {label}{" "}
-    </button>
+    <div className={styles.stepPrimaryButton}>
+      <button
+        type="button"
+        onClick={onClick}
+        disabled={disabled}
+        className="button"
+      >
+        <span className="button__label">{label}</span>
+        <span className="button__icon"></span>
+      </button>
+    </div>
   );
 }
