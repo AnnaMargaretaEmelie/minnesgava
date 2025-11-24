@@ -1,6 +1,7 @@
 "use client";
 
 import { PrimaryButtonProps } from "./StepPrimaryButton.types";
+import { Button } from "../shared/Button/Button";
 import styles from "./StepPrimaryButton.module.scss";
 
 export function StepPrimaryButton({
@@ -10,15 +11,9 @@ export function StepPrimaryButton({
 }: PrimaryButtonProps) {
   return (
     <div className={styles.stepPrimaryButton}>
-      <button
-        type="button"
-        onClick={onClick}
-        disabled={disabled}
-        className="button"
-      >
-        <span className="button__label">{label}</span>
-        <span className="button__icon"></span>
-      </button>
+      <Button onClick={onClick} disabled={disabled}>
+        {label}
+      </Button>
     </div>
   );
 }
