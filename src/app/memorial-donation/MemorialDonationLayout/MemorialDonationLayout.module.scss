@@ -1,9 +1,13 @@
+@use "../../../styles/abstracts/tokens";
+
 .layout {
-  // max-bredd, centrering etc.
+  max-width: 620px;
+  margin: 0 auto;
+
 }
 
 .hero {
-  // kanske margin-bottom eller gap mot stegen
+  margin-bottom: tokens.$space-lg;
 }
 
 .steps {
