@@ -4,7 +4,7 @@ import MemorialPageStep from "@/app/components/steps/memorial-page-step/Memorial
 import type { MemorialPageSectionProps } from "./MemorialPageSection.types";
 import styles from "./MemorialPageSection.module.scss";
 import { PortableText } from "next-sanity";
-import { useAccordion } from "@/app/components/accordion/accordion";
+import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
 
 export function MemorialPageSection({ copy }: MemorialPageSectionProps) {
   const ctx = useAccordion();

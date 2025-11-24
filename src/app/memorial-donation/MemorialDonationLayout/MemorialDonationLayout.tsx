@@ -1,8 +1,8 @@
 import type { MemorialDonationLayoutProps } from "./MemorialDonationLayout.types";
 import { MemorialPageSection } from "../sections/MemorialPageSection/MemorialPageSection";
 import styles from "./MemorialDonationLayout.module.scss";
-import { AccordionItem } from "@/app/components/accordion/accordionItem";
-import { AccordionRoot } from "@/app/components/accordion/accordion";
+import { AccordionItem } from "@/app/components/accordion/AccordionItem/AccordionItem";
+import { AccordionRoot } from "@/app/components/accordion/Accordion/Accordion";
 
 export function MemorialDonationLayout({ copy }: MemorialDonationLayoutProps) {
   return (

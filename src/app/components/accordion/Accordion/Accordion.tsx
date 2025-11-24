@@ -11,6 +11,7 @@ import {
   useCallback,
 } from "react";
 import * as Accordion from "@radix-ui/react-accordion";
+import styles from "./Accordion.module.scss";
 
 type StepStatus = "current" | "complete" | "locked";
 type StepStatuses = Record<string, StepStatus>;
@@ -155,7 +156,7 @@ export function AccordionRoot({
           if (val && !canTriggerClick(val)) return;
           setOpenId(val ?? null);
         }}
-        className="accordion"
+        className={styles.accordion}
       >
         {children}
       </Accordion.Root>
