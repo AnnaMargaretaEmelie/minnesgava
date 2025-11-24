@@ -1,6 +1,7 @@
 "use client";
 
-import { useAccordion } from "./accordion";
+import { useAccordion } from "../Accordion/Accordion";
+import styles from "./AccordionItem.module.scss";
 import * as Accordion from "@radix-ui/react-accordion";
 
 type AccordionItemProps = {
@@ -30,13 +31,13 @@ export function AccordionItem({
   return (
     <Accordion.Item
       value={value}
-      className={`accordion__item ${className ?? ""}`}
+      className={`${styles.item} ${className ?? ""}`}
       data-open={open}
       data-step-status={status}
       data-state={open ? "open" : "closed"}
     >
       <Accordion.Trigger
-        className={`accordion__trigger ${triggerClassName ?? ""}`}
+        className={`${styles.trigger} ${triggerClassName ?? ""}`}
         disabled={triggerIsDisabled}
         onClick={(e) => {
           if (triggerIsDisabled) {
@@ -48,16 +49,16 @@ export function AccordionItem({
         }}
       >
         <h2>{title}</h2>
-        <span className="accordion__icon" />
+        <span className={styles.icon} />
       </Accordion.Trigger>
 
       <Accordion.Content
-        className={`accordion__content ${contentClassName ?? ""}`}
+        className={`${styles.content} ${contentClassName ?? ""}`}
       >
-        <div className="accordion__content-inner">{children}</div>
+        <div className={styles.contentInner}>{children}</div>
       </Accordion.Content>
       {/* Rendera sammanfattning här */}
-      {<div className="accordion__summary"></div>}
+      {<div className={styles.summary}></div>}
     </Accordion.Item>
   );
 }
