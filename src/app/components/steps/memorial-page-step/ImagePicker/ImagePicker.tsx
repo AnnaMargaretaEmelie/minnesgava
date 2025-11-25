@@ -10,7 +10,7 @@ export default function ImagePicker({
   return (
     <div>
       <p>Välj motiv</p>
-      <div>
+      <div className={styles.pickerWrapper}>
         {images.map((image) => {
           const isSelected = image.id === selectedImageId;
 
@@ -26,8 +26,8 @@ export default function ImagePicker({
               <Image
                 src={image.src}
                 alt={image.alt}
-                width={80}
-                height={80}
+                width={100}
+                height={100}
                 className={styles.thumbnail}
               />
             </button>

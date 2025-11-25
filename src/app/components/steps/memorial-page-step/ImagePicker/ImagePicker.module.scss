@@ -1,23 +1,26 @@
+@use "../../../../../styles/abstracts/tokens";
+
 .pickerWrapper {
   display: grid;
-  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: tokens.$space-sm;
+  width: 100%;
 }
 
 .imageButton {
-  padding: 4px;
-  margin-right: 8px;
+  padding: tokens.$space-md;
   cursor: pointer;
-  border: 1px solid #ccc;
+  border: none;
   background: transparent;
+ 
 }
 
 .imageButtonSelected {
   @extend .imageButton; 
-  border: 2px solid black;
+  border: 1px solid tokens.$color-accent;
 }
 
 .thumbnail {
   display: block;
-  width: 80px;
   height: auto;
 }

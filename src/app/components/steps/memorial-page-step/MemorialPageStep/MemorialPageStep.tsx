@@ -8,6 +8,7 @@ import { RecipientSection } from "../RecipientSection/RecipientSection";
 import { ImageSection } from "../ImageSection/ImageSection";
 import { StepPrimaryButton } from "../../../StepPrimaryButton/StepPrimaryButton";
 import { MemorialPageStepProps } from "./MemorialPageStep.types";
+import styles from "./MemorialPageStep.module.scss";
 
 export default function MemorialPageStep({
   onComplete,
@@ -60,7 +61,7 @@ export default function MemorialPageStep({
   }
 
   return (
-    <>
+    <div className={styles.stepWrapper}>
       <RecipientSection
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
@@ -81,6 +82,6 @@ export default function MemorialPageStep({
         onClick={handleNext}
         disabled={!canGoNext}
       ></StepPrimaryButton>
-    </>
+    </div>
   );
 }
