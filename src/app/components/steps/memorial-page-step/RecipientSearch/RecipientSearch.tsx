@@ -18,13 +18,16 @@ export default function RecipientSearch({
         placeholder="Sök efter namn"
       />
 
-      {results.length > 0 && (
+      {searchTerm.trim() !== "" && results.length > 0 && (
         <ul className={styles.list}>
           {results.map((recipient) => (
             <li
               key={recipient.id}
               className={styles.listItem}
-              onClick={() => onSelectRecipient(recipient)}
+              onClick={() => {
+                onSelectRecipient(recipient);
+                onSearchChange(" ");
+              }}
             >
               {recipient.firstName} {recipient.lastName} - {recipient.city}
             </li>
