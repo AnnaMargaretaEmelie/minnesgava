@@ -1,4 +1,4 @@
-@use "../abstracts/tokens";
+@use "../../../../styles/abstracts/tokens";
 
 .button {
     background: tokens.$color-bg;
@@ -17,9 +17,9 @@
     }
   }
 
-  .button__label {/*placeholder for label styling*/}
+  .label {/*placeholder for label styling*/}
 
-  .button__icon {
+  .icon {
     display: inline-flex;
     align-items: center;
   }
