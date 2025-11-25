@@ -46,10 +46,13 @@ export default function MemorialPageStep({
       console.warn("Steg 1 är inte komplett");
       return;
     }
+    const fullName = `${selectedRecipient.firstName} ${selectedRecipient.lastName}`;
+    const summary = `${fullName}, ${selectedRecipient.city}`;
 
     const memorialPageStepData = {
       recipientId: selectedRecipient.id,
       imageId: selectedImageId,
+      summary,
     };
 
     onComplete(memorialPageStepData);

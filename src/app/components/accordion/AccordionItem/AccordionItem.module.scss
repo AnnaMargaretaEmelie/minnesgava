@@ -41,6 +41,11 @@
     }
 
 }
+
+&[data-step-status="complete"][data-state="closed"] .summary {
+display: block;
+}
+
 &[data-step-status="locked"] .trigger {
     opacity: 0.5;
     cursor: not-allowed;
@@ -101,5 +106,8 @@
 }
 
 .summary {
-    // placeholder for summary content under each item
+  padding: tokens.$space-md tokens.$space-md;
+  font-size: tokens.$font-size-body;
+  color: tokens.$color-text;
+  display: none;
 }

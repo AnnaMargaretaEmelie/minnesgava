@@ -7,4 +7,5 @@ NonNullable<COPY_QUERYResult>["memorialCard"]
 
 export type MemorialPageSectionProps = {
   copy: MemorialPageCopy;
+  onSummaryChange?: (summary: string) => void;
 };
