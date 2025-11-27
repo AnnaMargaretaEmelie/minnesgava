@@ -6,8 +6,12 @@ import styles from "./MemorialDonationLayout.module.scss";
 import { AccordionItem } from "@/app/components/accordion/AccordionItem/AccordionItem";
 import { AccordionRoot } from "@/app/components/accordion/Accordion/Accordion";
 import { useState } from "react";
+import { AmountSection } from "../sections/AmountSection/AmountSection";
 
-export function MemorialDonationLayout({ copy }: MemorialDonationLayoutProps) {
+export function MemorialDonationLayout({
+  memorialPageCopy,
+  amountCopy,
+}: MemorialDonationLayoutProps) {
   const [memorialSummary, setMemorialSummary] = useState<string | null>(null);
   return (
     <div className={styles.layout}>
@@ -21,7 +25,7 @@ export function MemorialDonationLayout({ copy }: MemorialDonationLayoutProps) {
             className={styles.step}
           >
             <MemorialPageSection
-              copy={copy}
+              copy={memorialPageCopy}
               onSummaryChange={setMemorialSummary}
             />
           </AccordionItem>
@@ -30,7 +34,7 @@ export function MemorialDonationLayout({ copy }: MemorialDonationLayoutProps) {
             title="2. Gåvobelopp"
             className={styles.step}
           >
-            <p>Kommande innehåll</p>
+            <AmountSection copy={amountCopy} />
           </AccordionItem>
           <AccordionItem
             value="donor-contact-step"

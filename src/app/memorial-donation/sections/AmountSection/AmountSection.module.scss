@@ -1,0 +1,93 @@
+@use "../../../../styles/abstracts/tokens";
+
+.section {
+    padding-block: tokens.$space-md;
+}
+
+.amount {
+    margin-bottom: tokens.$space-md;
+}
+
+.legend {
+    font-weight: 500;
+    margin-bottom: tokens.$space-xs;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: tokens.$space-sm;
+}
+
+.option {
+    border: 1px solid tokens.$color-text;
+    font-size: tokens.$font-size-body;
+    border-radius: 0;
+    padding: tokens.$space-sm tokens.$space-md;
+    background-color: tokens.$color-bg;
+    cursor: pointer;
+
+}
+
+// .optionSelected {
+//     background-color: tokens.$color-accent;
+// }
+
+.customAmount {
+    margin-top: tokens.$space-md;
+}
+
+.customLabel {
+    display: block;
+    margin-bottom: tokens.$space-xs;
+}
+
+.customInputRow {
+    display: flex;
+    align-items: center;
+    gap: tokens.$space-xs;
+}
+
+.customInput {
+    flex: 1;
+    padding: tokens.$space-sm tokens.$space-sm;
+    border-radius: 0;
+    border: 1px solid tokens.$color-text;
+}
+
+.information {
+    background-color: tokens.$color-beige;
+    padding-left: tokens.$space-md;
+    padding-top: tokens.$space-sm;
+    padding-right: tokens.$space-md;
+    padding-bottom: tokens.$space-md;
+}
+
+.purpose {
+    margin-top: tokens.$space-lg;
+}
+
+.purposeTitle {
+    font-size: tokens.$font-size-heading-md;
+    margin-bottom: tokens.$space-xs;
+}
+
+.purposeIntro {
+    margin-bottom: tokens.$space-sm;
+    font-size: tokens.$font-size-body;
+}
+
+.purposeControl {
+    display: flex;
+    flex-direction: column;
+    gap: tokens.$space-sm;
+    max-width: 150px;
+    font-size: tokens.$font-size-body;
+}
+
+.purposeSelect {
+    padding: tokens.$space-xs tokens.$space-sm;
+    border: 0;
+    font-size: tokens.$font-size-body;
+
+}
