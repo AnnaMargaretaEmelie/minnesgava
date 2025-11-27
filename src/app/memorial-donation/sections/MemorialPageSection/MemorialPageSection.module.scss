@@ -1,14 +1,16 @@
 /* Uppdatera med tokens mm */
 
+@use "../../../../styles/abstracts/tokens";
+
 .section {
   display: grid;
-  gap: 16px;
-  padding: 16px 0;
+  gap: tokens.$space-md;
+  padding: tokens.$space-md 0;
 }
 
 .title {
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: 500;
   margin: 0;
 }
 

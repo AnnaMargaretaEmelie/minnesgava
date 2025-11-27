@@ -12,6 +12,7 @@ type AccordionItemProps = {
   className?: string;
   triggerClassName?: string;
   contentClassName?: string;
+  summary?: React.ReactNode;
 };
 
 export function AccordionItem({
@@ -21,6 +22,7 @@ export function AccordionItem({
   className,
   triggerClassName,
   contentClassName,
+  summary,
 }: AccordionItemProps) {
   const ctx = useAccordion?.();
   const open = ctx ? ctx.isOpen(value) : undefined;
@@ -57,8 +59,7 @@ export function AccordionItem({
       >
         <div className={styles.contentInner}>{children}</div>
       </Accordion.Content>
-      {/* Rendera sammanfattning här */}
-      {<div className={styles.summary}></div>}
+      {<div className={styles.summary}>{summary}</div>}
     </Accordion.Item>
   );
 }

@@ -1,10 +1,14 @@
+"use client";
+
 import type { MemorialDonationLayoutProps } from "./MemorialDonationLayout.types";
 import { MemorialPageSection } from "../sections/MemorialPageSection/MemorialPageSection";
 import styles from "./MemorialDonationLayout.module.scss";
 import { AccordionItem } from "@/app/components/accordion/AccordionItem/AccordionItem";
 import { AccordionRoot } from "@/app/components/accordion/Accordion/Accordion";
+import { useState } from "react";
 
 export function MemorialDonationLayout({ copy }: MemorialDonationLayoutProps) {
+  const [memorialSummary, setMemorialSummary] = useState<string | null>(null);
   return (
     <div className={styles.layout}>
       <section className={styles.hero}>HeroSection</section>
@@ -13,9 +17,13 @@ export function MemorialDonationLayout({ copy }: MemorialDonationLayoutProps) {
           <AccordionItem
             value="memorial-card-step"
             title="1. Minnesblad"
+            summary={memorialSummary ?? undefined}
             className={styles.step}
           >
-            <MemorialPageSection copy={copy} />
+            <MemorialPageSection
+              copy={copy}
+              onSummaryChange={setMemorialSummary}
+            />
           </AccordionItem>
           <AccordionItem
             value="amount-step"

@@ -1,0 +1,6 @@
+@use "../../../../../styles/abstracts/tokens";
+.stepWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: tokens.$space-md;
+}
