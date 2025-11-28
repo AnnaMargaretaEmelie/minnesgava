@@ -43,8 +43,15 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
           <input type="tel" id="phone" name="phone" />
         </div>
       </form>
-
-      {/* Lägg in intergritytext */}
+      {copy.integrity && (
+        <div className={styles.integrity}>
+          {copy.integrity.text && (
+            <div className={styles.integrityText}>
+              <PortableText value={copy.integrity.text} />
+            </div>
+          )}
+        </div>
+      )}
     </section>
   );
 }
