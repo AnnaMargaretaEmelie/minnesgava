@@ -7,8 +7,9 @@ export default async function MemorialDonationPage() {
   const copy = await client.fetch<COPY_QUERYResult>(COPY_QUERY);
   const memorialPageCopy = copy?.memorialCard?.introSection;
   const amountCopy = copy?.donationAmount;
+  const donorCopy = copy?.donorDetails;
 
-  if (!memorialPageCopy || !amountCopy) {
+  if (!memorialPageCopy || !amountCopy || !donorCopy) {
     return (
       <main>
         <p>Innehåll saknas</p>
@@ -21,6 +22,7 @@ export default async function MemorialDonationPage() {
       <MemorialDonationLayout
         memorialPageCopy={memorialPageCopy}
         amountCopy={amountCopy}
+        donorCopy={donorCopy}
       />
     </main>
   );
