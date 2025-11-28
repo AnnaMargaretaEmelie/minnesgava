@@ -7,10 +7,12 @@ import { AccordionItem } from "@/app/components/accordion/AccordionItem/Accordio
 import { AccordionRoot } from "@/app/components/accordion/Accordion/Accordion";
 import { useState } from "react";
 import { AmountSection } from "../sections/AmountSection/AmountSection";
+import { DonorContactSection } from "../sections/DonorContactSection/DonorContactSection";
 
 export function MemorialDonationLayout({
   memorialPageCopy,
   amountCopy,
+  donorCopy,
 }: MemorialDonationLayoutProps) {
   const [memorialSummary, setMemorialSummary] = useState<string | null>(null);
   return (
@@ -41,7 +43,7 @@ export function MemorialDonationLayout({
             title="3. Kontaktuppgifter"
             className={styles.step}
           >
-            <p>Kommande innehåll</p>
+            <DonorContactSection copy={donorCopy} />
           </AccordionItem>
 
           <AccordionItem

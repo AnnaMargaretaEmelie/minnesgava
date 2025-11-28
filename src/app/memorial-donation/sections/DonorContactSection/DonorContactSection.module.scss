@@ -1,0 +1,54 @@
+@use "../../../../styles/abstracts/tokens";
+
+.section {
+  padding-block: tokens.$space-md;
+}
+
+.title {
+  margin-bottom: tokens.$space-xs;
+}
+
+.intro {
+  margin-bottom: tokens.$space-md;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$space-md;
+}
+
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$space-sm;
+
+  label {
+    font-size: tokens.$font-size-body;
+  }
+
+  input,
+  textarea {
+    border: 1px solid tokens.$color-text;
+    padding: tokens.$space-xs tokens.$space-sm;
+    border-radius: 0;
+    font-size: tokens.$font-size-body;
+  }
+}
+
+.integrity {
+  margin-top: tokens.$space-lg;
+  font-size: tokens.$font-size-body;
+}
+
+.integrityText {
+  p {
+    margin: 0;
+
+    & + p {
+      margin-top: tokens.$space-xs;
+    }
+  }
+}
+
