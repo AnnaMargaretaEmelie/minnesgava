@@ -16,31 +16,66 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
       <form className={styles.form}>
         <div className={styles.field}>
           <label htmlFor="firstName">Förnamn</label>
-          <input type="text" id="firstName" name="firstName" />
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            placeholder="T ex Anna"
+          />
         </div>
         <div className={styles.field}>
           <label htmlFor="lastName">Efternamn</label>
-          <input type="text" id="lastName" name="lastName" />
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            placeholder="T ex Larsson"
+          />
         </div>
         <div className={styles.field}>
           <label htmlFor="adress">Gatuadress</label>
-          <input type="text" id="adress" name="adress" />
+          <input
+            type="text"
+            id="adress"
+            name="adress"
+            placeholder="T ex Stora Nygatan 26"
+          />
         </div>
         <div className={styles.field}>
           <label htmlFor="postalCode">Postnummer</label>
-          <input type="text" id="postalCode" name="postalCode" />
+          <input
+            type="text"
+            id="postalCode"
+            name="postalCode"
+            placeholder="T ex 11127"
+          />
         </div>
         <div className={styles.field}>
           <label htmlFor="postalArea">Postort</label>
-          <input type="text" id="postalArea" name="postalArea" />
+          <input
+            type="text"
+            id="postalArea"
+            name="postalArea"
+            placeholder="T ex Stockholm"
+          />
         </div>
         <div className={styles.field}>
           <label htmlFor="email">Mejladress</label>
-          <input type="email" id="email" name="email" />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="T ex namn@domännamn.se"
+          />
         </div>
         <div className={styles.field}>
           <label htmlFor="phone">Mobiltelefon</label>
-          <input type="tel" id="phone" name="phone" />
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="T ex 0710203040"
+          />
         </div>
       </form>
       {copy.integrity && (
