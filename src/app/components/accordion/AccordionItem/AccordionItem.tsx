@@ -28,7 +28,11 @@ export function AccordionItem({
   const open = ctx ? ctx.isOpen(value) : undefined;
 
   const status = ctx?.getStatus(value) ?? "locked";
-  const triggerIsDisabled = status !== "complete";
+
+  const triggerIsDisabled = false;
+
+  //TEMP
+  // const triggerIsDisabled = status !== "complete";
 
   return (
     <Accordion.Item
@@ -38,21 +42,16 @@ export function AccordionItem({
       data-step-status={status}
       data-state={open ? "open" : "closed"}
     >
+      {/* TEMP */}
       <Accordion.Trigger
         className={`${styles.trigger} ${triggerClassName ?? ""}`}
         disabled={triggerIsDisabled}
-        onClick={(e) => {
-          if (triggerIsDisabled) {
-            e.preventDefault();
-            e.stopPropagation();
-            return;
-          }
-          ctx?.toggle(value);
-        }}
+        onClick={() => ctx?.toggle(value)}
       >
         <h2>{title}</h2>
         <span className={styles.icon} />
       </Accordion.Trigger>
+      {/* TEMP */}
 
       <Accordion.Content
         className={`${styles.content} ${contentClassName ?? ""}`}
@@ -63,3 +62,20 @@ export function AccordionItem({
     </Accordion.Item>
   );
 }
+
+// Original:
+// <Accordion.Trigger
+//     className={`${styles.trigger} ${triggerClassName ?? ""}`}
+//     disabled={triggerIsDisabled}
+//     onClick={(e) => {
+//       if (triggerIsDisabled) {
+//         e.preventDefault();
+//         e.stopPropagation();
+//         return;
+//       }
+//       ctx?.toggle(value);
+//     }}
+//   >
+//     <h2>{title}</h2>
+//     <span className={styles.icon} />
+//   </Accordion.Trigger>
