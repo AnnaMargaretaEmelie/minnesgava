@@ -2,4 +2,24 @@
 
 .section {
     padding-block: tokens.$space-md;
+    
+}
+.container {
+    padding: tokens.$space-md;
+    border: 1px solid #222;
+    border-radius: 16px;
+}
+
+.box {
+    padding: tokens.$space-md;
+    border: 1px solid #222;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chevron {
+    flex-shrink: 0;
+    opacity: 0.6;
 }
