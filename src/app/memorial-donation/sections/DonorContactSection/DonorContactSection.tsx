@@ -1,6 +1,7 @@
 import { DonorContactSectionProps } from "./DonorContactSection.types";
 import { PortableText } from "next-sanity";
 import styles from "./DonorContactSection.module.scss";
+import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
 
 export function DonorContactSection({ copy }: DonorContactSectionProps) {
   return (
@@ -87,6 +88,14 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
           )}
         </div>
       )}
+      <StepPrimaryButton
+        label="Välj betalmetod"
+        onClick={() => {
+          //TODO:Wire up goNext in a separate branch
+          console.log("Next from donor contact step (not wired yet)");
+        }}
+        disabled
+      />
     </section>
   );
 }
