@@ -89,8 +89,15 @@ export function AccordionRoot({
 
   const getStatus = useCallback((id: string) => statuses[id], [statuses]);
 
+  // TEMP: unlock all steps until step buttons/goNext are wired
+
+  // const canTriggerClick = useCallback(
+  //   (id: string) => getStatus(id) !== "locked",
+  //   [getStatus]
+  // );
+
   const canTriggerClick = useCallback(
-    (id: string) => getStatus(id) === "complete",
+    (id: string) => getStatus(id) !== undefined,
     [getStatus]
   );
 
