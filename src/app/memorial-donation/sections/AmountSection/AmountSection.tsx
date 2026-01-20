@@ -49,7 +49,10 @@ export function AmountSection({ copy }: AmountSectionProps) {
           Din gåva används till den bästa hjärnforskningen.
         </p>
         <div className={styles.purposeControl}>
-          <AccordionDropdown label="Välj diagnos">
+          <AccordionDropdown
+            label="Välj diagnos"
+            className={styles.dropdownRight}
+          >
             <div className={styles.purposeContent}>
               <p>Den bästa hjärnforskningen med störst behov</p>
               <p>Alzheimers sjukdom</p>

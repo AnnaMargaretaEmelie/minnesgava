@@ -5,6 +5,7 @@ export type AccordionDropdownType = {
   defaultOpen?: boolean;
   className?: string;
   contentClassName?: string;
+  triggerClassName?: string;
 };
 
 

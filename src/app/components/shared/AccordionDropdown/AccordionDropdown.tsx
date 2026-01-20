@@ -13,6 +13,7 @@ export function AccordionDropdown({
   children,
   className,
   contentClassName,
+  triggerClassName,
 }: AccordionDropdownType) {
   const [accordionValue, setAccordionValue] = useState<string>(
     defaultOpen ? ITEM_VALUE : "",
@@ -32,14 +33,16 @@ export function AccordionDropdown({
       collapsible
     >
       <Accordion.Item value={ITEM_VALUE}>
-        <Accordion.Trigger className={styles.trigger}>
+        <Accordion.Trigger
+          className={`${styles.trigger} ${triggerClassName ?? ""}`}
+        >
           <span>
             <strong>{triggerLabel}</strong>
           </span>
           <ChevronIcon className={styles.chevron}></ChevronIcon>
         </Accordion.Trigger>
         <Accordion.Content
-          className={`${styles.content}${contentClassName ?? ""}`}
+          className={`${styles.content} ${contentClassName ?? ""}`}
         >
           <div className={styles.contentInner}>{children}</div>
         </Accordion.Content>
