@@ -1,0 +1,15 @@
+@use "../../../../styles/abstracts/tokens";
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: tokens.$space-sm;
+}
+
+.chevron {
+  transition: transform 150ms ease;
+}
+
+.trigger[data-state="open"] .chevron {
+  transform: rotate(180deg);
+}
