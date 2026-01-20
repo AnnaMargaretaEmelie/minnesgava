@@ -4,6 +4,8 @@ import type { AccordionDropdownType } from "./AccordionDropdown.types";
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronIcon } from "../icons/ChevronIcon";
 
+const ITEM_VALUE = "dropdown";
+
 export function AccordionDropdown({
   defaultOpen,
   labelOpen,
@@ -12,25 +14,28 @@ export function AccordionDropdown({
   className,
   contentClassName,
 }: AccordionDropdownType) {
-  const [open, setOpen] = useState(defaultOpen ?? false);
+  const [accordionValue, setAccordionValue] = useState<string>(
+    defaultOpen ? ITEM_VALUE : "",
+  );
 
-  const ITEM_VALUE = "dropdown";
-  const value = open ? ITEM_VALUE : undefined;
+  const open = accordionValue === ITEM_VALUE;
   const handleValueChange = (nextValue: string) => {
-    setOpen(nextValue === ITEM_VALUE);
+    setAccordionValue(nextValue);
   };
   const triggerLabel = open && labelOpen ? labelOpen : label;
   return (
     <Accordion.Root
-      className={className}
+      className={`${styles.root} ${className ?? ""}`}
       type="single"
-      value={value}
+      value={accordionValue}
       onValueChange={handleValueChange}
       collapsible
     >
       <Accordion.Item value={ITEM_VALUE}>
         <Accordion.Trigger className={styles.trigger}>
-          <span>{triggerLabel}</span>
+          <span>
+            <strong>{triggerLabel}</strong>
+          </span>
           <ChevronIcon className={styles.chevron}></ChevronIcon>
         </Accordion.Trigger>
         <Accordion.Content

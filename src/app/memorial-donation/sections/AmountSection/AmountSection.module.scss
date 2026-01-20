@@ -78,16 +78,16 @@
 }
 
 .purposeControl {
-    display: flex;
-    flex-direction: column;
-    gap: tokens.$space-sm;
-    max-width: 150px;
+
     font-size: tokens.$font-size-body;
+    padding-block: tokens.$space-md;
 }
 
-.purposeSelect {
-    padding: tokens.$space-xs tokens.$space-sm;
-    border: 0;
-    font-size: tokens.$font-size-body;
-
+.purposeContent {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        column-gap: tokens.$space-lg;
+        row-gap: tokens.$space-md;
+        margin-top: tokens.$space-md;
 }
+

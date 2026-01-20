@@ -2,6 +2,7 @@ import styles from "./AmountSection.module.scss";
 import type { AmountSectionProps } from "./AmountSection.types";
 import { PortableText } from "next-sanity";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
+import { AccordionDropdown } from "@/app/components/shared/AccordionDropdown/AccordionDropdown";
 
 export function AmountSection({ copy }: AmountSectionProps) {
   return (
@@ -48,21 +49,14 @@ export function AmountSection({ copy }: AmountSectionProps) {
           Din gåva används till den bästa hjärnforskningen.
         </p>
         <div className={styles.purposeControl}>
-          <select
-            id="diagnosis"
-            className={styles.purposeSelect}
-            defaultValue=""
-          >
-            <option value="" disabled>
-              Välj diagnos
-            </option>
-            <option value="research">
-              Den bästa hjärnforskningen med störst behov
-            </option>
-            <option value="alzheimers">Alzheimers sjukdom</option>
-            <option value="parkinsons">Parkinsons sjukdom</option>
-            <option value="adhd">ADHD</option>
-          </select>
+          <AccordionDropdown label="Välj diagnos">
+            <div className={styles.purposeContent}>
+              <p>Den bästa hjärnforskningen med störst behov</p>
+              <p>Alzheimers sjukdom</p>
+              <p>Parkinsons sjukdom</p>
+              <p>ADHD</p>
+            </div>
+          </AccordionDropdown>
         </div>
         <StepPrimaryButton
           label="Till kontaktuppgifter"

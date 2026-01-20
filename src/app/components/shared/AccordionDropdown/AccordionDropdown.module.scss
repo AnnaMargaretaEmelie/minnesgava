@@ -1,9 +1,36 @@
 @use "../../../../styles/abstracts/tokens";
 
+.root {
+    width: 100%;
+
+}
+
+.content {
+    overflow: hidden;
+}
+
+.contentInner {
+    padding-top: tokens.$space-md;
+}
+
+.contentInner > :first-child {
+  margin-top: 0;
+}
+
+.contentInner > :last-child {
+    margin-bottom: 0;
+}
+
 .trigger {
   display: inline-flex;
   align-items: center;
   gap: tokens.$space-sm;
+  background-color: transparent;
+  border: none;
+  font-size: tokens.$font-size-body;
+  font-weight: 300;
+  padding: 0;
+  font-family: var(--font-inter), system-ui, sans-serif;
 }
 
 .chevron {
