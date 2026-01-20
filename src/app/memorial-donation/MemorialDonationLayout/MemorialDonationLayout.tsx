@@ -8,6 +8,7 @@ import { AccordionRoot } from "@/app/components/accordion/Accordion/Accordion";
 import { useState } from "react";
 import { AmountSection } from "../sections/AmountSection/AmountSection";
 import { DonorContactSection } from "../sections/DonorContactSection/DonorContactSection";
+import { PaymentSection } from "../sections/PaymentSection/PaymentSection";
 
 export function MemorialDonationLayout({
   memorialPageCopy,
@@ -51,7 +52,7 @@ export function MemorialDonationLayout({
             title="4. Betalsätt"
             className={styles.step}
           >
-            <p>Kommande innehåll</p>
+            <PaymentSection />
           </AccordionItem>
         </AccordionRoot>
       </section>
