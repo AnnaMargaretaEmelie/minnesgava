@@ -8,7 +8,6 @@
     padding: 25px;
     border: 1px solid #c29a9a;
     border-radius: 16px;
-
 }
 
 .box {
@@ -28,6 +27,10 @@
 
 .chevron {
     flex-shrink: 0;
+}
+
+.chevronRight {
+    transform: rotate(-90deg);
     opacity: 0.6;
 }
 
@@ -45,7 +48,6 @@
     margin-left: auto;
     gap: tokens.$space-xs;
     width: fit-content;
-
 }
 
 .triggerText {
