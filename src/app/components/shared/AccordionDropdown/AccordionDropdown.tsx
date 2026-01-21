@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./AccordionDropdown.module.scss";
-import type { AccordionDropdownType } from "./AccordionDropdown.types";
+import type { AccordionDropdownProps } from "./AccordionDropdown.types";
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronIcon } from "../icons/ChevronIcon";
 
@@ -14,7 +14,7 @@ export function AccordionDropdown({
   className,
   contentClassName,
   triggerClassName,
-}: AccordionDropdownType) {
+}: AccordionDropdownProps) {
   const [accordionValue, setAccordionValue] = useState<string>(
     defaultOpen ? ITEM_VALUE : "",
   );
