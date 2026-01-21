@@ -2,17 +2,47 @@
 
 .root {
     width: 100%;
-
 }
 
 .content {
     overflow: hidden;
-    margin-top: tokens.$space-md;
+}
+
+@keyframes accordionDown {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordionUp {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.content[data-state="open"] {
+  animation: accordionDown 200ms ease;
+}
+
+.content[data-state="closed"] {
+  animation: accordionUp 200ms ease;
 }
 
 .contentInner {
     padding-top: tokens.$space-md;
 }
+
+
 
 .contentInner > :first-child {
   margin-top: 0;
@@ -23,8 +53,6 @@
 }
 
 .trigger {
-
-
   width: 100%;
   display: inline-flex;
   align-items: center;
