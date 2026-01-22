@@ -3,9 +3,11 @@ import { PortableText } from "next-sanity";
 import styles from "./DonorContactSection.module.scss";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
 import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
+import { useFormContext } from "react-hook-form";
 
 export function DonorContactSection({ copy }: DonorContactSectionProps) {
   const accordion = useAccordion();
+  const { register } = useFormContext();
   return (
     <section className={styles.section}>
       {copy.introSection?.title && <h3>{copy.introSection.title}</h3>}
@@ -22,8 +24,8 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
           <input
             type="text"
             id="firstName"
-            name="firstName"
             placeholder="T ex Anna"
+            {...register("donor.firstName")}
           />
         </div>
         <div className={styles.field}>
@@ -31,8 +33,8 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
           <input
             type="text"
             id="lastName"
-            name="lastName"
             placeholder="T ex Larsson"
+            {...register("donor.lastName")}
           />
         </div>
         <div className={styles.field}>
@@ -40,8 +42,8 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
           <input
             type="text"
             id="adress"
-            name="adress"
             placeholder="T ex Stora Nygatan 26"
+            {...register("donor.adress")}
           />
         </div>
         <div className={styles.field}>
@@ -49,8 +51,8 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
           <input
             type="text"
             id="postalCode"
-            name="postalCode"
             placeholder="T ex 11127"
+            {...register("donor.postalCode")}
           />
         </div>
         <div className={styles.field}>
@@ -58,8 +60,8 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
           <input
             type="text"
             id="postalArea"
-            name="postalArea"
             placeholder="T ex Stockholm"
+            {...register("donor.postalArea")}
           />
         </div>
         <div className={styles.field}>
@@ -67,8 +69,8 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
           <input
             type="email"
             id="email"
-            name="email"
             placeholder="T ex namn@domännamn.se"
+            {...register("donor.email")}
           />
         </div>
         <div className={styles.field}>
@@ -76,8 +78,8 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
           <input
             type="tel"
             id="phone"
-            name="phone"
             placeholder="T ex 0710203040"
+            {...register("donor.phone")}
           />
         </div>
       </form>
