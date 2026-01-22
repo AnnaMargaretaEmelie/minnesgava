@@ -47,22 +47,26 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
         }}
       >
         <div className={styles.field}>
-          <label htmlFor="firstName">Förnamn</label>
+          <label htmlFor="firstName">Förnamn*</label>
           <input
             type="text"
             id="firstName"
             placeholder="T ex Anna"
             {...register("donor.firstName", { required: "Obligatoriskt fält" })}
+            className={errors.donor?.firstName ? styles.inputError : undefined}
           />
-          {errors.donor?.firstName && <p>{errors.donor?.firstName?.message}</p>}
+          {errors.donor?.firstName && (
+            <p className={styles.error}>{errors.donor?.firstName?.message}</p>
+          )}
         </div>
         <div className={styles.field}>
-          <label htmlFor="lastName">Efternamn</label>
+          <label htmlFor="lastName">Efternamn*</label>
           <input
             type="text"
             id="lastName"
             placeholder="T ex Larsson"
             {...register("donor.lastName", { required: "Obligatoriskt fält" })}
+            className={errors.donor?.lastName ? styles.inputError : undefined}
           />
           {errors.donor?.lastName && (
             <p className={styles.error}>
@@ -98,7 +102,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
           />
         </div>
         <div className={styles.field}>
-          <label htmlFor="email">Mejladress</label>
+          <label htmlFor="email">Mejladress*</label>
           <input
             type="email"
             id="email"
@@ -110,13 +114,14 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
                 message: "Ange en giltig mejladress",
               },
             })}
+            className={errors.donor?.email ? styles.inputError : undefined}
           />
           {errors.donor?.email && (
             <p className={styles.error}>{errors.donor?.email?.message}</p>
           )}
         </div>
         <div className={styles.field}>
-          <label htmlFor="phone">Mobiltelefon</label>
+          <label htmlFor="phone">Mobiltelefon*</label>
           <input
             type="tel"
             id="phone"
@@ -128,6 +133,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
                 message: "Ange ett giltigt mobilnummer",
               },
             })}
+            className={errors.donor?.phone ? styles.inputError : undefined}
           />
           {errors.donor?.phone && (
             <p className={styles.error}>{errors.donor?.phone?.message}</p>

@@ -22,7 +22,7 @@
 .field {
   display: flex;
   flex-direction: column;
-  gap: tokens.$space-sm;
+  gap: tokens.$space-2xs;
 
   label {
     font-size: tokens.$font-size-body;
@@ -31,10 +31,24 @@
   input,
   textarea {
     border: 1px solid tokens.$color-text;
-    padding: tokens.$space-xs tokens.$space-sm;
+    padding: tokens.$space-sm tokens.$space-sm;
     border-radius: 0;
     font-size: tokens.$font-size-body;
   }
+}
+
+.field .error {
+  font-size: tokens.$font-size-xs;
+  
+}
+
+.error {
+  color: tokens.$color-error-border;
+}
+
+.field .inputError {
+  border-color: tokens.$color-error-border;
+  background-color: #fde9e9;
 }
 
 .integrity {
