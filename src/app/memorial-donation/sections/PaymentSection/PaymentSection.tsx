@@ -1,5 +1,6 @@
 import { ChevronIcon } from "@/app/components/shared/icons/ChevronIcon";
 import styles from "./PaymentSection.module.scss";
+import { AccordionDropdown } from "@/app/components/shared/AccordionDropdown/AccordionDropdown";
 
 export function PaymentSection() {
   return (
@@ -39,13 +40,11 @@ export function PaymentSection() {
           </div>
         </div>
       </div>
-      <div className={styles.dropdown}>
-        <div className={styles.dropdownTrigger}>
-          <button className={styles.triggerText}>
-            <strong>Visa fler betalsätt</strong>
-          </button>
-          <ChevronIcon className={styles.chevron} />
-        </div>
+
+      <AccordionDropdown
+        label="Visa fler betalsätt"
+        triggerClassName={styles.dropdownTriggerRight}
+      >
         <div className={styles.dropdownContent}>
           <div className={styles.box}>
             <div>
@@ -59,7 +58,7 @@ export function PaymentSection() {
             </div>
           </div>
         </div>
-      </div>
+      </AccordionDropdown>
     </section>
   );
 }
