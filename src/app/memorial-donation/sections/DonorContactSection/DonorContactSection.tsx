@@ -38,7 +38,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             type="text"
             id="firstName"
             placeholder="T ex Anna"
-            {...register("donor.firstName", { required: true })}
+            {...register("donor.firstName", { required: "Obligatoriskt fält" })}
           />
         </div>
         <div className={styles.field}>
@@ -47,7 +47,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             type="text"
             id="lastName"
             placeholder="T ex Larsson"
-            {...register("donor.lastName", { required: true })}
+            {...register("donor.lastName", { required: "Obligatoriskt fält" })}
           />
         </div>
         <div className={styles.field}>
@@ -83,7 +83,13 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             type="email"
             id="email"
             placeholder="T ex namn@domännamn.se"
-            {...register("donor.email", { required: true })}
+            {...register("donor.email", {
+              required: "Obligatoriskt fält",
+              pattern: {
+                value: /^\S+@\S+\.\S+$/,
+                message: "Ange en giltig mejladress",
+              },
+            })}
           />
         </div>
         <div className={styles.field}>
@@ -92,7 +98,13 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             type="tel"
             id="phone"
             placeholder="T ex 0710203040"
-            {...register("donor.phone", { required: true })}
+            {...register("donor.phone", {
+              required: "Obligatoriskt fält",
+              pattern: {
+                value: /^(\+46|0)\d([\d\s-]{6,}\d)$/,
+                message: "Ange ett giltigt mobilnummer",
+              },
+            })}
           />
         </div>
       </form>
