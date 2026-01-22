@@ -1,4 +1,7 @@
-import { DonorContactSectionProps } from "./DonorContactSection.types";
+import {
+  DonorContactSectionProps,
+  DonorFormValuesType,
+} from "./DonorContactSection.types";
 import { PortableText } from "next-sanity";
 import styles from "./DonorContactSection.module.scss";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
@@ -7,7 +10,11 @@ import { useFormContext } from "react-hook-form";
 
 export function DonorContactSection({ copy }: DonorContactSectionProps) {
   const accordion = useAccordion();
-  const { register, trigger } = useFormContext();
+  const {
+    register,
+    trigger,
+    formState: { errors },
+  } = useFormContext<DonorFormValuesType>();
 
   async function handleNext() {
     const isValid = await trigger([
@@ -19,8 +26,9 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
     if (!isValid) {
       return;
     }
-    accordion?.goNext("donor-contact-step");
+    accordion.goNext("donor-contact-step");
   }
+
   return (
     <section className={styles.section}>
       {copy.introSection?.title && <h3>{copy.introSection.title}</h3>}
@@ -31,7 +39,13 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
         )}
       </div>
 
-      <form className={styles.form}>
+      <form
+        className={styles.form}
+        onSubmit={(e) => {
+          e.preventDefault();
+          void handleNext();
+        }}
+      >
         <div className={styles.field}>
           <label htmlFor="firstName">Förnamn</label>
           <input
@@ -40,6 +54,11 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             placeholder="T ex Anna"
             {...register("donor.firstName", { required: "Obligatoriskt fält" })}
           />
+          {errors.donor?.firstName && (
+            <p className={styles.error}>
+              {errors.donor?.firstName?.message as string}
+            </p>
+          )}
         </div>
         <div className={styles.field}>
           <label htmlFor="lastName">Efternamn</label>
@@ -49,6 +68,11 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             placeholder="T ex Larsson"
             {...register("donor.lastName", { required: "Obligatoriskt fält" })}
           />
+          {errors.donor?.lastName && (
+            <p className={styles.error}>
+              {errors.donor?.lastName?.message as string}
+            </p>
+          )}
         </div>
         <div className={styles.field}>
           <label htmlFor="adress">Gatuadress</label>
@@ -91,6 +115,9 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
               },
             })}
           />
+          {errors.donor?.email && (
+            <p className={styles.error}>{errors.donor?.email?.message}</p>
+          )}
         </div>
         <div className={styles.field}>
           <label htmlFor="phone">Mobiltelefon</label>
@@ -106,6 +133,9 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
               },
             })}
           />
+          {errors.donor?.phone && (
+            <p className={styles.error}>{errors.donor?.phone?.message}</p>
+          )}
         </div>
       </form>
       {copy.integrity && (

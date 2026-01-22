@@ -10,6 +10,7 @@ import { AmountSection } from "../sections/AmountSection/AmountSection";
 import { DonorContactSection } from "../sections/DonorContactSection/DonorContactSection";
 import { PaymentSection } from "../sections/PaymentSection/PaymentSection";
 import { FormProvider, useForm } from "react-hook-form";
+import { DonorFormValuesType } from "../sections/DonorContactSection/DonorContactSection.types";
 
 export function MemorialDonationLayout({
   memorialPageCopy,
@@ -17,7 +18,7 @@ export function MemorialDonationLayout({
   donorCopy,
 }: MemorialDonationLayoutProps) {
   const [memorialSummary, setMemorialSummary] = useState<string | null>(null);
-  const methods = useForm({ mode: "onTouched" });
+  const methods = useForm<DonorFormValuesType>({ mode: "onTouched" });
 
   return (
     <div className={styles.layout}>
