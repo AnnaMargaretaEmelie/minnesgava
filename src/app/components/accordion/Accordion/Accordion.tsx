@@ -34,7 +34,6 @@ export const useAccordion = () => {
 };
 
 type AccordionProps = {
-  defaultOpenId?: string | null;
   order?: string[];
   children: React.ReactNode;
 };
