@@ -8,6 +8,7 @@ import { RecipientSection } from "../RecipientSection/RecipientSection";
 import { ImageSection } from "../ImageSection/ImageSection";
 import { StepPrimaryButton } from "../../../StepPrimaryButton/StepPrimaryButton";
 import { MemorialPageStepProps } from "./MemorialPageStep.types";
+import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
 import styles from "./MemorialPageStep.module.scss";
 
 export default function MemorialPageStep({
@@ -15,9 +16,11 @@ export default function MemorialPageStep({
 }: MemorialPageStepProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRecipient, setSelectedRecipient] = useState<Recipient | null>(
-    null
+    null,
   );
   const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
+
+  const accordion = useAccordion();
 
   const canGoNext = selectedRecipient !== null && selectedImageId !== null;
 
@@ -57,6 +60,7 @@ export default function MemorialPageStep({
     };
 
     onComplete(memorialPageStepData);
+    accordion?.goNext("memorial-card-step");
     console.log("Memorial Page Step complete", memorialPageStepData);
   }
 

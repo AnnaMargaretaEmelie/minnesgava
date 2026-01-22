@@ -1,5 +1,3 @@
-//Wrapper m context och Accordion.Root
-
 "use client";
 
 import React from "react";
@@ -36,7 +34,6 @@ export const useAccordion = () => {
 };
 
 type AccordionProps = {
-  defaultOpenId?: string | null;
   order?: string[];
   children: React.ReactNode;
 };
@@ -46,7 +43,7 @@ type AccordionChildProps = {
 };
 
 function isAccordionChild(
-  node: React.ReactNode
+  node: React.ReactNode,
 ): node is React.ReactElement<AccordionChildProps> {
   return (
     React.isValidElement(node) &&
@@ -54,11 +51,7 @@ function isAccordionChild(
   );
 }
 
-export function AccordionRoot({
-  defaultOpenId = null,
-  order,
-  children,
-}: AccordionProps) {
+export function AccordionRoot({ order, children }: AccordionProps) {
   const stepIds = React.useMemo(() => {
     if (order && order.length) return order;
     return React.Children.toArray(children)
@@ -68,12 +61,10 @@ export function AccordionRoot({
 
   if (process.env.NODE_ENV !== "production" && stepIds.length === 0) {
     console.error(
-      "[AccordionRoot] Hittade inga steg. Skicka order eller ge varje child en value-prop"
+      "[AccordionRoot] Hittade inga steg. Skicka order eller ge varje child en value-prop",
     );
   }
-  const [openId, setOpenId] = useState<string | null>(
-    defaultOpenId ?? stepIds[0] ?? null
-  );
+  const [openId, setOpenId] = useState<string | null>(stepIds[0] ?? null);
   const [statuses, setStatuses] = useState<StepStatuses>(() => {
     const initial: StepStatuses = Object.create(null);
     stepIds.forEach((id, i) => {
@@ -89,16 +80,9 @@ export function AccordionRoot({
 
   const getStatus = useCallback((id: string) => statuses[id], [statuses]);
 
-  // TEMP: unlock all steps until step buttons/goNext are wired
-
-  // const canTriggerClick = useCallback(
-  //   (id: string) => getStatus(id) !== "locked",
-  //   [getStatus]
-  // );
-
   const canTriggerClick = useCallback(
-    (id: string) => getStatus(id) !== undefined,
-    [getStatus]
+    (id: string) => getStatus(id) !== "locked",
+    [getStatus],
   );
 
   const toggle = useCallback(
@@ -106,7 +90,7 @@ export function AccordionRoot({
       if (!canTriggerClick(id)) return;
       setOpenId(id);
     },
-    [canTriggerClick]
+    [canTriggerClick],
   );
 
   const isOpen = useCallback((id: string) => openId === id, [openId]);
@@ -127,7 +111,7 @@ export function AccordionRoot({
       });
       setOpenId(nextId ?? currentId);
     },
-    [stepIds]
+    [stepIds],
   );
 
   const value = useMemo(
@@ -150,7 +134,7 @@ export function AccordionRoot({
       canTriggerClick,
       goNext,
       setStatus,
-    ]
+    ],
   );
 
   return (

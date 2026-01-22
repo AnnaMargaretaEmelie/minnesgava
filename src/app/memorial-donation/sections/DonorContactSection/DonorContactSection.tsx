@@ -2,8 +2,10 @@ import { DonorContactSectionProps } from "./DonorContactSection.types";
 import { PortableText } from "next-sanity";
 import styles from "./DonorContactSection.module.scss";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
+import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
 
 export function DonorContactSection({ copy }: DonorContactSectionProps) {
+  const accordion = useAccordion();
   return (
     <section className={styles.section}>
       {copy.introSection?.title && <h3>{copy.introSection.title}</h3>}
@@ -90,11 +92,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
       )}
       <StepPrimaryButton
         label="Välj betalmetod"
-        onClick={() => {
-          //TODO:Wire up goNext in a separate branch
-          console.log("Next from donor contact step (not wired yet)");
-        }}
-        disabled
+        onClick={() => accordion?.goNext("donor-contact-step")}
       />
     </section>
   );

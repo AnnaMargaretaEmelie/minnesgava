@@ -3,8 +3,11 @@ import type { AmountSectionProps } from "./AmountSection.types";
 import { PortableText } from "next-sanity";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
 import { AccordionDropdown } from "@/app/components/shared/AccordionDropdown/AccordionDropdown";
+import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
 
 export function AmountSection({ copy }: AmountSectionProps) {
+  const accordion = useAccordion();
+
   return (
     <section className={styles.section}>
       <div className={styles.amount}>
@@ -63,11 +66,7 @@ export function AmountSection({ copy }: AmountSectionProps) {
         </div>
         <StepPrimaryButton
           label="Till kontaktuppgifter"
-          onClick={() => {
-            // TODO: Wire up goNext('donor-contact-step') in a separate branch
-            console.log("Next from amount step (not wired yet)");
-          }}
-          disabled
+          onClick={() => accordion?.goNext("amount-step")}
         />
       </div>
     </section>
