@@ -7,7 +7,20 @@ import { useFormContext } from "react-hook-form";
 
 export function DonorContactSection({ copy }: DonorContactSectionProps) {
   const accordion = useAccordion();
-  const { register } = useFormContext();
+  const { register, trigger } = useFormContext();
+
+  async function handleNext() {
+    const isValid = await trigger([
+      "donor.firstName",
+      "donor.lastName",
+      "donor.email",
+      "donor.phone",
+    ]);
+    if (!isValid) {
+      return;
+    }
+    accordion?.goNext("donor-contact-step");
+  }
   return (
     <section className={styles.section}>
       {copy.introSection?.title && <h3>{copy.introSection.title}</h3>}
@@ -25,7 +38,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             type="text"
             id="firstName"
             placeholder="T ex Anna"
-            {...register("donor.firstName")}
+            {...register("donor.firstName", { required: true })}
           />
         </div>
         <div className={styles.field}>
@@ -34,7 +47,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             type="text"
             id="lastName"
             placeholder="T ex Larsson"
-            {...register("donor.lastName")}
+            {...register("donor.lastName", { required: true })}
           />
         </div>
         <div className={styles.field}>
@@ -70,7 +83,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             type="email"
             id="email"
             placeholder="T ex namn@domännamn.se"
-            {...register("donor.email")}
+            {...register("donor.email", { required: true })}
           />
         </div>
         <div className={styles.field}>
@@ -79,7 +92,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             type="tel"
             id="phone"
             placeholder="T ex 0710203040"
-            {...register("donor.phone")}
+            {...register("donor.phone", { required: true })}
           />
         </div>
       </form>
@@ -92,10 +105,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
           )}
         </div>
       )}
-      <StepPrimaryButton
-        label="Välj betalmetod"
-        onClick={() => accordion?.goNext("donor-contact-step")}
-      />
+      <StepPrimaryButton label="Välj betalmetod" onClick={handleNext} />
     </section>
   );
 }
