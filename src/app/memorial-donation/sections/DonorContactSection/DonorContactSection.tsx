@@ -6,15 +6,12 @@ import { PortableText } from "next-sanity";
 import styles from "./DonorContactSection.module.scss";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
 import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useFormState } from "react-hook-form";
 
 export function DonorContactSection({ copy }: DonorContactSectionProps) {
   const accordion = useAccordion();
-  const {
-    register,
-    trigger,
-    formState: { errors },
-  } = useFormContext<DonorFormValuesType>();
+  const { register, trigger, control } = useFormContext<DonorFormValuesType>();
+  const { errors } = useFormState({ control });
 
   async function handleNext() {
     const isValid = await trigger([
@@ -23,6 +20,9 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
       "donor.email",
       "donor.phone",
     ]);
+
+    console.log("trigger result: ", isValid);
+    console.log("errors after trigger: ", errors);
     if (!isValid) {
       return;
     }
@@ -54,11 +54,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             placeholder="T ex Anna"
             {...register("donor.firstName", { required: "Obligatoriskt fält" })}
           />
-          {errors.donor?.firstName && (
-            <p className={styles.error}>
-              {errors.donor?.firstName?.message as string}
-            </p>
-          )}
+          {errors.donor?.firstName && <p>{errors.donor?.firstName?.message}</p>}
         </div>
         <div className={styles.field}>
           <label htmlFor="lastName">Efternamn</label>
