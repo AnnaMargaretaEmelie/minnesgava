@@ -1,16 +1,15 @@
-import {
-  DonorContactSectionProps,
-  DonorFormValuesType,
-} from "./DonorContactSection.types";
+import { DonorContactSectionProps } from "./DonorContactSection.types";
 import { PortableText } from "next-sanity";
 import styles from "./DonorContactSection.module.scss";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
 import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
 import { useFormContext, useFormState } from "react-hook-form";
+import { DonationFormValuesType } from "@/app/components/shared/types/memorialDonationForm.types";
 
 export function DonorContactSection({ copy }: DonorContactSectionProps) {
   const accordion = useAccordion();
-  const { register, trigger, control } = useFormContext<DonorFormValuesType>();
+  const { register, trigger, control } =
+    useFormContext<DonationFormValuesType>();
   const { errors } = useFormState({ control });
 
   async function handleNext() {
