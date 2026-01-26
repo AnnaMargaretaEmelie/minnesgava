@@ -9,10 +9,12 @@ export function StepPrimaryButton({
   label,
   onClick,
   disabled,
+  type = "button",
 }: PrimaryButtonProps) {
   return (
     <div className={styles.stepPrimaryButton}>
       <Button
+        type={type}
         onClick={onClick}
         disabled={disabled}
         icon={<StepPrimaryButtonArrow className={styles.arrow} />}

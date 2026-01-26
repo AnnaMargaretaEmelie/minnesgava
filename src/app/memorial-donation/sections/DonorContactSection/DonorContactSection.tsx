@@ -8,23 +8,11 @@ import { DonationFormValuesType } from "@/app/components/shared/types/memorialDo
 
 export function DonorContactSection({ copy }: DonorContactSectionProps) {
   const accordion = useAccordion();
-  const { register, trigger, control } =
+  const { register, handleSubmit, control } =
     useFormContext<DonationFormValuesType>();
   const { errors } = useFormState({ control });
 
-  async function handleNext() {
-    const isValid = await trigger([
-      "donor.firstName",
-      "donor.lastName",
-      "donor.email",
-      "donor.phone",
-    ]);
-
-    console.log("trigger result: ", isValid);
-    console.log("errors after trigger: ", errors);
-    if (!isValid) {
-      return;
-    }
+  function onSubmit() {
     accordion.goNext("donor-contact-step");
   }
 
@@ -38,13 +26,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
         )}
       </div>
 
-      <form
-        className={styles.form}
-        onSubmit={(e) => {
-          e.preventDefault();
-          void handleNext();
-        }}
-      >
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.field}>
           <label htmlFor="firstName">Förnamn*</label>
           <input
@@ -138,6 +120,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             <p className={styles.error}>{errors.donor?.phone?.message}</p>
           )}
         </div>
+        <StepPrimaryButton label="Välj betalmetod" type="submit" />
       </form>
       {copy.integrity && (
         <div className={styles.integrity}>
@@ -148,7 +131,6 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
           )}
         </div>
       )}
-      <StepPrimaryButton label="Välj betalmetod" onClick={handleNext} />
     </section>
   );
 }
