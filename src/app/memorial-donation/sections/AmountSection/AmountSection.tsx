@@ -5,7 +5,7 @@ import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimar
 import { AccordionDropdown } from "@/app/components/shared/AccordionDropdown/AccordionDropdown";
 import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
 import { useFormContext } from "react-hook-form";
-import { DonationFormValuesType } from "@/app/components/shared/types/memorialDonationForm.types";
+import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 
 export function AmountSection({ copy }: AmountSectionProps) {
   const accordion = useAccordion();

@@ -4,7 +4,7 @@ import styles from "./DonorContactSection.module.scss";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
 import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
 import { useFormContext, useFormState } from "react-hook-form";
-import { DonationFormValuesType } from "@/app/components/shared/types/memorialDonationForm.types";
+import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 
 export function DonorContactSection({ copy }: DonorContactSectionProps) {
   const accordion = useAccordion();

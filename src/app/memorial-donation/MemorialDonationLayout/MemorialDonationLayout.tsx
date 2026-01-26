@@ -10,7 +10,7 @@ import { AmountSection } from "../sections/AmountSection/AmountSection";
 import { DonorContactSection } from "../sections/DonorContactSection/DonorContactSection";
 import { PaymentSection } from "../sections/PaymentSection/PaymentSection";
 import { FormProvider, useForm } from "react-hook-form";
-import { DonationFormValuesType } from "@/app/components/shared/types/memorialDonationForm.types";
+import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 
 const DEFAULT_DONATION_AMOUNT = { preset: "1000", value: 1000 } as const;
 
