@@ -4,14 +4,12 @@ import { PortableText } from "next-sanity";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
 import { AccordionDropdown } from "@/app/components/shared/AccordionDropdown/AccordionDropdown";
 import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
-import { useFormContext, useFormState } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { DonationFormValuesType } from "@/app/components/shared/types/memorialDonationForm.types";
 
 export function AmountSection({ copy }: AmountSectionProps) {
   const accordion = useAccordion();
-  const { setValue, watch, trigger, control } =
-    useFormContext<DonationFormValuesType>();
-  const { errors } = useFormState({ control });
+  const { setValue, watch } = useFormContext<DonationFormValuesType>();
   const preset = watch("amount.preset");
 
   function selectPreset(
