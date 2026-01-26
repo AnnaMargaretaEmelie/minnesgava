@@ -13,5 +13,6 @@ export type DonationFormValuesType = {
         value?: number | null;
         preset?: "1000" | "500" | "100" | "custom";
         purpose?: string;
+        hasSelectedPreset?: boolean;
     }
 }

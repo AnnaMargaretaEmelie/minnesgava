@@ -22,7 +22,9 @@ export function MemorialDonationLayout({
   const [memorialSummary, setMemorialSummary] = useState<string | null>(null);
   const methods = useForm<DonationFormValuesType>({
     mode: "onTouched",
-    defaultValues: { amount: DEFAULT_DONATION_AMOUNT },
+    defaultValues: {
+      amount: { ...DEFAULT_DONATION_AMOUNT, hasSelectedPreset: false },
+    },
   });
   return (
     <div className={styles.layout}>
