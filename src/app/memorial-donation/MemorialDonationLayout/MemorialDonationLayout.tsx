@@ -10,7 +10,7 @@ import { AmountSection } from "../sections/AmountSection/AmountSection";
 import { DonorContactSection } from "../sections/DonorContactSection/DonorContactSection";
 import { PaymentSection } from "../sections/PaymentSection/PaymentSection";
 import { FormProvider, useForm } from "react-hook-form";
-import { DonorFormValuesType } from "../sections/DonorContactSection/DonorContactSection.types";
+import { DonationFormValuesType } from "@/app/components/shared/types/memorialDonationForm.types";
 
 export function MemorialDonationLayout({
   memorialPageCopy,
@@ -18,8 +18,10 @@ export function MemorialDonationLayout({
   donorCopy,
 }: MemorialDonationLayoutProps) {
   const [memorialSummary, setMemorialSummary] = useState<string | null>(null);
-  const methods = useForm<DonorFormValuesType>({ mode: "onTouched" });
-
+  const methods = useForm<DonationFormValuesType>({
+    mode: "onTouched",
+    defaultValues: { amount: { preset: "1000", value: 1000 } },
+  });
   return (
     <div className={styles.layout}>
       <section className={styles.hero}>HeroSection</section>

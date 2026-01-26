@@ -5,3 +5,4 @@ export type AmountSectionCopy = NonNullable<NonNullable<COPY_QUERYResult>['donat
 export type AmountSectionProps = {
     copy: AmountSectionCopy;
 };
+
