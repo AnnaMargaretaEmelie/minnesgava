@@ -4,15 +4,16 @@ import { PortableText } from "next-sanity";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
 import { AccordionDropdown } from "@/app/components/shared/AccordionDropdown/AccordionDropdown";
 import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
-import { useFormContext, useFormState } from "react-hook-form";
+import { useFormContext, useFormState, useWatch } from "react-hook-form";
 import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 
 export function AmountSection({ copy }: AmountSectionProps) {
   const accordion = useAccordion();
-  const { setValue, watch, register, control } =
+  const { setValue, register, control } =
     useFormContext<DonationFormValuesType>();
-  const preset = watch("amount.preset");
-  const hasSelectedPreset = watch("amount.hasSelectedPreset") ?? false;
+  const preset = useWatch({ control, name: "amount.preset" });
+  const hasSelectedPreset =
+    useWatch({ control, name: "amount.hasSelectedPreset" }) ?? false;
   const { errors } = useFormState({ control });
 
   function selectPreset(
@@ -24,7 +25,10 @@ export function AmountSection({ copy }: AmountSectionProps) {
       shouldDirty: true,
       shouldValidate: true,
     });
-    setValue("amount.hasSelectedPreset", true, { shouldDirty: true });
+    setValue("amount.hasSelectedPreset", true, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
   }
 
   function selectCustom() {
@@ -89,10 +93,9 @@ export function AmountSection({ copy }: AmountSectionProps) {
                   valueAsNumber: true,
                   validate: (value) => {
                     if (preset !== "custom") return true;
-                    const isNumber = Number.isFinite(value);
-                    if (!isNumber)
-                      return "Endast siffror och minsta belopp 100 kr";
                     if (value == null)
+                      return "Endast siffror och minsta belopp 100 kr";
+                    if (!Number.isFinite(value))
                       return "Endast siffror och minsta belopp 100 kr";
                     if (value < 100)
                       return "Endast siffror och minsta belopp 100 kr";
