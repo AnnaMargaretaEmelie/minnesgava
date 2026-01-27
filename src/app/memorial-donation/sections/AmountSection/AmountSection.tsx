@@ -4,13 +4,16 @@ import { PortableText } from "next-sanity";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
 import { AccordionDropdown } from "@/app/components/shared/AccordionDropdown/AccordionDropdown";
 import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useFormState } from "react-hook-form";
 import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 
 export function AmountSection({ copy }: AmountSectionProps) {
   const accordion = useAccordion();
-  const { setValue, watch } = useFormContext<DonationFormValuesType>();
+  const { setValue, watch, register, control } =
+    useFormContext<DonationFormValuesType>();
   const preset = watch("amount.preset");
+  const hasSelectedPreset = watch("amount.hasSelectedPreset") ?? false;
+  const { errors } = useFormState({ control });
 
   function selectPreset(
     amountNumber: number,
@@ -21,11 +24,17 @@ export function AmountSection({ copy }: AmountSectionProps) {
       shouldDirty: true,
       shouldValidate: true,
     });
+    setValue("amount.hasSelectedPreset", true, { shouldDirty: true });
   }
 
   function selectCustom() {
     setValue("amount.preset", "custom", { shouldDirty: true });
-    setValue("amount.value", null, { shouldDirty: true, shouldValidate: true });
+    if (hasSelectedPreset === false) {
+      setValue("amount.value", null, {
+        shouldDirty: true,
+        shouldValidate: true,
+      });
+    }
   }
 
   return (
@@ -62,21 +71,43 @@ export function AmountSection({ copy }: AmountSectionProps) {
             Eget belopp
           </button>
         </div>
-        {/* TODO: koppla visning till att "Eget belopp" är vald */}
-
-        <div className={styles.customAmount}>
-          <label htmlFor="customAmount" className={styles.customLabel}>
-            Eget belopp i kronor
-          </label>
-          <div className={styles.customInputRow}>
-            <input
-              id="customAmount"
-              type="number"
-              className={styles.customInput}
-              placeholder="T ex 150"
-            />
+        {preset === "custom" && (
+          <div className={styles.customAmount}>
+            <label htmlFor="customAmount" className={styles.customLabel}>
+              Eget belopp i kronor
+            </label>
+            <div className={styles.customInputRow}>
+              <input
+                id="customAmount"
+                inputMode="numeric"
+                min={100}
+                step={1}
+                type="number"
+                className={styles.customInput}
+                placeholder="T ex 150"
+                {...register("amount.value", {
+                  valueAsNumber: true,
+                  validate: (value) => {
+                    if (preset !== "custom") return true;
+                    const isNumber = Number.isFinite(value);
+                    if (!isNumber)
+                      return "Endast siffror och minsta belopp 100 kr";
+                    if (value == null)
+                      return "Endast siffror och minsta belopp 100 kr";
+                    if (value < 100)
+                      return "Endast siffror och minsta belopp 100 kr";
+                    return true;
+                  },
+                })}
+              />
+              {errors.amount?.value && (
+                <p className={styles.error}>
+                  {errors.amount.value.message as string}
+                </p>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <div className={styles.information}>
