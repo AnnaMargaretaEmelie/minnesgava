@@ -55,6 +55,10 @@
     border: 1px solid tokens.$color-text;
 }
 
+.error {
+    color: red;
+}
+
 .information {
     background-color: tokens.$color-beige;
     padding-left: tokens.$space-md;

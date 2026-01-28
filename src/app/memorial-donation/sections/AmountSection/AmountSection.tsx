@@ -9,7 +9,7 @@ import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDo
 
 export function AmountSection({ copy }: AmountSectionProps) {
   const accordion = useAccordion();
-  const { setValue, register, control } =
+  const { setValue, register, control, trigger } =
     useFormContext<DonationFormValuesType>();
   const preset = useWatch({ control, name: "amount.preset" });
   const hasSelectedPreset =
@@ -39,6 +39,16 @@ export function AmountSection({ copy }: AmountSectionProps) {
         shouldValidate: true,
       });
     }
+  }
+  async function handleNext() {
+    if (preset !== "custom") {
+      accordion.goNext("amount-step");
+      return;
+    }
+    const isValid = await trigger("amount.value", { shouldFocus: true });
+    if (!isValid) return;
+
+    accordion.goNext("amount-step");
   }
 
   return (
@@ -93,22 +103,20 @@ export function AmountSection({ copy }: AmountSectionProps) {
                   valueAsNumber: true,
                   validate: (value) => {
                     if (preset !== "custom") return true;
-                    if (value == null)
-                      return "Endast siffror och minsta belopp 100 kr";
-                    if (!Number.isFinite(value))
-                      return "Endast siffror och minsta belopp 100 kr";
-                    if (value < 100)
-                      return "Endast siffror och minsta belopp 100 kr";
+                    const msg = "Endast siffror och minsta belopp 100 kr";
+                    if (value == null) return msg;
+                    if (!Number.isFinite(value)) return msg;
+                    if (value < 100) return msg;
                     return true;
                   },
                 })}
               />
-              {errors.amount?.value && (
-                <p className={styles.error}>
-                  {errors.amount.value.message as string}
-                </p>
-              )}
             </div>
+            {errors.amount?.value && (
+              <p className={styles.error}>
+                {errors.amount.value.message as string}
+              </p>
+            )}
           </div>
         )}
       </div>
@@ -134,10 +142,7 @@ export function AmountSection({ copy }: AmountSectionProps) {
             </div>
           </AccordionDropdown>
         </div>
-        <StepPrimaryButton
-          label="Till kontaktuppgifter"
-          onClick={() => accordion?.goNext("amount-step")}
-        />
+        <StepPrimaryButton label="Till kontaktuppgifter" onClick={handleNext} />
       </div>
     </section>
   );
