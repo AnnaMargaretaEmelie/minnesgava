@@ -6,6 +6,7 @@ import { AccordionDropdown } from "@/app/components/shared/AccordionDropdown/Acc
 import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
 import { useFormContext, useFormState, useWatch } from "react-hook-form";
 import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
+import { PURPOSE_OPTIONS, DEFAULT_PURPOSE } from "./amountPurpose.options";
 
 export function AmountSection({ copy }: AmountSectionProps) {
   const accordion = useAccordion();
@@ -134,12 +135,27 @@ export function AmountSection({ copy }: AmountSectionProps) {
             label="Välj diagnos"
             className={styles.dropdownRight}
           >
-            <div className={styles.purposeContent}>
-              <p>Den bästa hjärnforskningen med störst behov</p>
-              <p>Alzheimers sjukdom</p>
-              <p>Parkinsons sjukdom</p>
-              <p>ADHD</p>
-            </div>
+            <fieldset className={styles.purposeContent}>
+              <legend className={styles.srOnly}>Välj diagnos</legend>
+
+              {PURPOSE_OPTIONS.map((option) => (
+                <label
+                  key={option.value}
+                  className={`${styles.purposeOption} ${
+                    option.value === DEFAULT_PURPOSE
+                      ? styles.purposeOptionDefault
+                      : ""
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    value={option.value}
+                    {...register("amount.purpose")}
+                  />
+                  <span>{option.label}</span>
+                </label>
+              ))}
+            </fieldset>
           </AccordionDropdown>
         </div>
         <StepPrimaryButton label="Till kontaktuppgifter" onClick={handleNext} />

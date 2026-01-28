@@ -11,7 +11,7 @@ import { DonorContactSection } from "../sections/DonorContactSection/DonorContac
 import { PaymentSection } from "../sections/PaymentSection/PaymentSection";
 import { FormProvider, useForm } from "react-hook-form";
 import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
-
+import { DEFAULT_PURPOSE } from "../sections/AmountSection/amountPurpose.options";
 const DEFAULT_DONATION_AMOUNT = { preset: "1000", value: 1000 } as const;
 
 export function MemorialDonationLayout({
@@ -23,7 +23,11 @@ export function MemorialDonationLayout({
   const methods = useForm<DonationFormValuesType>({
     mode: "onTouched",
     defaultValues: {
-      amount: { ...DEFAULT_DONATION_AMOUNT, hasSelectedPreset: false },
+      amount: {
+        ...DEFAULT_DONATION_AMOUNT,
+        hasSelectedPreset: false,
+        purpose: DEFAULT_PURPOSE,
+      },
     },
   });
   return (
