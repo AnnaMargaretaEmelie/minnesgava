@@ -18,16 +18,16 @@ export default function MemorialPageStep({
 }: MemorialPageStepProps) {
   const { setValue, control } = useFormContext<DonationFormValuesType>();
   const recipientId = useWatch({ control, name: "memorialPage.recipientId" });
+  const imageId = useWatch({ control, name: "memorialPage.imageId" });
   const selectedRecipient = recipientId
     ? (MOCK_RECIPIENTS.find((r) => r.id === recipientId) ?? null)
     : null;
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
 
   const accordion = useAccordion();
 
-  const canGoNext = selectedRecipient !== null && selectedImageId !== null;
+  const canGoNext = selectedRecipient !== null && Boolean(imageId);
 
   const filteredRecipients: Recipient[] =
     searchTerm.trim().length === 0
@@ -49,21 +49,24 @@ export default function MemorialPageStep({
   }
 
   function handleSelectImage(imageId: string) {
-    setSelectedImageId(imageId);
+    setValue("memorialPage.imageId", imageId, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
   }
 
   function handleNext() {
-    const isComplete = selectedRecipient && selectedImageId;
-    if (!isComplete) {
+    if (!selectedRecipient || !imageId) {
       console.warn("Steg 1 är inte komplett");
       return;
     }
+
     const fullName = `${selectedRecipient.firstName} ${selectedRecipient.lastName}`;
     const summary = `${fullName}, ${selectedRecipient.city}`;
 
     const memorialPageStepData = {
       recipientId: selectedRecipient.id,
-      imageId: selectedImageId,
+      imageId,
       summary,
     };
 
@@ -84,7 +87,7 @@ export default function MemorialPageStep({
 
       <ImageSection
         images={MEMORIAL_PAGE_IMAGES}
-        selectedImageId={selectedImageId}
+        selectedImageId={imageId ?? null}
         onSelectImage={handleSelectImage}
         canGoNext={canGoNext}
         onNext={handleNext}
