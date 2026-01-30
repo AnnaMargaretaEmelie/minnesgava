@@ -15,7 +15,7 @@ export function AmountSection({ copy }: AmountSectionProps) {
   const preset = useWatch({ control, name: "amount.preset" });
   const hasSelectedPreset =
     useWatch({ control, name: "amount.hasSelectedPreset" }) ?? false;
-  const { errors } = useFormState({ control });
+  const { errors } = useFormState({ control, name: ["amount.value"] });
 
   function selectPreset(
     amountNumber: number,
@@ -60,66 +60,70 @@ export function AmountSection({ copy }: AmountSectionProps) {
           <button
             type="button"
             onClick={() => selectPreset(1000, "1000")}
-            className={styles.option}
+            className={`${styles.option} ${preset === "1000" ? styles.optionSelected : ""}`}
           >
             1000 kr
           </button>
           <button
             type="button"
             onClick={() => selectPreset(500, "500")}
-            className={styles.option}
+            className={`${styles.option} ${preset === "500" ? styles.optionSelected : ""}`}
           >
             500 kr
           </button>
           <button
             type="button"
             onClick={() => selectPreset(100, "100")}
-            className={styles.option}
+            className={`${styles.option} ${preset === "100" ? styles.optionSelected : ""}`}
           >
             100 kr
           </button>
           <button
             type="button"
             onClick={selectCustom}
-            className={styles.option}
+            className={`${styles.option} ${preset === "custom" ? styles.optionSelected : ""}`}
           >
             Eget belopp
           </button>
         </div>
-        {preset === "custom" && (
-          <div className={styles.customAmount}>
-            <label htmlFor="customAmount" className={styles.customLabel}>
-              Eget belopp i kronor
-            </label>
-            <div className={styles.customInputRow}>
-              <input
-                id="customAmount"
-                inputMode="numeric"
-                min={100}
-                step={1}
-                type="number"
-                className={styles.customInput}
-                placeholder="T ex 150"
-                {...register("amount.value", {
-                  valueAsNumber: true,
-                  validate: (value) => {
-                    if (preset !== "custom") return true;
-                    const msg = "Endast siffror och minsta belopp 100 kr";
-                    if (value == null) return msg;
-                    if (!Number.isFinite(value)) return msg;
-                    if (value < 100) return msg;
-                    return true;
-                  },
-                })}
-              />
-            </div>
-            {errors.amount?.value && (
-              <p className={styles.error}>
-                {errors.amount.value.message as string}
-              </p>
-            )}
+
+        <div
+          className={styles.customAmount}
+          hidden={preset !== "custom"}
+          aria-hidden={preset !== "custom"}
+        >
+          <label htmlFor="customAmount" className={styles.customLabel}>
+            Eget belopp i kronor
+          </label>
+          <div className={styles.customInputRow}>
+            <input
+              id="customAmount"
+              inputMode="numeric"
+              min={100}
+              step={1}
+              type="number"
+              className={`${styles.customInput} ${errors.amount?.value ? styles.inputError : ""}`}
+              placeholder="T ex 150"
+              {...register("amount.value", {
+                valueAsNumber: true,
+                validate: (value) => {
+                  if (preset !== "custom") return true;
+                  const msg = "Endast siffror och minsta belopp 100 kr";
+                  if (!Number.isFinite(value)) return msg;
+                  if (value == null) return msg;
+
+                  if (value < 100) return msg;
+                  return true;
+                },
+              })}
+            />
           </div>
-        )}
+          {errors.amount?.value && (
+            <p className={styles.error}>
+              {errors.amount.value.message as string}
+            </p>
+          )}
+        </div>
       </div>
 
       <div className={styles.information}>
@@ -158,7 +162,11 @@ export function AmountSection({ copy }: AmountSectionProps) {
             </fieldset>
           </AccordionDropdown>
         </div>
-        <StepPrimaryButton label="Till kontaktuppgifter" onClick={handleNext} />
+        <StepPrimaryButton
+          type="button"
+          label="Till kontaktuppgifter"
+          onClick={handleNext}
+        />
       </div>
     </section>
   );

@@ -26,12 +26,11 @@
     padding: tokens.$space-sm tokens.$space-md;
     background-color: tokens.$color-bg;
     cursor: pointer;
-
 }
 
-// .optionSelected {
-//     background-color: tokens.$color-accent;
-// }
+.optionSelected {
+    background-color: tokens.$color-accent;
+}
 
 .customAmount {
     margin-top: tokens.$space-md;
@@ -54,10 +53,16 @@
     border-radius: 0;
     border: 1px solid tokens.$color-text;
 }
-
-.error {
-    color: red;
+.inputError {
+    background-color: tokens.$color-error;
+    border: 1px solid tokens.$color-error-border;
 }
+
+.customAmount .error {
+    color: tokens.$color-error-border;
+    font-size: tokens.$font-size-xs;
+}
+
 
 .information {
     background-color: tokens.$color-beige;
@@ -82,7 +87,6 @@
 }
 
 .purposeControl {
-
     font-size: tokens.$font-size-body;
     padding-block: tokens.$space-md;
 }
