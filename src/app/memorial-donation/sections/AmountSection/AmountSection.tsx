@@ -111,7 +111,6 @@ export function AmountSection({ copy }: AmountSectionProps) {
                   const msg = "Endast siffror och minsta belopp 100 kr";
                   if (!Number.isFinite(value)) return msg;
                   if (value == null) return msg;
-
                   if (value < 100) return msg;
                   return true;
                 },
