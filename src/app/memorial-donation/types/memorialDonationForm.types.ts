@@ -1,3 +1,5 @@
+import { PurposeValueType } from "../sections/AmountSection/amountPurpose.options";
+
 export type DonationFormValuesType = {
     donor: {
         firstName: string;
@@ -12,6 +14,7 @@ export type DonationFormValuesType = {
     amount: {
         value?: number | null;
         preset?: "1000" | "500" | "100" | "custom";
-        purpose?: string;
+        purpose?: PurposeValueType;
+        hasSelectedPreset?: boolean;
     }
 }

@@ -26,12 +26,11 @@
     padding: tokens.$space-sm tokens.$space-md;
     background-color: tokens.$color-bg;
     cursor: pointer;
-
 }
 
-// .optionSelected {
-//     background-color: tokens.$color-accent;
-// }
+.optionSelected {
+    background-color: tokens.$color-accent;
+}
 
 .customAmount {
     margin-top: tokens.$space-md;
@@ -54,6 +53,16 @@
     border-radius: 0;
     border: 1px solid tokens.$color-text;
 }
+.inputError {
+    background-color: tokens.$color-error;
+    border: 1px solid tokens.$color-error-border;
+}
+
+.customAmount .error {
+    color: tokens.$color-error-border;
+    font-size: tokens.$font-size-xs;
+}
+
 
 .information {
     background-color: tokens.$color-beige;
@@ -78,7 +87,6 @@
 }
 
 .purposeControl {
-
     font-size: tokens.$font-size-body;
     padding-block: tokens.$space-md;
 }
@@ -87,7 +95,61 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         column-gap: tokens.$space-lg;
-        row-gap: tokens.$space-md;
+        row-gap: tokens.$space-lg;
         margin-top: tokens.$space-md;
+        border: 0;
+        padding:0;
+        margin: 0;
 }
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.purposeOption {
+    display: flex;
+    align-items: center;
+    gap: tokens.$space-xs;
+}
+
+.purposeOption input[type="radio"]{
+appearance: none;
+  -webkit-appearance: none;
+  width: 20px;          
+  height: 20px;
+  border: 1px solid tokens.$color-text; 
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  margin: 0;  
+}
+
+.purposeOption input[type="radio"]::before {
+  content: "";
+  width: 10px;          
+  height: 10px;
+  border-radius: 50%;
+  transform: scale(0);  
+  transition: transform 120ms ease-in-out;
+  background-color: tokens.$color-accent; 
+}
+
+.purposeOption input[type="radio"]:checked::before {
+  transform: scale(1);  
+}
+
+.purposeOptionDefault {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-block: tokens.$space-md;
+}
+
 
