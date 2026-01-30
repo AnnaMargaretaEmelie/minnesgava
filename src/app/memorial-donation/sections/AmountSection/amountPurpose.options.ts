@@ -42,4 +42,4 @@ export type PurposeOption = {
   label: string;
 };
 
-export const DEFAULT_PURPOSE = "default";
+export const DEFAULT_PURPOSE: PurposeValueType = "default";
