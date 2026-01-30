@@ -7,6 +7,7 @@ import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
 import { useFormContext, useFormState, useWatch } from "react-hook-form";
 import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 import { PURPOSE_OPTIONS, DEFAULT_PURPOSE } from "./amountPurpose.options";
+import clsx from "clsx";
 
 export function AmountSection({ copy }: AmountSectionProps) {
   const accordion = useAccordion();
@@ -60,28 +61,40 @@ export function AmountSection({ copy }: AmountSectionProps) {
           <button
             type="button"
             onClick={() => selectPreset(1000, "1000")}
-            className={`${styles.option} ${preset === "1000" ? styles.optionSelected : ""}`}
+            className={clsx(
+              styles.option,
+              preset === "1000" && styles.optionSelected,
+            )}
           >
             1000 kr
           </button>
           <button
             type="button"
             onClick={() => selectPreset(500, "500")}
-            className={`${styles.option} ${preset === "500" ? styles.optionSelected : ""}`}
+            className={clsx(
+              styles.option,
+              preset === "500" && styles.optionSelected,
+            )}
           >
             500 kr
           </button>
           <button
             type="button"
             onClick={() => selectPreset(100, "100")}
-            className={`${styles.option} ${preset === "100" ? styles.optionSelected : ""}`}
+            className={clsx(
+              styles.option,
+              preset === "100" && styles.optionSelected,
+            )}
           >
             100 kr
           </button>
           <button
             type="button"
             onClick={selectCustom}
-            className={`${styles.option} ${preset === "custom" ? styles.optionSelected : ""}`}
+            className={clsx(
+              styles.option,
+              preset === "custom" && styles.optionSelected,
+            )}
           >
             Eget belopp
           </button>
@@ -144,11 +157,11 @@ export function AmountSection({ copy }: AmountSectionProps) {
               {PURPOSE_OPTIONS.map((option) => (
                 <label
                   key={option.value}
-                  className={`${styles.purposeOption} ${
-                    option.value === DEFAULT_PURPOSE
-                      ? styles.purposeOptionDefault
-                      : ""
-                  }`}
+                  className={clsx(
+                    styles.purposeOption,
+                    option.value === DEFAULT_PURPOSE &&
+                      styles.purposeOptionDefault,
+                  )}
                 >
                   <input
                     type="radio"
