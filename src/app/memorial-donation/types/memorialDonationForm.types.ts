@@ -1,6 +1,12 @@
 import { PurposeValueType } from "../sections/AmountSection/amountPurpose.options";
 
 export type DonationFormValuesType = {
+    memorialPage: {
+        recipientId?: string | null;
+        imageId?: string | null;
+        greeting?: string | null;
+    }
+
     donor: {
         firstName: string;
         lastName: string;

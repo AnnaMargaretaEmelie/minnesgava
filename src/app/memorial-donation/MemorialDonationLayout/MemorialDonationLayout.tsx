@@ -23,6 +23,11 @@ export function MemorialDonationLayout({
   const methods = useForm<DonationFormValuesType>({
     mode: "onTouched",
     defaultValues: {
+      memorialPage: {
+        recipientId: null,
+        imageId: null,
+        greeting: null,
+      },
       amount: {
         ...DEFAULT_DONATION_AMOUNT,
         hasSelectedPreset: false,
