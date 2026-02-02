@@ -8,7 +8,6 @@ import { RecipientSection } from "../RecipientSection/RecipientSection";
 import { ImageSection } from "../ImageSection/ImageSection";
 import { StepPrimaryButton } from "../../../StepPrimaryButton/StepPrimaryButton";
 import { MemorialPageStepProps } from "./MemorialPageStep.types";
-import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
 import { useFormContext, useWatch } from "react-hook-form";
 import type { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 import styles from "./MemorialPageStep.module.scss";
@@ -16,7 +15,8 @@ import styles from "./MemorialPageStep.module.scss";
 export default function MemorialPageStep({
   onComplete,
 }: MemorialPageStepProps) {
-  const { setValue, control } = useFormContext<DonationFormValuesType>();
+  const { setValue, control, trigger } =
+    useFormContext<DonationFormValuesType>();
   const recipientId = useWatch({ control, name: "memorialPage.recipientId" });
   const imageId = useWatch({ control, name: "memorialPage.imageId" });
   const selectedRecipient = recipientId
@@ -24,8 +24,6 @@ export default function MemorialPageStep({
     : null;
 
   const [searchTerm, setSearchTerm] = useState("");
-
-  const accordion = useAccordion();
 
   const canGoNext = selectedRecipient !== null && Boolean(imageId);
 
@@ -55,24 +53,23 @@ export default function MemorialPageStep({
     });
   }
 
-  function handleNext() {
-    if (!selectedRecipient || !imageId) {
-      console.warn("Steg 1 är inte komplett");
-      return;
-    }
+  async function handleNext() {
+    const isValid = await trigger(
+      ["memorialPage.recipientId", "memorialPage.imageId"],
+      { shouldFocus: true },
+    );
+    if (!isValid) return;
+
+    if (!selectedRecipient || !imageId) return;
 
     const fullName = `${selectedRecipient.firstName} ${selectedRecipient.lastName}`;
     const summary = `${fullName}, ${selectedRecipient.city}`;
 
-    const memorialPageStepData = {
+    onComplete({
       recipientId: selectedRecipient.id,
       imageId,
       summary,
-    };
-
-    onComplete(memorialPageStepData);
-    accordion?.goNext("memorial-card-step");
-    console.log("Memorial Page Step complete", memorialPageStepData);
+    });
   }
 
   return (
@@ -93,6 +90,7 @@ export default function MemorialPageStep({
         onNext={handleNext}
       />
       <StepPrimaryButton
+        type="button"
         label="Välj belopp"
         onClick={handleNext}
         disabled={!canGoNext}
