@@ -3,7 +3,6 @@
 import type { RecipientSectionProps } from "./RecipientSection.types";
 import RecipientSearch from "../RecipientSearch/RecipientSearch";
 import RecipientInfo from "../RecipientInfo/RecipientInfo";
-import styles from "./RecipientSection.module.scss";
 
 export function RecipientSection({
   searchTerm,
@@ -23,7 +22,7 @@ export function RecipientSection({
         onSelectRecipient={onSelectRecipient}
       />
       {hasError && (
-        <p className={styles.error}>{errorMessage ?? "Välj en mottagare"}</p>
+        <p className="u-errorText">{errorMessage ?? "Välj en mottagare"}</p>
       )}
 
       {selectedRecipient && <RecipientInfo recipient={selectedRecipient} />}
