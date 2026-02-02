@@ -6,4 +6,6 @@ export type RecipientSectionProps = {
   filteredRecipients: Recipient[];
   selectedRecipient: Recipient | null;
   onSelectRecipient: (recipient: Recipient) => void;
+  hasError?: boolean;
+  errorMessage?: string;
 };
