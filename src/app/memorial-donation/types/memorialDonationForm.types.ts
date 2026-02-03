@@ -2,9 +2,9 @@ import { PurposeValueType } from "../sections/AmountSection/amountPurpose.option
 
 export type DonationFormValuesType = {
     memorialPage: {
-        recipientId?: string | null;
-        imageId?: string | null;
-        greeting?: string | null;
+        recipientId: string | null;
+        imageId: string | null;
+        greeting: string;
     }
 
     donor: {

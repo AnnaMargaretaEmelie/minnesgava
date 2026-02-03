@@ -26,7 +26,7 @@ export function MemorialDonationLayout({
       memorialPage: {
         recipientId: null,
         imageId: null,
-        greeting: null,
+        greeting: "",
       },
       amount: {
         ...DEFAULT_DONATION_AMOUNT,
