@@ -6,7 +6,8 @@ export default function RecipientSearch({
   searchTerm,
   onSearchChange,
   results,
-  onSelectRecipient,
+  selectedRecipientId,
+  onSelectRecipientId,
 }: RecipientSearchProps) {
   return (
     <div className={styles.wrapper}>
@@ -19,20 +20,26 @@ export default function RecipientSearch({
       />
 
       {searchTerm.trim() !== "" && results.length > 0 && (
-        <ul className={styles.list}>
+        <div className={styles.list}>
           {results.map((recipient) => (
-            <li
-              key={recipient.id}
-              className={styles.listItem}
-              onClick={() => {
-                onSelectRecipient(recipient);
-                onSearchChange(" ");
-              }}
-            >
-              {recipient.firstName} {recipient.lastName} - {recipient.city}
-            </li>
+            <div key={recipient.id} className={styles.listItem}>
+              <input
+                type="radio"
+                id={recipient.id}
+                name="recipient"
+                value={recipient.id}
+                checked={selectedRecipientId === recipient.id}
+                onChange={() => {
+                  onSelectRecipientId(recipient.id);
+                  onSearchChange("");
+                }}
+              />
+              <label htmlFor={recipient.id}>
+                {recipient.firstName} {recipient.lastName} - {recipient.city}
+              </label>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

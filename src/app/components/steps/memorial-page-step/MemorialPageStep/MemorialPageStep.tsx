@@ -8,15 +8,21 @@ import { RecipientSection } from "../RecipientSection/RecipientSection";
 import { ImageSection } from "../ImageSection/ImageSection";
 import { StepPrimaryButton } from "../../../StepPrimaryButton/StepPrimaryButton";
 import { MemorialPageStepProps } from "./MemorialPageStep.types";
-import { useFormContext, useWatch, Controller } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 import type { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 import styles from "./MemorialPageStep.module.scss";
 
 export default function MemorialPageStep({
   onComplete,
 }: MemorialPageStepProps) {
-  const { setValue, control, trigger } =
-    useFormContext<DonationFormValuesType>();
+  const {
+    setValue,
+    control,
+    trigger,
+    register,
+    formState: { errors },
+  } = useFormContext<DonationFormValuesType>();
+
   const recipientId = useWatch({ control, name: "memorialPage.recipientId" });
   const imageId = useWatch({ control, name: "memorialPage.imageId" });
 
@@ -48,6 +54,13 @@ export default function MemorialPageStep({
     }
   }, [imageId, setValue]);
 
+  function handleSelectRecipientId(recipientId: string) {
+    setValue("memorialPage.recipientId", recipientId, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
+  }
+
   function handleSelectImage(imageId: string) {
     setValue("memorialPage.imageId", imageId, {
       shouldDirty: true,
@@ -75,35 +88,15 @@ export default function MemorialPageStep({
 
   return (
     <div className={styles.stepWrapper}>
-      <Controller
-        name="memorialPage.recipientId"
-        control={control}
-        rules={{ required: "Välj en mottagare" }}
-        render={({ field, fieldState }) => (
-          <>
-            <input
-              type="hidden"
-              name={field.name}
-              value={(field.value ?? "") as string}
-              onChange={field.onChange}
-              onBlur={field.onBlur}
-              ref={field.ref}
-            />
-
-            <RecipientSection
-              searchTerm={searchTerm}
-              onSearchChange={setSearchTerm}
-              filteredRecipients={filteredRecipients}
-              selectedRecipient={selectedRecipient}
-              onSelectRecipient={(recipient) => {
-                field.onChange(recipient.id);
-                field.onBlur();
-              }}
-              hasError={Boolean(fieldState.error)}
-              errorMessage={fieldState.error?.message}
-            />
-          </>
-        )}
+      <RecipientSection
+        searchTerm={searchTerm}
+        onSearchChange={setSearchTerm}
+        filteredRecipients={filteredRecipients}
+        selectedRecipient={selectedRecipient}
+        selectedRecipientId={recipientId ?? null}
+        onSelectRecipientId={handleSelectRecipientId}
+        hasError={Boolean(errors.memorialPage?.recipientId)}
+        errorMessage={errors.memorialPage?.recipientId?.message}
       />
 
       <ImageSection

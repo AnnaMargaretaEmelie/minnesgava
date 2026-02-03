@@ -5,7 +5,8 @@ export type RecipientSectionProps = {
   onSearchChange: (value: string) => void;
   filteredRecipients: Recipient[];
   selectedRecipient: Recipient | null;
-  onSelectRecipient: (recipient: Recipient) => void;
+  selectedRecipientId: string | null;
+  onSelectRecipientId: (id: string) => void;
   hasError?: boolean;
   errorMessage?: string;
 };
