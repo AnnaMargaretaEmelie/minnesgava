@@ -10,6 +10,8 @@ export function RecipientSection({
   filteredRecipients,
   selectedRecipient,
   onSelectRecipient,
+  hasError,
+  errorMessage,
 }: RecipientSectionProps) {
   return (
     <>
@@ -19,6 +21,10 @@ export function RecipientSection({
         results={filteredRecipients}
         onSelectRecipient={onSelectRecipient}
       />
+      {hasError && (
+        <p className="u-errorText">{errorMessage ?? "Välj en mottagare"}</p>
+      )}
+
       {selectedRecipient && <RecipientInfo recipient={selectedRecipient} />}
     </>
   );

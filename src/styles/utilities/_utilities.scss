@@ -1,4 +1,4 @@
-// Utility class for screen-reader-only text
+@use "../abstracts/tokens";
 
 .visually-hidden {
     position: absolute !important;
@@ -8,3 +8,9 @@
     white-space: nowrap;
   }
   
+p.u-errorText {
+  color: tokens.$color-error-border;
+  font-size: tokens.$font-size-xs;
+  line-height: 4px;
+  margin-bottom: tokens.$space-lg;
+}
