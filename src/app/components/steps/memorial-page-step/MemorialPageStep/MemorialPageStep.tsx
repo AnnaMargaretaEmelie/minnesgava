@@ -15,7 +15,7 @@ import styles from "./MemorialPageStep.module.scss";
 export default function MemorialPageStep({
   onComplete,
 }: MemorialPageStepProps) {
-  const { setValue, control, trigger, register } =
+  const { control, trigger, register } =
     useFormContext<DonationFormValuesType>();
 
   const { errors } = useFormState({ control });
@@ -42,14 +42,6 @@ export default function MemorialPageStep({
             recipient.lastName.toLowerCase().includes(query)
           );
         });
-  useEffect(() => {
-    if (!imageId && MEMORIAL_PAGE_IMAGES.length > 0) {
-      setValue("memorialPage.imageId", MEMORIAL_PAGE_IMAGES[0].id, {
-        shouldDirty: false,
-        shouldValidate: false,
-      });
-    }
-  }, [imageId, setValue]);
 
   useEffect(() => {
     register("memorialPage.recipientId", { required: "Välj en mottagare" });
