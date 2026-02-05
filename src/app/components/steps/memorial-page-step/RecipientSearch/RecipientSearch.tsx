@@ -36,7 +36,7 @@ export default function RecipientSearch({
                   {...radio}
                   onChange={(event) => {
                     radio.onChange(event);
-                    onSearchChange("");
+                    // onSearchChange("");
                   }}
                 />
                 <label htmlFor={recipient.id}>

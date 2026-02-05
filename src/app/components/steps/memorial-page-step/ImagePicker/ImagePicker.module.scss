@@ -7,18 +7,35 @@
   width: 100%;
 }
 
-.imageButton {
-  padding: tokens.$space-md;
-  cursor: pointer;
-  border: none;
-  background: transparent;
- 
+.item {
+  position: relative;
 }
 
-.imageButtonSelected {
-  @extend .imageButton; 
-  border: 1px solid tokens.$color-accent;
+.radio {
+  position: absolute;
+  opacity: 0;
 }
+
+.label {
+  display: block;
+  padding: tokens.$space-md;
+  cursor: pointer;
+}
+
+.label:hover {
+  box-shadow: inset 0 0 0 12px #f7f7f7;
+}
+
+.radio:checked + .label {
+  border: 1px solid tokens.$color-accent;
+  box-shadow: none;
+}
+
+.radio:focus-visible + .label {
+  outline: 2px solid tokens.$color-accent;
+  outline-offset: 2px;
+}
+
 
 .thumbnail {
   display: block;
