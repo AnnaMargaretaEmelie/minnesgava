@@ -1,3 +1,5 @@
+import type { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
+import type { UseFormRegister } from "react-hook-form";
 
 export type ImageItem = {
   id: string;
@@ -7,6 +9,5 @@ export type ImageItem = {
 
 export type ImagePickerProps = {
   images: ImageItem[];
-  selectedImageId: string | null;
-  onSelectImage: (id: string) => void;
+  register: UseFormRegister<DonationFormValuesType>
 };

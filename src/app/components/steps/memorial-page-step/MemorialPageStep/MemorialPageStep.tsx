@@ -55,22 +55,10 @@ export default function MemorialPageStep({
     register("memorialPage.recipientId", { required: "Välj en mottagare" });
   }, [register]);
 
-  function handleSelectImage(imageId: string) {
-    setValue("memorialPage.imageId", imageId, {
-      shouldDirty: true,
-      shouldValidate: true,
-    });
-  }
-
   async function handleNext() {
     const isValid = await trigger("memorialPage.recipientId", {
       shouldFocus: true,
     });
-    console.log(
-      "trigger recipientId isValid:",
-      isValid,
-      errors.memorialPage?.recipientId,
-    );
 
     if (!isValid) return;
 
@@ -85,17 +73,9 @@ export default function MemorialPageStep({
       summary,
     });
   }
-  console.log("recipient error now:", errors.memorialPage?.recipientId);
 
   return (
     <div className={styles.stepWrapper}>
-      <input
-        type="hidden"
-        {...register("memorialPage.recipientId", {
-          required: "Välj en mottagare",
-        })}
-      />
-
       <RecipientSection
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
@@ -108,8 +88,7 @@ export default function MemorialPageStep({
 
       <ImageSection
         images={MEMORIAL_PAGE_IMAGES}
-        selectedImageId={imageId ?? null}
-        onSelectImage={handleSelectImage}
+        register={register}
         canGoNext={canGoNext}
         onNext={handleNext}
       />
