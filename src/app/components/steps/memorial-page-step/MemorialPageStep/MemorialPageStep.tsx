@@ -8,20 +8,17 @@ import { RecipientSection } from "../RecipientSection/RecipientSection";
 import { ImageSection } from "../ImageSection/ImageSection";
 import { StepPrimaryButton } from "../../../StepPrimaryButton/StepPrimaryButton";
 import { MemorialPageStepProps } from "./MemorialPageStep.types";
-import { useFormContext, useWatch } from "react-hook-form";
+import { useFormContext, useWatch, useFormState } from "react-hook-form";
 import type { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 import styles from "./MemorialPageStep.module.scss";
 
 export default function MemorialPageStep({
   onComplete,
 }: MemorialPageStepProps) {
-  const {
-    setValue,
-    control,
-    trigger,
-    register,
-    formState: { errors },
-  } = useFormContext<DonationFormValuesType>();
+  const { setValue, control, trigger, register } =
+    useFormContext<DonationFormValuesType>();
+
+  const { errors } = useFormState({ control });
 
   const recipientId = useWatch({ control, name: "memorialPage.recipientId" });
   const imageId = useWatch({ control, name: "memorialPage.imageId" });
@@ -54,12 +51,9 @@ export default function MemorialPageStep({
     }
   }, [imageId, setValue]);
 
-  function handleSelectRecipientId(recipientId: string) {
-    setValue("memorialPage.recipientId", recipientId, {
-      shouldDirty: true,
-      shouldValidate: true,
-    });
-  }
+  useEffect(() => {
+    register("memorialPage.recipientId", { required: "Välj en mottagare" });
+  }, [register]);
 
   function handleSelectImage(imageId: string) {
     setValue("memorialPage.imageId", imageId, {
@@ -72,6 +66,12 @@ export default function MemorialPageStep({
     const isValid = await trigger("memorialPage.recipientId", {
       shouldFocus: true,
     });
+    console.log(
+      "trigger recipientId isValid:",
+      isValid,
+      errors.memorialPage?.recipientId,
+    );
+
     if (!isValid) return;
 
     if (!selectedRecipient || !imageId) return;
@@ -85,16 +85,23 @@ export default function MemorialPageStep({
       summary,
     });
   }
+  console.log("recipient error now:", errors.memorialPage?.recipientId);
 
   return (
     <div className={styles.stepWrapper}>
+      <input
+        type="hidden"
+        {...register("memorialPage.recipientId", {
+          required: "Välj en mottagare",
+        })}
+      />
+
       <RecipientSection
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
         filteredRecipients={filteredRecipients}
         selectedRecipient={selectedRecipient}
-        selectedRecipientId={recipientId ?? null}
-        onSelectRecipientId={handleSelectRecipientId}
+        register={register}
         hasError={Boolean(errors.memorialPage?.recipientId)}
         errorMessage={errors.memorialPage?.recipientId?.message}
       />

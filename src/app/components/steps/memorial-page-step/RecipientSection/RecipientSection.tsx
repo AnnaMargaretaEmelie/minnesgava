@@ -9,9 +9,8 @@ export function RecipientSection({
   onSearchChange,
   filteredRecipients,
   selectedRecipient,
-  selectedRecipientId,
-  onSelectRecipientId,
   hasError,
+  register,
   errorMessage,
 }: RecipientSectionProps) {
   return (
@@ -20,8 +19,7 @@ export function RecipientSection({
         searchTerm={searchTerm}
         onSearchChange={onSearchChange}
         results={filteredRecipients}
-        selectedRecipientId={selectedRecipientId}
-        onSelectRecipientId={onSelectRecipientId}
+        register={register}
       />
       {hasError && (
         <p className="u-errorText">{errorMessage ?? "Välj en mottagare"}</p>

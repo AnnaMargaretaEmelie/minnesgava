@@ -6,13 +6,17 @@ export default function RecipientSearch({
   searchTerm,
   onSearchChange,
   results,
-  selectedRecipientId,
-  onSelectRecipientId,
+  register,
 }: RecipientSearchProps) {
   return (
     <div className={styles.wrapper}>
+      <label htmlFor="recipient-search" className="u-visuallyHidden">
+        Sök mottagare
+      </label>
       <input
         className={styles.input}
+        name="recipient-search"
+        id="recipient-search"
         type="text"
         value={searchTerm}
         onChange={(event) => onSearchChange(event.target.value)}
@@ -21,24 +25,26 @@ export default function RecipientSearch({
 
       {searchTerm.trim() !== "" && results.length > 0 && (
         <div className={styles.list}>
-          {results.map((recipient) => (
-            <div key={recipient.id} className={styles.listItem}>
-              <input
-                type="radio"
-                id={recipient.id}
-                name="recipient"
-                value={recipient.id}
-                checked={selectedRecipientId === recipient.id}
-                onChange={() => {
-                  onSelectRecipientId(recipient.id);
-                  onSearchChange("");
-                }}
-              />
-              <label htmlFor={recipient.id}>
-                {recipient.firstName} {recipient.lastName} - {recipient.city}
-              </label>
-            </div>
-          ))}
+          {results.map((recipient) => {
+            const radio = register("memorialPage.recipientId");
+            return (
+              <div key={recipient.id} className={styles.listItem}>
+                <input
+                  type="radio"
+                  value={recipient.id}
+                  id={recipient.id}
+                  {...radio}
+                  onChange={(event) => {
+                    radio.onChange(event);
+                    onSearchChange("");
+                  }}
+                />
+                <label htmlFor={recipient.id}>
+                  {recipient.firstName} {recipient.lastName} - {recipient.city}
+                </label>
+              </div>
+            );
+          })}
         </div>
       )}
     </div>
