@@ -5,6 +5,7 @@ import { MOCK_RECIPIENTS, Recipient } from "@/data/recipients.mock";
 import { useState, useEffect } from "react";
 import { MEMORIAL_PAGE_IMAGES } from "@/data/memorialPageImages";
 import { RecipientSection } from "../RecipientSection/RecipientSection";
+import { GreetingSection } from "../GreetingSection/GreetingSection";
 import { ImageSection } from "../ImageSection/ImageSection";
 import { StepPrimaryButton } from "../../../StepPrimaryButton/StepPrimaryButton";
 import { MemorialPageStepProps } from "./MemorialPageStep.types";
@@ -48,9 +49,12 @@ export default function MemorialPageStep({
   }, [register]);
 
   async function handleNext() {
-    const isValid = await trigger("memorialPage.recipientId", {
-      shouldFocus: true,
-    });
+    const isValid = await trigger(
+      ["memorialPage.recipientId", "memorialPage.greeting"],
+      {
+        shouldFocus: true,
+      },
+    );
 
     if (!isValid) return;
 
@@ -76,6 +80,12 @@ export default function MemorialPageStep({
         register={register}
         hasError={Boolean(errors.memorialPage?.recipientId)}
         errorMessage={errors.memorialPage?.recipientId?.message}
+      />
+      <GreetingSection
+        register={register}
+        control={control}
+        hasError={Boolean(errors.memorialPage?.greeting)}
+        errorMessage={errors.memorialPage?.greeting?.message}
       />
 
       <ImageSection

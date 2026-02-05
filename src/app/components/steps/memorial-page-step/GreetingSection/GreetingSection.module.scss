@@ -1,0 +1,44 @@
+@use "../../../../../styles/abstracts/tokens";
+
+.section {
+  display: grid;
+  gap: tokens.$space-xs;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.textarea {
+    width: 100%;
+  padding: 12px;
+  padding-bottom: 32px;
+  border: 1px solid tokens.$color-text;
+  resize: none;
+  line-height: 1.4;
+  font-family: var(--font-inter), system-ui, sans-serif;
+
+}
+
+.textareaError {
+  border-color: tokens.$color-error-border;
+  background-color: tokens.$color-error;
+}
+
+.meta {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.textareaWrap {
+    position: relative;
+}
+
+.counter {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  font-size: 0.875rem;
+  opacity: 0.7;
+}
