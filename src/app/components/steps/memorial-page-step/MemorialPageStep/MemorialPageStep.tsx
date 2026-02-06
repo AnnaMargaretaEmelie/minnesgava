@@ -30,8 +30,6 @@ export default function MemorialPageStep({
 
   const [searchTerm, setSearchTerm] = useState("");
 
-  const canGoNext = selectedRecipient !== null;
-
   const filteredRecipients: Recipient[] =
     searchTerm.trim().length === 0
       ? []
@@ -88,12 +86,7 @@ export default function MemorialPageStep({
         errorMessage={errors.memorialPage?.greeting?.message}
       />
 
-      <ImageSection
-        images={MEMORIAL_PAGE_IMAGES}
-        register={register}
-        canGoNext={canGoNext}
-        onNext={handleNext}
-      />
+      <ImageSection images={MEMORIAL_PAGE_IMAGES} register={register} />
       <StepPrimaryButton
         type="button"
         label="Välj belopp"

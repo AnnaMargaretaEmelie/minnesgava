@@ -5,6 +5,4 @@ import type { DonationFormValuesType } from "@/app/memorial-donation/types/memor
 export type ImageSectionProps = {
   images: ImageItem[];
   register: UseFormRegister<DonationFormValuesType>;
-  canGoNext?: boolean;
-  onNext?: () => void;
 };

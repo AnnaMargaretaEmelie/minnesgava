@@ -12,7 +12,7 @@ export function GreetingSection({
   errorMessage,
 }: GreetingSectionProps) {
   const greeting = useWatch({ control, name: "memorialPage.greeting" });
-  const text = String(greeting ?? "").trimEnd();
+  const text = String(greeting ?? "").trim();
   const lineCount = text.length === 0 ? 0 : text.split("\n").length;
   return (
     <section className={styles.section}>
@@ -30,8 +30,12 @@ export function GreetingSection({
           {...register("memorialPage.greeting", {
             required: "Du måste skriva något här (ange mellan 1-9 rader)",
             validate: (value) => {
-              const text = String(value ?? "").trimEnd();
-              const count = text.length === 0 ? 0 : text.split("\n").length;
+              const raw = String(value ?? "");
+              const trimmed = raw.trim();
+              if (trimmed.length === 0) {
+                return "Du måste skriva något här (ange mellan 1-9 rader)";
+              }
+              const count = raw.trimEnd().split("\n").length;
               if (count > MAX_LINES) {
                 return `Högst ${MAX_LINES} rader`;
               }
