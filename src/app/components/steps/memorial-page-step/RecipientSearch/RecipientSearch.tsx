@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useWatch } from "react-hook-form";
 import type { RecipientSearchProps } from "./RecipientSearch.types";
 import styles from "./RecipientSearch.module.scss";
 
@@ -7,7 +8,13 @@ export default function RecipientSearch({
   onSearchChange,
   results,
   register,
+  control,
 }: RecipientSearchProps) {
+  const selectedRecipientId = useWatch({
+    control,
+    name: "memorialPage.recipientId",
+  });
+  const isOpen = searchTerm.trim() !== "" && results.length > 0;
   const inputRef = useRef<HTMLInputElement>(null);
   const listId = "recipient-results";
   return (
@@ -21,6 +28,12 @@ export default function RecipientSearch({
         name="recipient-search"
         id="recipient-search"
         type="text"
+        role="combobox"
+        aria-autocomplete="list"
+        aria-expanded={isOpen}
+        aria-controls={isOpen ? listId : undefined}
+        aria-haspopup="listbox"
+        aria-describedby="recipient-search-hint"
         value={searchTerm}
         onChange={(event) => onSearchChange(event.target.value)}
         placeholder="Sök efter namn"
@@ -41,13 +54,28 @@ export default function RecipientSearch({
           }
         }}
       />
+      <p id="recipient-search-hint" className="u-visuallyHidden">
+        Skriv för att söka. Använd nedåtpil för att gå till resultaten. Använd
+        piltangenter för att navigera och mellanslag för att välja. Escape
+        stänger listan.
+      </p>
 
-      {searchTerm.trim() !== "" && results.length > 0 && (
-        <div className={styles.list} id={listId}>
+      {isOpen && (
+        <div
+          className={styles.list}
+          role="listbox"
+          id={listId}
+          aria-label="Sökresultat mottagare"
+        >
           {results.map((recipient) => {
             const radio = register("memorialPage.recipientId");
             return (
-              <div key={recipient.id} className={styles.listItem}>
+              <div
+                key={recipient.id}
+                className={styles.listItem}
+                role="option"
+                aria-selected={selectedRecipientId === recipient.id}
+              >
                 <input
                   type="radio"
                   value={recipient.id}

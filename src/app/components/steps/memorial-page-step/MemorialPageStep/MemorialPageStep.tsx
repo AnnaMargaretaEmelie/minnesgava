@@ -76,6 +76,7 @@ export default function MemorialPageStep({
         filteredRecipients={filteredRecipients}
         selectedRecipient={selectedRecipient}
         register={register}
+        control={control}
         hasError={Boolean(errors.memorialPage?.recipientId)}
         errorMessage={errors.memorialPage?.recipientId?.message}
       />
