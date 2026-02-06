@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: tokens.$space-sm;
-  width: 100%;
+  inline-size: 100%;
 }
 
 .item {
@@ -39,5 +39,5 @@
 
 .thumbnail {
   display: block;
-  height: auto;
+  block-size: auto;
 }
