@@ -17,6 +17,10 @@ export default function RecipientSearch({
   const isOpen = searchTerm.trim() !== "" && results.length > 0;
   const inputRef = useRef<HTMLInputElement>(null);
   const listId = "recipient-results";
+  const closeAndFocus = () => {
+    onSearchChange("");
+    requestAnimationFrame(() => inputRef.current?.focus());
+  };
   return (
     <div className={styles.wrapper}>
       <label htmlFor="recipient-search" className="u-visuallyHidden">
@@ -56,8 +60,8 @@ export default function RecipientSearch({
       />
       <p id="recipient-search-hint" className="u-visuallyHidden">
         Skriv för att söka. Använd nedåtpil för att gå till resultaten. Använd
-        piltangenter för att navigera och mellanslag för att välja. Escape
-        stänger listan.
+        piltangenter för att navigera och mellanslag eller enter för att välja.
+        Escape stänger listan.
       </p>
 
       {isOpen && (
@@ -84,10 +88,17 @@ export default function RecipientSearch({
                   onKeyDown={(event) => {
                     if (event.key === "Escape") {
                       event.preventDefault();
-                      onSearchChange("");
-                      requestAnimationFrame(() => {
-                        inputRef.current?.focus();
-                      });
+                      closeAndFocus();
+                      return;
+                    }
+                    if (event.key === "Enter") {
+                      event.preventDefault();
+                      event.currentTarget.checked = true;
+                      event.currentTarget.dispatchEvent(
+                        new Event("change", { bubbles: true }),
+                      );
+
+                      closeAndFocus();
                       return;
                     }
                     if (event.key !== "ArrowDown" && event.key !== "ArrowUp")
@@ -113,11 +124,7 @@ export default function RecipientSearch({
                   }}
                   onChange={(event) => {
                     radio.onChange(event);
-                    onSearchChange("");
-
-                    requestAnimationFrame(() => {
-                      inputRef.current?.focus();
-                    });
+                    closeAndFocus();
                   }}
                 />
                 <label htmlFor={recipient.id}>
