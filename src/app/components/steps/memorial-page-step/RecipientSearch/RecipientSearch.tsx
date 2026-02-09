@@ -91,24 +91,27 @@ export default function RecipientSearch({
                       closeAndFocus();
                       return;
                     }
+
                     if (event.key === "Enter") {
                       event.preventDefault();
-                      event.currentTarget.checked = true;
-                      event.currentTarget.dispatchEvent(
-                        new Event("change", { bubbles: true }),
-                      );
-
-                      closeAndFocus();
+                      event.currentTarget.click();
+                      setTimeout(() => {
+                        closeAndFocus();
+                      }, 0);
                       return;
                     }
+
                     if (event.key !== "ArrowDown" && event.key !== "ArrowUp")
                       return;
+
                     event.preventDefault();
+
                     const radios = Array.from(
                       document.querySelectorAll<HTMLInputElement>(
                         `#${listId} input[type="radio"]`,
                       ),
                     );
+
                     const currentIndex = radios.findIndex(
                       (r) => r.id === recipient.id,
                     );
@@ -121,10 +124,6 @@ export default function RecipientSearch({
 
                     const next = radios[nextIndex];
                     if (next) next.focus();
-                  }}
-                  onChange={(event) => {
-                    radio.onChange(event);
-                    closeAndFocus();
                   }}
                 />
                 <label htmlFor={recipient.id}>
