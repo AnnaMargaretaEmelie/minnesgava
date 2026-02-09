@@ -85,6 +85,10 @@ export default function RecipientSearch({
                   value={recipient.id}
                   id={recipient.id}
                   {...radio}
+                  onChange={(event) => {
+                    radio.onChange(event);
+                    closeAndFocus();
+                  }}
                   onKeyDown={(event) => {
                     if (event.key === "Escape") {
                       event.preventDefault();
@@ -95,9 +99,6 @@ export default function RecipientSearch({
                     if (event.key === "Enter") {
                       event.preventDefault();
                       event.currentTarget.click();
-                      setTimeout(() => {
-                        closeAndFocus();
-                      }, 0);
                       return;
                     }
 
