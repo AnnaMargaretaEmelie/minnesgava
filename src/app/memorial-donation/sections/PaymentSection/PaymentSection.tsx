@@ -1,11 +1,15 @@
 import { ChevronIcon } from "@/app/components/shared/icons/ChevronIcon";
+import { useFormContext } from "react-hook-form";
 import styles from "./PaymentSection.module.scss";
 import { AccordionDropdown } from "@/app/components/shared/AccordionDropdown/AccordionDropdown";
+import type { DonationFormValuesType } from "../../types/memorialDonationForm.types";
 
 export function PaymentSection() {
+  const { register } = useFormContext<DonationFormValuesType>();
   return (
     <section className={styles.section}>
       <div className={styles.container}>
+        <input type="hidden" {...register("payment.method")} />
         <div className={styles.box}>
           <div>
             <h3>Swish</h3>
