@@ -1,11 +1,14 @@
 import { ChevronIcon } from "@/app/components/shared/icons/ChevronIcon";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useFormState } from "react-hook-form";
 import styles from "./PaymentSection.module.scss";
 import { AccordionDropdown } from "@/app/components/shared/AccordionDropdown/AccordionDropdown";
 import type { DonationFormValuesType } from "../../types/memorialDonationForm.types";
+import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
 
 export function PaymentSection() {
-  const { register } = useFormContext<DonationFormValuesType>();
+  const { register, control, trigger } =
+    useFormContext<DonationFormValuesType>();
+  const { errors } = useFormState({ control });
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -13,7 +16,7 @@ export function PaymentSection() {
           <input
             type="radio"
             value="swish"
-            {...register("payment.method")}
+            {...register("payment.method", { required: "Välj ett betalsätt" })}
             className="u-visuallyHidden"
           />
           <div className={styles.boxContent}>
@@ -32,7 +35,7 @@ export function PaymentSection() {
           <input
             type="radio"
             value="googlePay"
-            {...register("payment.method")}
+            {...register("payment.method", { required: "Välj ett betalsätt" })}
             className="u-visuallyHidden"
           />
           <div className={styles.boxContent}>
@@ -51,7 +54,7 @@ export function PaymentSection() {
           <input
             type="radio"
             value="card"
-            {...register("payment.method")}
+            {...register("payment.method", { required: "Välj ett betalsätt" })}
             className="u-visuallyHidden"
           />
           <div className={styles.boxContent}>
@@ -77,7 +80,9 @@ export function PaymentSection() {
             <input
               type="radio"
               value="invoice"
-              {...register("payment.method")}
+              {...register("payment.method", {
+                required: "Välj ett betalsätt",
+              })}
               className="u-visuallyHidden"
             />
             <div className={styles.boxContent}>
@@ -94,6 +99,14 @@ export function PaymentSection() {
           </label>
         </div>
       </AccordionDropdown>
+      {errors.payment?.method && (
+        <p className="u-errorText">{errors.payment?.method?.message}</p>
+      )}
+      <StepPrimaryButton
+        label="Fortsätt till betalning"
+        type="button"
+        onClick={() => trigger("payment.method")}
+      />
     </section>
   );
 }
