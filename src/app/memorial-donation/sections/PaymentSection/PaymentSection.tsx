@@ -4,15 +4,25 @@ import styles from "./PaymentSection.module.scss";
 import { AccordionDropdown } from "@/app/components/shared/AccordionDropdown/AccordionDropdown";
 import type { DonationFormValuesType } from "../../types/memorialDonationForm.types";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
+import { useState } from "react";
+import { PaymentSummaryDialog } from "@/app/components/steps/payment-step/PaymentSummaryDialog/PaymentSummaryDialog";
 
 export function PaymentSection() {
   const { register, control, trigger } =
     useFormContext<DonationFormValuesType>();
   const { errors } = useFormState({ control });
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const handleContinue = async () => {
+    const ok = await trigger("payment.method");
+    if (ok) {
+      setIsDialogOpen(true);
+    }
+  };
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <label className={styles.box}>
+        <label>
           <input
             type="radio"
             value="swish"
@@ -31,7 +41,7 @@ export function PaymentSection() {
             </div>
           </div>
         </label>
-        <label className={styles.box}>
+        <label>
           <input
             type="radio"
             value="googlePay"
@@ -50,7 +60,7 @@ export function PaymentSection() {
             </div>
           </div>
         </label>
-        <label className={styles.box}>
+        <label>
           <input
             type="radio"
             value="card"
@@ -76,7 +86,7 @@ export function PaymentSection() {
         triggerClassName={styles.dropdownTriggerRight}
       >
         <div className={styles.dropdownContent}>
-          <label className={styles.box}>
+          <label>
             <input
               type="radio"
               value="invoice"
@@ -105,7 +115,11 @@ export function PaymentSection() {
       <StepPrimaryButton
         label="Fortsätt till betalning"
         type="button"
-        onClick={() => trigger("payment.method")}
+        onClick={handleContinue}
+      />
+      <PaymentSummaryDialog
+        open={isDialogOpen}
+        onOpenChange={setIsDialogOpen}
       />
     </section>
   );

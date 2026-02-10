@@ -30,7 +30,7 @@
 
 .dropdownContent {
     padding-block: tokens.$space-sm;
-     width: 100%;
+     inline-size: 100%;
 }
 
 .boxContent { 
@@ -47,6 +47,7 @@
 
 input:checked + .boxContent { 
     border: 2px solid #a87474;
+    background: tokens.$color-green-teal;
 }
 input:focus-visible + .boxContent { 
     outline: 2px solid currentColor;
