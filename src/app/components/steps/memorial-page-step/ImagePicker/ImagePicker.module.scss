@@ -4,23 +4,40 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: tokens.$space-sm;
-  width: 100%;
+  inline-size: 100%;
 }
 
-.imageButton {
+.item {
+  position: relative;
+}
+
+.radio {
+  position: absolute;
+  opacity: 0;
+}
+
+.label {
+  display: block;
   padding: tokens.$space-md;
   cursor: pointer;
-  border: none;
-  background: transparent;
- 
 }
 
-.imageButtonSelected {
-  @extend .imageButton; 
-  border: 1px solid tokens.$color-accent;
+.label:hover {
+  box-shadow: inset 0 0 0 12px #f7f7f7;
 }
+
+.radio:checked + .label {
+  border: 1px solid tokens.$color-accent;
+  box-shadow: none;
+}
+
+.radio:focus-visible + .label {
+  outline: 2px solid tokens.$color-accent;
+  outline-offset: 2px;
+}
+
 
 .thumbnail {
   display: block;
-  height: auto;
+  block-size: auto;
 }

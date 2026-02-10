@@ -12,6 +12,7 @@ import { PaymentSection } from "../sections/PaymentSection/PaymentSection";
 import { FormProvider, useForm } from "react-hook-form";
 import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 import { DEFAULT_PURPOSE } from "../sections/AmountSection/amountPurpose.options";
+import { MEMORIAL_PAGE_IMAGES } from "@/data/memorialPageImages";
 const DEFAULT_DONATION_AMOUNT = { preset: "1000", value: 1000 } as const;
 
 export function MemorialDonationLayout({
@@ -25,7 +26,7 @@ export function MemorialDonationLayout({
     defaultValues: {
       memorialPage: {
         recipientId: null,
-        imageId: null,
+        imageId: MEMORIAL_PAGE_IMAGES[0].id,
         greeting: "",
       },
       amount: {

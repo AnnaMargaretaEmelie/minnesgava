@@ -23,7 +23,7 @@ export function MemorialPageSection({
 
   return (
     <section className={styles.section}>
-      <h2 className={styles.title}>{copy.title ?? "Titel saknas"}</h2>
+      <h3 className={styles.title}>{copy.title ?? "Titel saknas"}</h3>
       {copy.text && (
         <div className={styles.copy}>
           <PortableText value={copy.text} />

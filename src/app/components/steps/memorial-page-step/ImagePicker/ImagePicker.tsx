@@ -1,28 +1,24 @@
+"use client";
+
 import Image from "next/image";
 import type { ImagePickerProps } from "./ImagePicker.types";
 import styles from "./ImagePicker.module.scss";
 
-export default function ImagePicker({
-  images,
-  selectedImageId,
-  onSelectImage,
-}: ImagePickerProps) {
+export default function ImagePicker({ images, register }: ImagePickerProps) {
   return (
     <div>
-      <p>Välj motiv</p>
       <div className={styles.pickerWrapper}>
-        {images.map((image) => {
-          const isSelected = image.id === selectedImageId;
+        {images.map((image) => (
+          <div key={image.id} className={styles.item}>
+            <input
+              type="radio"
+              id={image.id}
+              value={image.id}
+              {...register("memorialPage.imageId")}
+              className={styles.radio}
+            />
 
-          return (
-            <button
-              key={image.id}
-              type="button"
-              onClick={() => onSelectImage(image.id)}
-              className={
-                isSelected ? styles.imageButtonSelected : styles.imageButton
-              }
-            >
+            <label htmlFor={image.id} className={styles.label}>
               <Image
                 src={image.src}
                 alt={image.alt}
@@ -30,9 +26,9 @@ export default function ImagePicker({
                 height={100}
                 className={styles.thumbnail}
               />
-            </button>
-          );
-        })}
+            </label>
+          </div>
+        ))}
       </div>
     </div>
   );

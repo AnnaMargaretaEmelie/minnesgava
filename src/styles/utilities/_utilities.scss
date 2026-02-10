@@ -1,6 +1,6 @@
 @use "../abstracts/tokens";
 
-.visually-hidden {
+.u-visuallyHidden {
     position: absolute !important;
     height: 1px; width: 1px;
     overflow: hidden;
