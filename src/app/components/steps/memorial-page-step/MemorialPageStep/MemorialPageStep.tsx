@@ -12,6 +12,7 @@ import { MemorialPageStepProps } from "./MemorialPageStep.types";
 import { useFormContext, useWatch, useFormState } from "react-hook-form";
 import type { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 import styles from "./MemorialPageStep.module.scss";
+import { MemorialPreviewDialog } from "../MemorialPreviewDialog/MemorialPreviewDialog";
 
 export default function MemorialPageStep({
   onComplete,
@@ -29,6 +30,7 @@ export default function MemorialPageStep({
     : null;
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   const filteredRecipients: Recipient[] =
     searchTerm.trim().length === 0
@@ -69,30 +71,36 @@ export default function MemorialPageStep({
   }
 
   return (
-    <div className={styles.stepWrapper}>
-      <RecipientSection
-        searchTerm={searchTerm}
-        onSearchChange={setSearchTerm}
-        filteredRecipients={filteredRecipients}
-        selectedRecipient={selectedRecipient}
-        register={register}
-        control={control}
-        hasError={Boolean(errors.memorialPage?.recipientId)}
-        errorMessage={errors.memorialPage?.recipientId?.message}
-      />
-      <GreetingSection
-        register={register}
-        control={control}
-        hasError={Boolean(errors.memorialPage?.greeting)}
-        errorMessage={errors.memorialPage?.greeting?.message}
-      />
+    <>
+      <div className={styles.stepWrapper}>
+        <RecipientSection
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+          filteredRecipients={filteredRecipients}
+          selectedRecipient={selectedRecipient}
+          register={register}
+          control={control}
+          hasError={Boolean(errors.memorialPage?.recipientId)}
+          errorMessage={errors.memorialPage?.recipientId?.message}
+        />
+        <GreetingSection
+          register={register}
+          control={control}
+          hasError={Boolean(errors.memorialPage?.greeting)}
+          errorMessage={errors.memorialPage?.greeting?.message}
+        />
 
-      <ImageSection images={MEMORIAL_PAGE_IMAGES} register={register} />
-      <StepPrimaryButton
-        type="button"
-        label="Välj belopp"
-        onClick={handleNext}
-      ></StepPrimaryButton>
-    </div>
+        <ImageSection images={MEMORIAL_PAGE_IMAGES} register={register} />
+        <StepPrimaryButton
+          type="button"
+          label="Välj belopp"
+          onClick={() => setIsPreviewOpen(true)}
+        ></StepPrimaryButton>
+      </div>
+      <MemorialPreviewDialog
+        open={isPreviewOpen}
+        onOpenChange={setIsPreviewOpen}
+      />
+    </>
   );
 }
