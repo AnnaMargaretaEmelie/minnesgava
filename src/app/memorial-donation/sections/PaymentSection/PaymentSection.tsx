@@ -12,7 +12,9 @@ export function PaymentSection() {
     useFormContext<DonationFormValuesType>();
   const { errors } = useFormState({ control });
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
+  const paymentMethodRegister = register("payment.method", {
+    required: "Välj ett betalsätt",
+  });
   const handleContinue = async () => {
     const ok = await trigger("payment.method");
     if (ok) {
@@ -26,7 +28,7 @@ export function PaymentSection() {
           <input
             type="radio"
             value="swish"
-            {...register("payment.method", { required: "Välj ett betalsätt" })}
+            {...paymentMethodRegister}
             className="u-visuallyHidden"
           />
           <div className={styles.boxContent}>
@@ -45,7 +47,7 @@ export function PaymentSection() {
           <input
             type="radio"
             value="googlePay"
-            {...register("payment.method", { required: "Välj ett betalsätt" })}
+            {...paymentMethodRegister}
             className="u-visuallyHidden"
           />
           <div className={styles.boxContent}>
@@ -64,7 +66,7 @@ export function PaymentSection() {
           <input
             type="radio"
             value="card"
-            {...register("payment.method", { required: "Välj ett betalsätt" })}
+            {...paymentMethodRegister}
             className="u-visuallyHidden"
           />
           <div className={styles.boxContent}>
@@ -90,9 +92,7 @@ export function PaymentSection() {
             <input
               type="radio"
               value="invoice"
-              {...register("payment.method", {
-                required: "Välj ett betalsätt",
-              })}
+              {...paymentMethodRegister}
               className="u-visuallyHidden"
             />
             <div className={styles.boxContent}>

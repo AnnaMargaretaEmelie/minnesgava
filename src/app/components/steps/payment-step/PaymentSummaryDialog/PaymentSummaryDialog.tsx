@@ -21,6 +21,7 @@ export function PaymentSummaryDialog({
 }: PaymentSummaryProps) {
   const { watch } = useFormContext<DonationFormValuesType>();
   const amount = watch("amount.value");
+  const displayAmount = amount ? `${amount} kr` : "-";
   const method = watch("payment.method");
   const methodLabel = method ? PAYMENT_METHOD_LABELS[method] : "Ej valt";
   return (
@@ -33,7 +34,7 @@ export function PaymentSummaryDialog({
             <div>
               <i>Låtsasbetalsteg</i>
               <dl className={styles.summary}>
-                <dt>Belopp:</dt> <dd>{amount} kr</dd>
+                <dt>Belopp:</dt> <dd>{displayAmount}</dd>
                 <dt>Valt betalsätt: </dt>
                 <dd>{methodLabel}</dd>
               </dl>
