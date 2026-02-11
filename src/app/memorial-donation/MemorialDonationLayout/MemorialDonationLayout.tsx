@@ -34,6 +34,9 @@ export function MemorialDonationLayout({
         hasSelectedPreset: false,
         purpose: DEFAULT_PURPOSE,
       },
+      payment: {
+        method: null,
+      },
     },
   });
   return (

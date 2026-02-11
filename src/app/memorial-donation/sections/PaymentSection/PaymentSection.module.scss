@@ -2,26 +2,15 @@
 
 .section {
     padding-block: tokens.$space-md;
-    
 }
+
 .container {
     padding: 25px;
     border: 1px solid #c29a9a;
     border-radius: 16px;
 }
 
-.box {
-    padding: tokens.$space-md;
-    border: 1px solid #a87474;
-    border-radius: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: tokens.$space-md;
-    cursor: pointer;
-}
-
-.box:hover {
+.boxContent:hover {
     border: 1px solid #d3f1e8;
 }
 
@@ -41,5 +30,26 @@
 
 .dropdownContent {
     padding-block: tokens.$space-sm;
-     width: 100%;
+     inline-size: 100%;
+}
+
+.boxContent { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    inline-size: 100%;
+    border: 1px solid #a87474;
+    border-radius: 16px;
+    margin-bottom: tokens.$space-md;
+    padding: tokens.$space-md;
+    cursor: pointer;
+}
+
+input:checked + .boxContent { 
+    border: 2px solid #a87474;
+    background: tokens.$color-green-teal;
+}
+input:focus-visible + .boxContent { 
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
 }

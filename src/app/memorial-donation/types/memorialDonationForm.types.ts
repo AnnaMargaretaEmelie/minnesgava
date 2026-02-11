@@ -23,4 +23,8 @@ export type DonationFormValuesType = {
         purpose?: PurposeValueType;
         hasSelectedPreset?: boolean;
     }
+
+    payment: {
+        method: "swish" | "googlePay" | "card" | "invoice" | null;
+    }
 }
