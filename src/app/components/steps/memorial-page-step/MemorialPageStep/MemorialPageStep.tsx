@@ -63,11 +63,13 @@ export default function MemorialPageStep({
     const fullName = `${selectedRecipient.firstName} ${selectedRecipient.lastName}`;
     const summary = `${fullName}, ${selectedRecipient.city}`;
 
-    onComplete({
-      recipientId: selectedRecipient.id,
-      imageId,
-      summary,
-    });
+    setIsPreviewOpen(true);
+
+    // onComplete({
+    //   recipientId: selectedRecipient.id,
+    //   imageId,
+    //   summary,
+    // });
   }
 
   return (
@@ -94,7 +96,7 @@ export default function MemorialPageStep({
         <StepPrimaryButton
           type="button"
           label="Välj belopp"
-          onClick={() => setIsPreviewOpen(true)}
+          onClick={handleNext}
         ></StepPrimaryButton>
       </div>
       <MemorialPreviewDialog
