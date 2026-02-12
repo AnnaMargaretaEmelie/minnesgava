@@ -12,6 +12,7 @@ import { MOCK_RECIPIENTS } from "@/data/recipients.mock";
 export function MemorialPreviewDialog({
   open,
   onOpenChange,
+  onConfirm,
 }: MemorialPreviewDialogProps) {
   const { watch } = useFormContext<DonationFormValuesType>();
   const imageId = watch("memorialPage.imageId");
@@ -49,10 +50,17 @@ export function MemorialPreviewDialog({
                 </div>
                 <div className={styles.logoRow}>Här ska logotyp ligga</div>
               </div>
+              <div className={styles.buttonRow}>
+                <StepPrimaryButton
+                  onClick={onConfirm}
+                  label="Godkänn minnesblad"
+                  type="button"
+                />
+              </div>
             </div>
           </Dialog.Description>
-          <Dialog.Close asChild>
-            <StepPrimaryButton label="Godkänn minnesblad" />
+          <Dialog.Close className={styles.closeButton}>
+            Ändra minnesbladet
           </Dialog.Close>
         </Dialog.Content>
       </Dialog.Portal>

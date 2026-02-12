@@ -60,16 +60,20 @@ export default function MemorialPageStep({
 
     if (!selectedRecipient || !imageId) return;
 
+    setIsPreviewOpen(true);
+  }
+
+  function handleConfirm() {
+    if (!selectedRecipient || !imageId) return;
+
     const fullName = `${selectedRecipient.firstName} ${selectedRecipient.lastName}`;
     const summary = `${fullName}, ${selectedRecipient.city}`;
-
-    setIsPreviewOpen(true);
-
-    // onComplete({
-    //   recipientId: selectedRecipient.id,
-    //   imageId,
-    //   summary,
-    // });
+    setIsPreviewOpen(false);
+    onComplete({
+      recipientId: selectedRecipient.id,
+      imageId,
+      summary,
+    });
   }
 
   return (
@@ -102,6 +106,7 @@ export default function MemorialPageStep({
       <MemorialPreviewDialog
         open={isPreviewOpen}
         onOpenChange={setIsPreviewOpen}
+        onConfirm={handleConfirm}
       />
     </>
   );
