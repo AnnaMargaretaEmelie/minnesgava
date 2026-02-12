@@ -67,7 +67,7 @@
 }
 
 .text {
-    gap: tokens.$space-sm;    
+    gap: tokens.$space-xs;    
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -82,7 +82,9 @@
 }
 
 .greeting {
+    margin-top: tokens.$space-md;
     white-space: pre-wrap;
+    font-weight: 300;
 }
 
 .logoRow {

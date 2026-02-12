@@ -24,10 +24,19 @@ export default function MemorialPageStep({
 
   const recipientId = useWatch({ control, name: "memorialPage.recipientId" });
   const imageId = useWatch({ control, name: "memorialPage.imageId" });
+  const greeting = useWatch({ control, name: "memorialPage.greeting" });
 
   const selectedRecipient = recipientId
     ? (MOCK_RECIPIENTS.find((r) => r.id === recipientId) ?? null)
     : null;
+
+  const selectedImage =
+    MEMORIAL_PAGE_IMAGES.find((i) => i.id === imageId) ??
+    MEMORIAL_PAGE_IMAGES[0];
+
+  const fullName = selectedRecipient
+    ? `${selectedRecipient.firstName} ${selectedRecipient.lastName}`
+    : "Ingen mottagare vald";
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
@@ -104,6 +113,10 @@ export default function MemorialPageStep({
         ></StepPrimaryButton>
       </div>
       <MemorialPreviewDialog
+        imageSrc={selectedImage.src}
+        imageAlt={selectedImage.alt}
+        fullName={fullName}
+        greeting={greeting}
         open={isPreviewOpen}
         onOpenChange={setIsPreviewOpen}
         onConfirm={handleConfirm}
