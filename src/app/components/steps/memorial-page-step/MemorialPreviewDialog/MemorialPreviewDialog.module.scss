@@ -1,3 +1,5 @@
+@use "../../../../../styles/abstracts/tokens";
+
 .overlay {
     position: fixed;
     inset: 0;
@@ -10,9 +12,100 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
-    padding: 2rem;
+    padding-inline: 1rem;
+    padding-block: 2rem;
+}
+
+.contentInner {
+    position: relative;
+}
+
+.dialog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: tokens.$space-md;
+}
+
+.preview {
+    display: flex;
+    flex-direction: column;
+    inline-size: min(90vw, 420px);
+    border: 2px solid tokens.$color-accent;
+    padding: tokens.$space-sm;
+    align-items: center;
+    aspect-ratio: 210/297;
+}
+.closeX {
+    position: absolute;
+    top: tokens.$space-xs;
+    right: tokens.$space-xs;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: transparent;
+    border: 0;
+    margin: tokens.$space-xs;
+    cursor: pointer;
+    font-size: tokens.$font-size-lg;
+    line-height: 1;
+    color: inherit;
+
+    &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+.imageWrapper {
+    inline-size: 35%;
+    margin-top: tokens.$space-lg;
+    margin-bottom: tokens.$space-lg;
+}
+
+.text {
+    gap: tokens.$space-sm;    
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    max-inline-size: 28ch;    
+    justify-content: center;
+}
+
+.fullName {
+    font-size: tokens.$font-size-lg;
+    font-weight: 500;
+    margin-block: tokens.$space-md;
 }
 
 .greeting {
     white-space: pre-wrap;
+}
+
+.logoRow {
+    margin-top: auto;
+}
+
+.buttonRow {
+    margin-top: tokens.$space-md;
+}
+
+.closeButton {
+    border: none;
+    background: none;
+    font-size: tokens.$font-size-body;
+    margin-top: tokens.$space-lg;
+    display: block;
+    margin-inline: auto;
+    text-decoration: underline;
+    font: inherit;
+    cursor: pointer;
+
+    &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
 }
