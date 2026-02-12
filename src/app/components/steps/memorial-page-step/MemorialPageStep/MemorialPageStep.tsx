@@ -75,13 +75,10 @@ export default function MemorialPageStep({
   function handleConfirm() {
     if (!selectedRecipient || !imageId) return;
 
-    const fullName = `${selectedRecipient.firstName} ${selectedRecipient.lastName}`;
-    const summary = `${fullName}, ${selectedRecipient.city}`;
     setIsPreviewOpen(false);
     onComplete({
       recipientId: selectedRecipient.id,
       imageId,
-      summary,
     });
   }
 

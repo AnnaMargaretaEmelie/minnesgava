@@ -101,8 +101,9 @@ display: block;
 }
 
 .summary {
-  padding: tokens.$space-md tokens.$space-md;
+  padding-inline: tokens.$space-sm;
+  padding-block: tokens.$space-lg;
   font-size: tokens.$font-size-body;
-  color: tokens.$color-text;
+  color: tokens.$color-placeholder;
   display: none;
 }

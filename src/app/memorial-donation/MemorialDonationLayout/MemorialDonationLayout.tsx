@@ -5,7 +5,6 @@ import { MemorialPageSection } from "../sections/MemorialPageSection/MemorialPag
 import styles from "./MemorialDonationLayout.module.scss";
 import { AccordionItem } from "@/app/components/accordion/AccordionItem/AccordionItem";
 import { AccordionRoot } from "@/app/components/accordion/Accordion/Accordion";
-import { useState } from "react";
 import { AmountSection } from "../sections/AmountSection/AmountSection";
 import { DonorContactSection } from "../sections/DonorContactSection/DonorContactSection";
 import { PaymentSection } from "../sections/PaymentSection/PaymentSection";
@@ -13,6 +12,10 @@ import { FormProvider, useForm } from "react-hook-form";
 import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 import { DEFAULT_PURPOSE } from "../sections/AmountSection/amountPurpose.options";
 import { MEMORIAL_PAGE_IMAGES } from "@/data/memorialPageImages";
+import { MemorialPageSummary } from "@/app/components/steps/memorial-page-step/MemorialPageSummary/MemorialPageSummary";
+import { AmountSummary } from "@/app/components/steps/amount-step/AmountSummary/AmountSummary";
+import { DonorConactSummary } from "@/app/components/steps/donor-contact-step/DonorContactSummary/DonorContactSummary";
+
 const DEFAULT_DONATION_AMOUNT = { preset: "1000", value: 1000 } as const;
 
 export function MemorialDonationLayout({
@@ -20,7 +23,6 @@ export function MemorialDonationLayout({
   amountCopy,
   donorCopy,
 }: MemorialDonationLayoutProps) {
-  const [memorialSummary, setMemorialSummary] = useState<string | null>(null);
   const methods = useForm<DonationFormValuesType>({
     mode: "onTouched",
     defaultValues: {
@@ -48,17 +50,15 @@ export function MemorialDonationLayout({
             <AccordionItem
               value="memorial-card-step"
               title="1. Minnesblad"
-              summary={memorialSummary ?? undefined}
+              summary={<MemorialPageSummary />}
               className={styles.step}
             >
-              <MemorialPageSection
-                copy={memorialPageCopy}
-                onSummaryChange={setMemorialSummary}
-              />
+              <MemorialPageSection copy={memorialPageCopy} />
             </AccordionItem>
             <AccordionItem
               value="amount-step"
               title="2. Gåvobelopp"
+              summary={<AmountSummary />}
               className={styles.step}
             >
               <AmountSection copy={amountCopy} />
@@ -66,6 +66,7 @@ export function MemorialDonationLayout({
             <AccordionItem
               value="donor-contact-step"
               title="3. Kontaktuppgifter"
+              summary={<DonorConactSummary />}
               className={styles.step}
             >
               <DonorContactSection copy={donorCopy} />
