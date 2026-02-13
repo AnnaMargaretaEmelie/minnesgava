@@ -5,6 +5,7 @@ import type { MemorialPreviewDialogProps } from "./MemorialPreviewDialog.types";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
 import styles from "./MemorialPreviewDialog.module.scss";
 import Image from "next/image";
+import { CloseIcon } from "@/app/components/shared/icons/CloseIcon";
 
 export function MemorialPreviewDialog({
   imageSrc,
@@ -21,8 +22,12 @@ export function MemorialPreviewDialog({
         <Dialog.Overlay className={styles.overlay} />
         <Dialog.Content className={styles.content}>
           <Dialog.Close asChild>
-            <button aria-label="Stäng" className={styles.closeX} type="button">
-              x
+            <button
+              aria-label="Stäng"
+              className={styles.dialogClose}
+              type="button"
+            >
+              <CloseIcon />
             </button>
           </Dialog.Close>
           <div className={styles.contentInner}>

@@ -37,18 +37,17 @@
     align-items: center;
     aspect-ratio: 210/297;
 }
-.closeX {
+.dialogClose {
     position: absolute;
     top: tokens.$space-xs;
     right: tokens.$space-xs;
-    inline-size: 2.5rem;
-    block-size: 2.5rem;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
     border-radius: 999px;
     display: grid;
     place-items: center;
     background: transparent;
     border: 0;
-    margin: tokens.$space-xs;
     cursor: pointer;
     font-size: tokens.$font-size-lg;
     line-height: 1;
