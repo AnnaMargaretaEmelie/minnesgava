@@ -3,6 +3,7 @@
 import { useAccordion } from "../Accordion/Accordion";
 import styles from "./AccordionItem.module.scss";
 import * as Accordion from "@radix-ui/react-accordion";
+import { CheckCircleIcon } from "../../shared/icons/CheckCircleIcon";
 
 type AccordionItemProps = {
   value: string;
@@ -37,28 +38,46 @@ export function AccordionItem({
       data-step-status={status}
       data-state={open ? "open" : "closed"}
     >
-      <Accordion.Trigger
-        className={`${styles.trigger} ${triggerClassName ?? ""}`}
-        disabled={triggerIsDisabled}
-        onClick={(e) => {
-          if (triggerIsDisabled) {
-            e.preventDefault();
+      <div className={styles.headerRow}>
+        <Accordion.Trigger
+          className={`${styles.trigger} ${triggerClassName ?? ""}`}
+          disabled={triggerIsDisabled}
+          onClick={(e) => {
+            if (triggerIsDisabled) {
+              e.preventDefault();
+              e.stopPropagation();
+              return;
+            }
+            ctx?.toggle(value);
+          }}
+        >
+          {" "}
+          <div className={styles.triggerLeft}>
+            <h2>{title}</h2>
+            {status === "complete" && (
+              <CheckCircleIcon className={styles.checkIcon} />
+            )}
+          </div>
+        </Accordion.Trigger>
+
+        <button
+          type="button"
+          className={styles.editLink}
+          onClick={(e) => {
             e.stopPropagation();
-            return;
-          }
-          ctx?.toggle(value);
-        }}
-      >
-        <h2>{title}</h2>
-        <span className={styles.icon} />
-      </Accordion.Trigger>
+            ctx.toggle(value);
+          }}
+        >
+          Ändra
+        </button>
+      </div>
 
       <Accordion.Content
         className={`${styles.content} ${contentClassName ?? ""}`}
       >
         <div className={styles.contentInner}>{children}</div>
       </Accordion.Content>
-      {<div className={styles.summary}>{summary}</div>}
+      {summary ? <div className={styles.summary}>{summary}</div> : null}
     </Accordion.Item>
   );
 }
