@@ -12,6 +12,7 @@ import { MemorialPageStepProps } from "./MemorialPageStep.types";
 import { useFormContext, useWatch, useFormState } from "react-hook-form";
 import type { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 import styles from "./MemorialPageStep.module.scss";
+import { MemorialPreviewDialog } from "../MemorialPreviewDialog/MemorialPreviewDialog";
 
 export default function MemorialPageStep({
   onComplete,
@@ -23,12 +24,22 @@ export default function MemorialPageStep({
 
   const recipientId = useWatch({ control, name: "memorialPage.recipientId" });
   const imageId = useWatch({ control, name: "memorialPage.imageId" });
+  const greeting = useWatch({ control, name: "memorialPage.greeting" });
 
   const selectedRecipient = recipientId
     ? (MOCK_RECIPIENTS.find((r) => r.id === recipientId) ?? null)
     : null;
 
+  const selectedImage =
+    MEMORIAL_PAGE_IMAGES.find((i) => i.id === imageId) ??
+    MEMORIAL_PAGE_IMAGES[0];
+
+  const fullName = selectedRecipient
+    ? `${selectedRecipient.firstName} ${selectedRecipient.lastName}`
+    : "Ingen mottagare vald";
+
   const [searchTerm, setSearchTerm] = useState("");
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   const filteredRecipients: Recipient[] =
     searchTerm.trim().length === 0
@@ -58,9 +69,15 @@ export default function MemorialPageStep({
 
     if (!selectedRecipient || !imageId) return;
 
+    setIsPreviewOpen(true);
+  }
+
+  function handleConfirm() {
+    if (!selectedRecipient || !imageId) return;
+
     const fullName = `${selectedRecipient.firstName} ${selectedRecipient.lastName}`;
     const summary = `${fullName}, ${selectedRecipient.city}`;
-
+    setIsPreviewOpen(false);
     onComplete({
       recipientId: selectedRecipient.id,
       imageId,
@@ -69,30 +86,41 @@ export default function MemorialPageStep({
   }
 
   return (
-    <div className={styles.stepWrapper}>
-      <RecipientSection
-        searchTerm={searchTerm}
-        onSearchChange={setSearchTerm}
-        filteredRecipients={filteredRecipients}
-        selectedRecipient={selectedRecipient}
-        register={register}
-        control={control}
-        hasError={Boolean(errors.memorialPage?.recipientId)}
-        errorMessage={errors.memorialPage?.recipientId?.message}
-      />
-      <GreetingSection
-        register={register}
-        control={control}
-        hasError={Boolean(errors.memorialPage?.greeting)}
-        errorMessage={errors.memorialPage?.greeting?.message}
-      />
+    <>
+      <div className={styles.stepWrapper}>
+        <RecipientSection
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+          filteredRecipients={filteredRecipients}
+          selectedRecipient={selectedRecipient}
+          register={register}
+          control={control}
+          hasError={Boolean(errors.memorialPage?.recipientId)}
+          errorMessage={errors.memorialPage?.recipientId?.message}
+        />
+        <GreetingSection
+          register={register}
+          control={control}
+          hasError={Boolean(errors.memorialPage?.greeting)}
+          errorMessage={errors.memorialPage?.greeting?.message}
+        />
 
-      <ImageSection images={MEMORIAL_PAGE_IMAGES} register={register} />
-      <StepPrimaryButton
-        type="button"
-        label="Välj belopp"
-        onClick={handleNext}
-      ></StepPrimaryButton>
-    </div>
+        <ImageSection images={MEMORIAL_PAGE_IMAGES} register={register} />
+        <StepPrimaryButton
+          type="button"
+          label="Välj belopp"
+          onClick={handleNext}
+        ></StepPrimaryButton>
+      </div>
+      <MemorialPreviewDialog
+        imageSrc={selectedImage.src}
+        imageAlt={selectedImage.alt}
+        fullName={fullName}
+        greeting={greeting}
+        open={isPreviewOpen}
+        onOpenChange={setIsPreviewOpen}
+        onConfirm={handleConfirm}
+      />
+    </>
   );
 }
