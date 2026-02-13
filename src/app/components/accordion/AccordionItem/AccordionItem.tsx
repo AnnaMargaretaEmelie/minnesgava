@@ -4,6 +4,7 @@ import { useAccordion } from "../Accordion/Accordion";
 import styles from "./AccordionItem.module.scss";
 import * as Accordion from "@radix-ui/react-accordion";
 import { CheckCircleIcon } from "../../shared/icons/CheckCircleIcon";
+import { useRef } from "react";
 
 type AccordionItemProps = {
   value: string;
@@ -29,6 +30,7 @@ export function AccordionItem({
   const open = ctx.isOpen(value);
   const status = ctx.getStatus(value) ?? "locked";
   const triggerIsDisabled = status === "locked";
+  const headerRef = useRef<HTMLDivElement | null>(null);
 
   return (
     <Accordion.Item
@@ -49,6 +51,9 @@ export function AccordionItem({
               return;
             }
             ctx?.toggle(value);
+            requestAnimationFrame(() =>
+              headerRef.current?.scrollIntoView({ block: "nearest" }),
+            );
           }}
         >
           {" "}
@@ -64,6 +69,7 @@ export function AccordionItem({
           type="button"
           className={styles.editLink}
           onClick={(e) => {
+            e.preventDefault();
             e.stopPropagation();
             ctx.toggle(value);
           }}

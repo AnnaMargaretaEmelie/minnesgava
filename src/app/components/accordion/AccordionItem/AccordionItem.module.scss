@@ -102,13 +102,12 @@ display: block;
     display: grid;
     grid-template-rows: 0fr;
     overflow: hidden;
-    padding-block-end: tokens.$space-md;
     transition: grid-template-rows 180ms cubic-bezier(.2,.6,.2,1);
 }
 
 .contentInner {
     overflow: hidden;
-    padding: 24px 12px 32px 12px;
+    padding: tokens.$space-lg tokens.$space-md tokens.$space-lg tokens.$space-md;
 
 }
 
@@ -119,8 +118,8 @@ display: block;
 }
 
 .summary {
-  padding-inline: tokens.$space-sm;
-  padding-block: tokens.$space-lg;
+  padding-inline-start: tokens.$space-md;
+  padding-block: tokens.$space-md;
   font-size: tokens.$font-size-body;
   color: tokens.$color-placeholder;
   display: none;
