@@ -33,6 +33,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             type="text"
             id="firstName"
             placeholder="T ex Anna"
+            autoComplete="given-name"
             {...register("donor.firstName", { required: "Obligatoriskt fält" })}
             className={errors.donor?.firstName ? styles.inputError : undefined}
           />
@@ -46,6 +47,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             type="text"
             id="lastName"
             placeholder="T ex Larsson"
+            autoComplete="family-name"
             {...register("donor.lastName", { required: "Obligatoriskt fält" })}
             className={errors.donor?.lastName ? styles.inputError : undefined}
           />
@@ -61,6 +63,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             type="text"
             id="adress"
             placeholder="T ex Stora Nygatan 26"
+            autoComplete="street-address"
             {...register("donor.adress")}
           />
         </div>
@@ -70,6 +73,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             type="text"
             id="postalCode"
             placeholder="T ex 11127"
+            autoComplete="postal-code"
             {...register("donor.postalCode")}
           />
         </div>
@@ -79,6 +83,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             type="text"
             id="postalArea"
             placeholder="T ex Stockholm"
+            autoComplete="address-level2"
             {...register("donor.postalArea")}
           />
         </div>
@@ -88,6 +93,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             type="email"
             id="email"
             placeholder="T ex namn@domännamn.se"
+            autoComplete="email"
             {...register("donor.email", {
               required: "Obligatoriskt fält",
               pattern: {
@@ -107,6 +113,7 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             type="tel"
             id="phone"
             placeholder="T ex 0710203040"
+            autoComplete="tel"
             {...register("donor.phone", {
               required: "Obligatoriskt fält",
               pattern: {

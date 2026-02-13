@@ -25,7 +25,7 @@ export function DonorConactSummary() {
     <div>
       <p>Namn: {nameText}</p>
       <p> Adress: {adressText}</p>
-      <p> Postort: {postalText}</p>
+      <p> Postadress: {postalText}</p>
       <p>Mejladress: {emailText} </p>
       <p>Telefon: {phoneText} </p>
     </div>
