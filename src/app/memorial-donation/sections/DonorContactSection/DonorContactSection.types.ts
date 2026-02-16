@@ -6,14 +6,3 @@ export type DonorContactSectionProps = {
     copy: DonorContactSectionCopy;
 };
 
-export type DonorFormValuesType = {
-    donor: {
-        firstName: string;
-        lastName: string;
-        adress?: string;
-        postalCode?: string; 
-        postalArea?: string;
-        email: string;
-        phone: string; 
-    }
-}

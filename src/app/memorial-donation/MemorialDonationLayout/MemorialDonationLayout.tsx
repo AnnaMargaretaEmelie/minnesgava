@@ -5,6 +5,7 @@ import { MemorialPageSection } from "../sections/MemorialPageSection/MemorialPag
 import styles from "./MemorialDonationLayout.module.scss";
 import { AccordionItem } from "@/app/components/accordion/AccordionItem/AccordionItem";
 import { AccordionRoot } from "@/app/components/accordion/Accordion/Accordion";
+import { HeroSection } from "../sections/HeroSection/HeroSection";
 import { AmountSection } from "../sections/AmountSection/AmountSection";
 import { DonorContactSection } from "../sections/DonorContactSection/DonorContactSection";
 import { PaymentSection } from "../sections/PaymentSection/PaymentSection";
@@ -14,7 +15,7 @@ import { DEFAULT_PURPOSE } from "../sections/AmountSection/amountPurpose.options
 import { MEMORIAL_PAGE_IMAGES } from "@/data/memorialPageImages";
 import { MemorialPageSummary } from "@/app/components/steps/memorial-page-step/MemorialPageSummary/MemorialPageSummary";
 import { AmountSummary } from "@/app/components/steps/amount-step/AmountSummary/AmountSummary";
-import { DonorConactSummary } from "@/app/components/steps/donor-contact-step/DonorContactSummary/DonorContactSummary";
+import { DonorContactSummary } from "@/app/components/steps/donor-contact-step/DonorContactSummary/DonorContactSummary";
 
 const DEFAULT_DONATION_AMOUNT = { preset: "1000", value: 1000 } as const;
 
@@ -22,6 +23,7 @@ export function MemorialDonationLayout({
   memorialPageCopy,
   amountCopy,
   donorCopy,
+  heroCopy,
 }: MemorialDonationLayoutProps) {
   const methods = useForm<DonationFormValuesType>({
     mode: "onTouched",
@@ -43,7 +45,9 @@ export function MemorialDonationLayout({
   });
   return (
     <div className={styles.layout}>
-      <section className={styles.hero}>HeroSection</section>
+      <section className={styles.hero}>
+        {heroCopy ? <HeroSection copy={heroCopy} /> : null}
+      </section>
       <section className={styles.steps}>
         <FormProvider {...methods}>
           <AccordionRoot>
@@ -66,7 +70,7 @@ export function MemorialDonationLayout({
             <AccordionItem
               value="donor-contact-step"
               title="3. Kontaktuppgifter"
-              summary={<DonorConactSummary />}
+              summary={<DonorContactSummary />}
               className={styles.step}
             >
               <DonorContactSection copy={donorCopy} />

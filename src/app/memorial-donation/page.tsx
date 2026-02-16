@@ -8,6 +8,7 @@ export default async function MemorialDonationPage() {
   const memorialPageCopy = copy?.memorialCard?.introSection;
   const amountCopy = copy?.donationAmount;
   const donorCopy = copy?.donorDetails;
+  const heroCopy = copy?.heroIntro;
 
   if (!memorialPageCopy || !amountCopy || !donorCopy) {
     return (
@@ -20,6 +21,7 @@ export default async function MemorialDonationPage() {
   return (
     <main>
       <MemorialDonationLayout
+        heroCopy={heroCopy ?? undefined}
         memorialPageCopy={memorialPageCopy}
         amountCopy={amountCopy}
         donorCopy={donorCopy}

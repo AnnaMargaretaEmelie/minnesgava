@@ -1,6 +1,6 @@
 import { useWatch, useFormContext } from "react-hook-form";
 
-export function DonorConactSummary() {
+export function DonorContactSummary() {
   const { control } = useFormContext();
 
   const firstName = useWatch({ control, name: "donor.firstName" });
