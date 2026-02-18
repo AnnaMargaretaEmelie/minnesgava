@@ -5,6 +5,7 @@ import { MemorialPageSection } from "../sections/MemorialPageSection/MemorialPag
 import styles from "./MemorialDonationLayout.module.scss";
 import { AccordionItem } from "@/app/components/accordion/AccordionItem/AccordionItem";
 import { AccordionRoot } from "@/app/components/accordion/Accordion/Accordion";
+import { HeroSection } from "../sections/HeroSection/HeroSection";
 import { AmountSection } from "../sections/AmountSection/AmountSection";
 import { DonorContactSection } from "../sections/DonorContactSection/DonorContactSection";
 import { PaymentSection } from "../sections/PaymentSection/PaymentSection";
@@ -22,6 +23,7 @@ export function MemorialDonationLayout({
   memorialPageCopy,
   amountCopy,
   donorCopy,
+  heroCopy,
 }: MemorialDonationLayoutProps) {
   const methods = useForm<DonationFormValuesType>({
     mode: "onTouched",
@@ -43,7 +45,9 @@ export function MemorialDonationLayout({
   });
   return (
     <div className={styles.layout}>
-      <section className={styles.hero}>HeroSection</section>
+      <section className={styles.hero}>
+        {heroCopy ? <HeroSection copy={heroCopy} /> : null}
+      </section>
       <section className={styles.steps}>
         <FormProvider {...methods}>
           <AccordionRoot>
