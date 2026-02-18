@@ -40,7 +40,7 @@ export function AccordionItem({
       data-step-status={status}
       data-state={open ? "open" : "closed"}
     >
-      <div className={styles.headerRow}>
+      <div ref={headerRef} className={styles.headerRow}>
         <Accordion.Trigger
           className={`${styles.trigger} ${triggerClassName ?? ""}`}
           disabled={triggerIsDisabled}

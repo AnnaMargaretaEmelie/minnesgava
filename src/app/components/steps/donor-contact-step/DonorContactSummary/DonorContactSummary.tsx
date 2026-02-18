@@ -1,25 +1,19 @@
+import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 import { useWatch, useFormContext } from "react-hook-form";
 
 export function DonorContactSummary() {
-  const { control } = useFormContext();
-
-  const firstName = useWatch({ control, name: "donor.firstName" });
-  const lastName = useWatch({ control, name: "donor.lastName" });
-  const adress = useWatch({ control, name: "donor.adress" });
-  const postalCode = useWatch({ control, name: "donor.postalCode" });
-  const postalArea = useWatch({ control, name: "donor.postalArea" });
-  const email = useWatch({ control, name: "donor.email" });
-  const phone = useWatch({ control, name: "donor.phone" });
+  const { control } = useFormContext<DonationFormValuesType>();
+  const donor = useWatch({ control, name: "donor" });
 
   const nameText =
-    `${String(firstName ?? "").trim()} ${String(lastName ?? "").trim()}`.trim() ||
+    `${String(donor?.firstName ?? "").trim()} ${String(donor?.lastName ?? "").trim()}`.trim() ||
     "-";
-  const adressText = String(adress ?? "").trim() || "-";
+  const adressText = String(donor?.adress ?? "").trim() || "-";
   const postalText =
-    `${String(postalCode ?? "").trim()} ${String(postalArea ?? "").trim()}`.trim() ||
+    `${String(donor?.postalCode ?? "").trim()} ${String(donor?.postalArea ?? "").trim()}`.trim() ||
     "-";
-  const emailText = String(email ?? "").trim() || "-";
-  const phoneText = String(phone ?? "").trim() || "-";
+  const emailText = String(donor?.email ?? "").trim() || "-";
+  const phoneText = String(donor?.phone ?? "").trim() || "-";
 
   return (
     <div>
