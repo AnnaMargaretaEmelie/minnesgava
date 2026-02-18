@@ -6,18 +6,10 @@ import styles from "./MemorialPageSection.module.scss";
 import { PortableText } from "next-sanity";
 import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
 
-export function MemorialPageSection({
-  copy,
-  onSummaryChange,
-}: MemorialPageSectionProps) {
+export function MemorialPageSection({ copy }: MemorialPageSectionProps) {
   const ctx = useAccordion();
 
-  function handleMemorialPageComplete(memorialPageStepData: {
-    recipientId: string;
-    imageId: string;
-    summary: string;
-  }) {
-    onSummaryChange?.(memorialPageStepData.summary);
+  function handleMemorialPageComplete() {
     ctx.goNext("memorial-card-step");
   }
 
