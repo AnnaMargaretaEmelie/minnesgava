@@ -2,7 +2,7 @@
 
 //logik och state
 import { MOCK_RECIPIENTS, Recipient } from "@/data/recipients.mock";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { MEMORIAL_PAGE_IMAGES } from "@/data/memorialPageImages";
 import { RecipientSection } from "../RecipientSection/RecipientSection";
 import { GreetingSection } from "../GreetingSection/GreetingSection";
@@ -40,6 +40,14 @@ export default function MemorialPageStep({
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+
+  const openPreviewRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (!isPreviewOpen) {
+      openPreviewRef.current?.focus();
+    }
+  }, [isPreviewOpen]);
 
   const filteredRecipients: Recipient[] =
     searchTerm.trim().length === 0
@@ -104,6 +112,7 @@ export default function MemorialPageStep({
 
         <ImageSection images={MEMORIAL_PAGE_IMAGES} register={register} />
         <StepPrimaryButton
+          ref={openPreviewRef}
           type="button"
           label="Välj belopp"
           onClick={handleNext}
