@@ -16,11 +16,6 @@
       opacity: 0.9;
     }
 
-    &:focus-visible {
-      outline: 3px solid tokens.$color-accent;
-      outline-offset: 2px;
-    }
-
     &:disabled {
       opacity: 0.5;
       cursor: not-allowed;

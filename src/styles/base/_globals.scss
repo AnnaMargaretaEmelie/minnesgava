@@ -18,3 +18,8 @@ body {
     max-width: 100%;
     display: block;
   }
+
+  :focus-visible {
+    outline: 3px solid tokens.$color-accent;
+    outline-offset: 3px;
+  }

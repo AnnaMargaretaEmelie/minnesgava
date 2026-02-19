@@ -32,7 +32,7 @@ export function PaymentSection() {
           hasPaymentError ? "payment-method-error" : "undefined"
         }
       >
-        <p id="payment-method-legend" className="u-visually-hidden">
+        <p id="payment-method-legend" className="u-visuallyHidden">
           Välj betalsätt
         </p>
         <div className={styles.container}>

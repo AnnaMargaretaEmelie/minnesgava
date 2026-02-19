@@ -49,7 +49,8 @@ input:checked + .boxContent {
     border: 2px solid #a87474;
     background: tokens.$color-green-teal;
 }
-input:focus-visible + .boxContent { 
-    outline: 2px solid currentColor;
-    outline-offset: 2px;
+label:has(input:focus-visible) .boxContent {
+  outline: 3px solid tokens.$color-accent;
+  outline-offset: 3px;
 }
+
