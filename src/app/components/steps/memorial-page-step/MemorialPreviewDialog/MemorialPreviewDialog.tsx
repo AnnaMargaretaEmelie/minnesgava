@@ -23,6 +23,7 @@ export function MemorialPreviewDialog({
         <Dialog.Content className={styles.content}>
           <Dialog.Close asChild>
             <button
+              autoFocus
               aria-label="Stäng"
               className={styles.dialogClose}
               type="button"
