@@ -4,7 +4,7 @@ import { useAccordion } from "../Accordion/Accordion";
 import styles from "./AccordionItem.module.scss";
 import * as Accordion from "@radix-ui/react-accordion";
 import { CheckCircleIcon } from "../../shared/icons/CheckCircleIcon";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 type AccordionItemProps = {
   value: string;
@@ -31,6 +31,25 @@ export function AccordionItem({
   const status = ctx.getStatus(value) ?? "locked";
   const triggerIsDisabled = status === "locked";
   const headerRef = useRef<HTMLDivElement | null>(null);
+  const contentInnerRef = useRef<HTMLDivElement | null>(null);
+  const shouldFocusContentRef = useRef(false);
+
+  useEffect(() => {
+    if (!open) return;
+    if (!shouldFocusContentRef.current) return;
+    shouldFocusContentRef.current = false;
+
+    const id = window.setTimeout(() => {
+      const root = contentInnerRef.current;
+      if (!root) return;
+
+      const first = root.querySelector<HTMLElement>(
+        'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])',
+      );
+      first?.focus();
+    }, 0);
+    return () => window.clearTimeout(id);
+  }, [open]);
 
   return (
     <Accordion.Item
@@ -50,6 +69,7 @@ export function AccordionItem({
               e.stopPropagation();
               return;
             }
+            shouldFocusContentRef.current = true;
             ctx?.toggle(value);
             requestAnimationFrame(() =>
               headerRef.current?.scrollIntoView({ block: "nearest" }),
@@ -71,6 +91,7 @@ export function AccordionItem({
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
+              shouldFocusContentRef.current = true;
               ctx.toggle(value);
             }}
           >
@@ -82,7 +103,9 @@ export function AccordionItem({
       <Accordion.Content
         className={`${styles.content} ${contentClassName ?? ""}`}
       >
-        <div className={styles.contentInner}>{children}</div>
+        <div ref={contentInnerRef} className={styles.contentInner}>
+          {children}
+        </div>
       </Accordion.Content>
       {summary ? <div className={styles.summary}>{summary}</div> : null}
     </Accordion.Item>
