@@ -47,12 +47,6 @@ display: block;
     display: none;
   }
 }
-&[data-state="open"] .editLink {
-  display: none;
-}
-&[data-step-status="complete"][data-state="closed"] .editLink {
-  display: inline-flex;
-}
 }
 
 .headerRow {
@@ -88,10 +82,10 @@ display: block;
 }
 
 .editLink {
-  display: none;
+
   background: none;
   border:0;
-  padding: tokens.$space-xs;
+  padding: tokens.$space-sm;
   font: inherit;
   color: tokens.$color-text;
   text-decoration: underline;

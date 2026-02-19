@@ -64,18 +64,19 @@ export function AccordionItem({
             )}
           </div>
         </Accordion.Trigger>
-
-        <button
-          type="button"
-          className={styles.editLink}
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            ctx.toggle(value);
-          }}
-        >
-          Ändra
-        </button>
+        {status === "complete" && !open && (
+          <button
+            type="button"
+            className={styles.editLink}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              ctx.toggle(value);
+            }}
+          >
+            Ändra
+          </button>
+        )}
       </div>
 
       <Accordion.Content
