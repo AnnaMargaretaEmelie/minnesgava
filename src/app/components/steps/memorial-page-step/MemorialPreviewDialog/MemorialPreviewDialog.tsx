@@ -15,6 +15,7 @@ export function MemorialPreviewDialog({
   open,
   onOpenChange,
   onConfirm,
+  onEdit,
 }: MemorialPreviewDialogProps) {
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
@@ -75,7 +76,11 @@ export function MemorialPreviewDialog({
               </div>
             </Dialog.Description>
             <Dialog.Close asChild>
-              <button type="button" className={styles.closeButton}>
+              <button
+                type="button"
+                className={styles.closeButton}
+                onClick={onEdit}
+              >
                 Ändra minnesbladet
               </button>
             </Dialog.Close>

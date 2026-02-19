@@ -13,6 +13,7 @@ export function RecipientSection({
   register,
   control,
   errorMessage,
+  onFocusReady,
 }: RecipientSectionProps) {
   return (
     <>
@@ -22,6 +23,7 @@ export function RecipientSection({
         results={filteredRecipients}
         register={register}
         control={control}
+        onFocusReady={onFocusReady}
       />
       {hasError && (
         <p className="u-errorText">{errorMessage ?? "Välj en mottagare"}</p>

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useWatch } from "react-hook-form";
 import type { RecipientSearchProps } from "./RecipientSearch.types";
 import styles from "./RecipientSearch.module.scss";
@@ -9,6 +9,7 @@ export default function RecipientSearch({
   results,
   register,
   control,
+  onFocusReady,
 }: RecipientSearchProps) {
   const selectedRecipientId = useWatch({
     control,
@@ -16,6 +17,11 @@ export default function RecipientSearch({
   });
   const isOpen = searchTerm.trim() !== "" && results.length > 0;
   const inputRef = useRef<HTMLInputElement>(null);
+  const focusInput = useCallback(() => inputRef.current?.focus(), []);
+  useEffect(() => {
+    onFocusReady?.(focusInput);
+  }, [onFocusReady, focusInput]);
+
   const listId = "recipient-results";
   const closeAndFocus = () => {
     onSearchChange("");

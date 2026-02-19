@@ -41,13 +41,23 @@ export default function MemorialPageStep({
   const [searchTerm, setSearchTerm] = useState("");
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
+  const focusRecipientSearchRef = useRef<(() => void) | null>(null);
+  const returnToEditRef = useRef(false);
   const openPreviewRef = useRef<HTMLButtonElement | null>(null);
 
-  useEffect(() => {
-    if (!isPreviewOpen) {
+  const handlePreviewOpenChange = (nextOpen: boolean) => {
+    setIsPreviewOpen(nextOpen);
+    if (nextOpen) return;
+
+    window.setTimeout(() => {
+      if (returnToEditRef.current) {
+        returnToEditRef.current = false;
+        focusRecipientSearchRef.current?.();
+        return;
+      }
       openPreviewRef.current?.focus();
-    }
-  }, [isPreviewOpen]);
+    }, 50);
+  };
 
   const filteredRecipients: Recipient[] =
     searchTerm.trim().length === 0
@@ -102,6 +112,9 @@ export default function MemorialPageStep({
           control={control}
           hasError={Boolean(errors.memorialPage?.recipientId)}
           errorMessage={errors.memorialPage?.recipientId?.message}
+          onFocusReady={(focus) => {
+            focusRecipientSearchRef.current = focus;
+          }}
         />
         <GreetingSection
           register={register}
@@ -124,8 +137,11 @@ export default function MemorialPageStep({
         fullName={fullName}
         greeting={greeting}
         open={isPreviewOpen}
-        onOpenChange={setIsPreviewOpen}
+        onOpenChange={handlePreviewOpenChange}
         onConfirm={handleConfirm}
+        onEdit={() => {
+          returnToEditRef.current = true;
+        }}
       />
     </>
   );
