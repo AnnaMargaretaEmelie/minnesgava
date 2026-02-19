@@ -10,6 +10,7 @@ export default function RecipientSearch({
   register,
   control,
   onFocusReady,
+  hasError,
 }: RecipientSearchProps) {
   const selectedRecipientId = useWatch({
     control,
@@ -43,7 +44,12 @@ export default function RecipientSearch({
         aria-expanded={isOpen}
         aria-controls={isOpen ? listId : undefined}
         aria-haspopup="listbox"
-        aria-describedby="recipient-search-hint"
+        aria-invalid={hasError}
+        aria-describedby={
+          hasError
+            ? "recipient-search-hint recipient-error"
+            : "recipient-search-hint"
+        }
         value={searchTerm}
         onChange={(event) => onSearchChange(event.target.value)}
         placeholder="Sök efter namn"

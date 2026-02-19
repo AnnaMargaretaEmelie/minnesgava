@@ -24,9 +24,12 @@ export function RecipientSection({
         register={register}
         control={control}
         onFocusReady={onFocusReady}
+        hasError={hasError}
       />
       {hasError && (
-        <p className="u-errorText">{errorMessage ?? "Välj en mottagare"}</p>
+        <p id="recipient-error" role="alert" className="u-errorText">
+          {errorMessage ?? "Välj en mottagare"}
+        </p>
       )}
 
       {selectedRecipient && <RecipientInfo recipient={selectedRecipient} />}

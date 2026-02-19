@@ -18,6 +18,8 @@ export function AmountSection({ copy }: AmountSectionProps) {
     useWatch({ control, name: "amount.hasSelectedPreset" }) ?? false;
   const { errors } = useFormState({ control, name: ["amount.value"] });
 
+  const customAmountHasError = Boolean(errors.amount?.value);
+
   function selectPreset(
     amountNumber: number,
     presetString: "1000" | "500" | "100",
@@ -56,9 +58,17 @@ export function AmountSection({ copy }: AmountSectionProps) {
   return (
     <section className={styles.section}>
       <div className={styles.amount}>
-        <p className={styles.legend}>Välj belopp</p>
-        <div className={styles.options}>
+        <p id="amount-legend" className={styles.legend}>
+          Välj belopp
+        </p>
+        <div
+          role="radiogroup"
+          aria-labelledby="amount-legend"
+          className={styles.options}
+        >
           <button
+            role="radio"
+            aria-checked={preset === "1000"}
             type="button"
             onClick={() => selectPreset(1000, "1000")}
             className={clsx(
@@ -69,6 +79,8 @@ export function AmountSection({ copy }: AmountSectionProps) {
             1000 kr
           </button>
           <button
+            role="radio"
+            aria-checked={preset === "500"}
             type="button"
             onClick={() => selectPreset(500, "500")}
             className={clsx(
@@ -79,6 +91,8 @@ export function AmountSection({ copy }: AmountSectionProps) {
             500 kr
           </button>
           <button
+            role="radio"
+            aria-checked={preset === "100"}
             type="button"
             onClick={() => selectPreset(100, "100")}
             className={clsx(
@@ -89,6 +103,8 @@ export function AmountSection({ copy }: AmountSectionProps) {
             100 kr
           </button>
           <button
+            role="radio"
+            aria-checked={preset === "custom"}
             type="button"
             onClick={selectCustom}
             className={clsx(
@@ -100,11 +116,7 @@ export function AmountSection({ copy }: AmountSectionProps) {
           </button>
         </div>
 
-        <div
-          className={styles.customAmount}
-          hidden={preset !== "custom"}
-          aria-hidden={preset !== "custom"}
-        >
+        <div className={styles.customAmount} hidden={preset !== "custom"}>
           <label htmlFor="customAmount" className={styles.customLabel}>
             Eget belopp i kronor
           </label>
@@ -115,6 +127,12 @@ export function AmountSection({ copy }: AmountSectionProps) {
               min={100}
               step={1}
               type="number"
+              aria-invalid={Boolean(errors.amount?.value)}
+              aria-describedby={
+                customAmountHasError
+                  ? "custom-amount-hint custom-amount-error"
+                  : "custom-amount-hint"
+              }
               className={`${styles.customInput} ${errors.amount?.value ? styles.inputError : ""}`}
               placeholder="T ex 150"
               {...register("amount.value", {
@@ -129,9 +147,12 @@ export function AmountSection({ copy }: AmountSectionProps) {
                 },
               })}
             />
+            <p id="custom-amount-hint" className="u-visuallyHidden">
+              Ange belopp i kronor. Minsta belopp är 100 kr. Endast siffror.
+            </p>
           </div>
           {errors.amount?.value && (
-            <p className={styles.error}>
+            <p id="custom-amount-error" role="alert" className={styles.error}>
               {errors.amount.value.message as string}
             </p>
           )}

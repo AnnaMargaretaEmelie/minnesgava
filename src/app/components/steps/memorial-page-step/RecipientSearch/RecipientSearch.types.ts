@@ -9,4 +9,5 @@ export type RecipientSearchProps = {
   register: UseFormRegister<DonationFormValuesType>;
   control: Control<DonationFormValuesType>;
   onFocusReady?: (focus: () => void) => void;
+  hasError?: boolean;
 };
