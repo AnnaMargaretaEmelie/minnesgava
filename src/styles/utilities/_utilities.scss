@@ -14,3 +14,9 @@ p.u-errorText {
   line-height: 4px;
   margin-bottom: tokens.$space-lg;
 }
+
+.u-stepStack {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$space-lg;
+}

@@ -61,8 +61,7 @@
 
 .imageWrapper {
     inline-size: 35%;
-    margin-top: tokens.$space-lg;
-    margin-bottom: tokens.$space-lg;
+    margin-block: tokens.$space-lg;
 }
 
 .text {

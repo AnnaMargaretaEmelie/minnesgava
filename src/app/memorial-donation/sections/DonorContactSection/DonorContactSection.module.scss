@@ -1,15 +1,24 @@
 @use "../../../../styles/abstracts/tokens";
 
-.section {
-  padding-block: tokens.$space-md;
+
+.introBlock {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$space-sm;
 }
 
 .title {
-  margin-bottom: tokens.$space-xs;
+  margin:0;
 }
 
 .intro {
-  margin-bottom: tokens.$space-md;
+  :global(p) {
+    margin: 0;
+  }
+
+  :global(p + p) {
+    margin-top: tokens.$space-sm;
+  }
 }
 
 .form {

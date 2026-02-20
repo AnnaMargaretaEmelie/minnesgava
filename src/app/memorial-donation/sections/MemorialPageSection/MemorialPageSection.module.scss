@@ -1,12 +1,4 @@
-/* Uppdatera med tokens mm */
-
 @use "../../../../styles/abstracts/tokens";
-
-.section {
-  display: grid;
-  gap: tokens.$space-md;
-  padding: tokens.$space-md 0;
-}
 
 .title {
   font-size: 1.25rem;
@@ -17,4 +9,10 @@
 .copy {
   font-size: 1rem;
   line-height: 1.5;
+}
+
+.introBlock {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$space-sm;
 }

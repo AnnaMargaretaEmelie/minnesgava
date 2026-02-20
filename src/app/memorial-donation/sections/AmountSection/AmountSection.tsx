@@ -56,9 +56,9 @@ export function AmountSection({ copy }: AmountSectionProps) {
   }
 
   return (
-    <section className={styles.section}>
+    <section className="u-stepStack">
       <div className={styles.amount}>
-        <p id="amount-legend" className={styles.legend}>
+        <p id="amount-legend" className="u-visuallyHidden">
           Välj belopp
         </p>
         <div
