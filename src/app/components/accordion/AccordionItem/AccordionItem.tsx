@@ -33,10 +33,13 @@ export function AccordionItem({
   const headerRef = useRef<HTMLDivElement | null>(null);
   const contentInnerRef = useRef<HTMLDivElement | null>(null);
   const shouldFocusContentRef = useRef(false);
+  const { focusOnOpenId, clearFocusOnOpen } = ctx;
 
   useEffect(() => {
     if (!open) return;
-    if (!shouldFocusContentRef.current) return;
+    const shouldFocus =
+      shouldFocusContentRef.current || focusOnOpenId === value;
+    if (!shouldFocus) return;
     shouldFocusContentRef.current = false;
 
     const id = window.setTimeout(() => {
@@ -47,9 +50,12 @@ export function AccordionItem({
         'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])',
       );
       first?.focus();
+      if (focusOnOpenId === value) {
+        clearFocusOnOpen();
+      }
     }, 0);
     return () => window.clearTimeout(id);
-  }, [open]);
+  }, [open, value, focusOnOpenId, clearFocusOnOpen]);
 
   return (
     <Accordion.Item

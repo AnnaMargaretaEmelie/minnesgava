@@ -23,6 +23,8 @@ type AccordionContextType = {
   canTriggerClick: (id: string) => boolean;
   goNext: (currentId: string) => void;
   setStatus: (id: string, s: StepStatus) => void;
+  focusOnOpenId: string | null;
+  clearFocusOnOpen: () => void;
 };
 
 const AccordionCtx = createContext<AccordionContextType | undefined>(undefined);
@@ -80,6 +82,12 @@ export function AccordionRoot({ order, children }: AccordionProps) {
 
   const getStatus = useCallback((id: string) => statuses[id], [statuses]);
 
+  const [focusOnOpenId, setFocusOnOpenId] = useState<string | null>(null);
+
+  const clearFocusOnOpen = useCallback(() => {
+    setFocusOnOpenId(null);
+  }, []);
+
   const canTriggerClick = useCallback(
     (id: string) => getStatus(id) !== "locked",
     [getStatus],
@@ -101,6 +109,9 @@ export function AccordionRoot({ order, children }: AccordionProps) {
       if (idx === -1) return;
 
       const nextId = stepIds[idx + 1];
+      if (nextId) {
+        setFocusOnOpenId(nextId);
+      }
       setStatuses((prev) => {
         const next = { ...prev };
         next[currentId] = "complete";
@@ -124,6 +135,8 @@ export function AccordionRoot({ order, children }: AccordionProps) {
       canTriggerClick,
       goNext,
       setStatus,
+      focusOnOpenId,
+      clearFocusOnOpen,
     }),
     [
       openId,
@@ -134,6 +147,8 @@ export function AccordionRoot({ order, children }: AccordionProps) {
       canTriggerClick,
       goNext,
       setStatus,
+      focusOnOpenId,
+      clearFocusOnOpen,
     ],
   );
 
