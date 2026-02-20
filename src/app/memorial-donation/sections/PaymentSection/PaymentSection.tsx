@@ -98,6 +98,7 @@ export function PaymentSection() {
         <AccordionDropdown
           label="Visa fler betalsätt"
           triggerClassName={styles.dropdownTriggerRight}
+          focusOnOpen
         >
           <div className={styles.dropdownContent}>
             <label>

@@ -6,6 +6,7 @@ export type AccordionDropdownProps = {
   className?: string;
   contentClassName?: string;
   triggerClassName?: string;
+  focusOnOpen?: boolean;
 };
 
 
