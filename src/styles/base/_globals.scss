@@ -20,7 +20,7 @@ img {
 }
 
 :focus-visible {
-  outline: 3px solid tokens.$color-accent;
+  outline: 3px solid tokens.$color-focus;
   outline-offset: 3px;
 }
 
