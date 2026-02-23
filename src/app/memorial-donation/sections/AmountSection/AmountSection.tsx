@@ -162,18 +162,15 @@ export function AmountSection({ copy }: AmountSectionProps) {
       <div className={styles.information}>
         {copy.infoText && <PortableText value={copy.infoText} />}
       </div>
-      <div className={styles.purpose}>
+      <div>
         <h3 className={styles.purposeTitle}>Ändamål</h3>
         <p className={styles.purposeIntro}>
           Din gåva används till den bästa hjärnforskningen.
         </p>
         <div className={styles.purposeControl}>
-          <AccordionDropdown
-            label="Välj diagnos"
-            className={styles.dropdownRight}
-          >
+          <AccordionDropdown label="Välj diagnos">
             <fieldset className={styles.purposeContent}>
-              <legend className={styles.srOnly}>Välj diagnos</legend>
+              <legend className="u-visuallyHidden">Välj diagnos</legend>
 
               {PURPOSE_OPTIONS.map((option) => (
                 <label

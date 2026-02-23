@@ -39,17 +39,15 @@
 }
 
 .contentInner {
-    padding-top: tokens.$space-md;
+  padding-top: tokens.$space-md;
 }
-
-
 
 .contentInner > :first-child {
   margin-top: 0;
 }
 
 .contentInner > :last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .trigger {

@@ -23,7 +23,7 @@ export default function RecipientInfo({ recipient }: RecipientInfoProps) {
         {fullName}
         <CheckCircleIcon className={styles.checkIcon} />
       </p>
-      <div className={styles.info}>
+      <div>
         <p>
           {birth} - {death}
         </p>

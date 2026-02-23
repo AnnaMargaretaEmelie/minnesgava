@@ -48,14 +48,13 @@ export function MemorialDonationLayout({
       <section className={styles.hero}>
         {heroCopy ? <HeroSection copy={heroCopy} /> : null}
       </section>
-      <section className={styles.steps}>
+      <section>
         <FormProvider {...methods}>
           <AccordionRoot>
             <AccordionItem
               value="memorial-card-step"
               title="1. Minnesblad"
               summary={<MemorialPageSummary />}
-              className={styles.step}
             >
               <MemorialPageSection copy={memorialPageCopy} />
             </AccordionItem>
@@ -63,7 +62,6 @@ export function MemorialDonationLayout({
               value="amount-step"
               title="2. Gåvobelopp"
               summary={<AmountSummary />}
-              className={styles.step}
             >
               <AmountSection copy={amountCopy} />
             </AccordionItem>
@@ -71,16 +69,11 @@ export function MemorialDonationLayout({
               value="donor-contact-step"
               title="3. Kontaktuppgifter"
               summary={<DonorContactSummary />}
-              className={styles.step}
             >
               <DonorContactSection copy={donorCopy} />
             </AccordionItem>
 
-            <AccordionItem
-              value="payment-step"
-              title="4. Betalsätt"
-              className={styles.step}
-            >
+            <AccordionItem value="payment-step" title="4. Betalsätt">
               <PaymentSection />
             </AccordionItem>
           </AccordionRoot>

@@ -1,6 +1,5 @@
 @use "../../../../styles/abstracts/tokens";
 
-
 .trigger h2, 
 .content h3 {
     font-size: tokens.$font-size-heading-md;
@@ -9,48 +8,50 @@
 
 .item {
 
-&[data-step-status="locked"] {
+  &[data-step-status="locked"] {
   border-bottom: 1px solid rgba(tokens.$color-text, 0.5);
-}
+  }
 
-&[data-step-status="locked"]:first-of-type {
+  &[data-step-status="locked"]:first-of-type {
   border-top: 1px solid rgba(tokens.$color-text, 0.5);
-}
+  }
 
-&[data-state="open"] .content {
+  &[data-state="open"] .content {
     grid-template-rows: 1fr;
-}
-&[data-step-status="current"] {
+  }
+
+  &[data-step-status="current"] {
     border-top: none;
 
     .headerRow {
       background-color: tokens.$color-light-pink;
       color: tokens.$color-text;
       cursor: default;
-}
+    }
+  }
 
-}
-&[data-step-status="complete"] .headerRow {
+  &[data-step-status="complete"] .headerRow {
     background-color: tokens.$color-green-teal;
     cursor: pointer;
-}
+  }
 
-&[data-step-status="complete"][data-state="closed"] .summary {
-display: block;
-}
+  &[data-step-status="complete"][data-state="closed"] .summary {
+    display: block;
+  }
 
-&[data-step-status="locked"] .trigger {
+  &[data-step-status="locked"] .trigger {
     opacity: 0.5;
     cursor: not-allowed;
-}
+  }
 
-&[data-step-status="current"],
-&[data-step-status="locked"] {
-  .icon {
-    display: none;
+  &[data-step-status="current"],
+  &[data-step-status="locked"] {
+    .icon {
+      display: none;
+    }
   }
 }
-}
+
 .item:not([data-step-status="locked"]) + .item[data-step-status="locked"] {
   border-top: 1px solid rgba(tokens.$color-text, 0.5);
 }
@@ -61,20 +62,20 @@ display: block;
 }
 
 .trigger {
-    all: unset;
-    box-sizing: border-box;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 56px;
-    padding-block: tokens.$space-sm;
-    padding-inline: tokens.$space-md;
-    inline-size: 100%;
+  all: unset;
+  box-sizing: border-box;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 56px;
+  padding-block: tokens.$space-sm;
+  padding-inline: tokens.$space-md;
+  inline-size: 100%;
 
-    h2 {
-        margin: 0;
-    }
+  h2 {
+    margin: 0;
+  }
 }
 
 .triggerLeft {
@@ -88,7 +89,6 @@ display: block;
 }
 
 .editLink {
-
   background: none;
   border:0;
   padding: tokens.$space-sm;
@@ -99,22 +99,16 @@ display: block;
 }
 
 .content {
-    display: grid;
-    grid-template-rows: 0fr;
-    overflow: hidden;
-    transition: grid-template-rows 180ms cubic-bezier(.2,.6,.2,1);
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows 180ms cubic-bezier(.2,.6,.2,1);
 }
 
 .contentInner {
-    overflow: hidden;
-    padding: tokens.$space-lg tokens.$space-md tokens.$space-lg tokens.$space-md;
+  overflow: hidden;
+  padding: tokens.$space-lg tokens.$space-md tokens.$space-lg tokens.$space-md;
 
-}
-
-.buttonRow {
-  display: flex;
-  justify-content: center;
-  margin-top: tokens.$space-md;
 }
 
 .summary {

@@ -21,13 +21,13 @@
 
 .dropdownTriggerRight {
     justify-content: flex-end;
-   margin-left: auto;
+    margin-left: auto;
 }
 
 .dropdownContent {
     padding-block: tokens.$space-sm;
     padding-inline: tokens.$space-sm;
-     inline-size: 100%;
+    inline-size: 100%;
 }
 
 .boxContent { 
@@ -47,7 +47,7 @@ input:checked + .boxContent {
     background: tokens.$color-green-teal;
 }
 label:has(input:focus-visible) .boxContent {
-  outline: 3px solid tokens.$color-accent;
-  outline-offset: 3px;
+    outline: 3px solid tokens.$color-accent;
+    outline-offset: 3px;
 }
 
