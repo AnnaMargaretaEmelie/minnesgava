@@ -30,8 +30,8 @@ export default function RecipientSearch({
   };
   return (
     <div className={styles.wrapper}>
-      <label htmlFor="recipient-search" className="u-visuallyHidden">
-        Sök mottagare
+      <label htmlFor="recipient-search" className={styles.label}>
+        Den avlidnes namn*
       </label>
       <input
         ref={inputRef}

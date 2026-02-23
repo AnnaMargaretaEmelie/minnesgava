@@ -8,9 +8,12 @@
 }
 
 .item {
+
+&[data-step-status="locked"] {
   border-bottom: 1px solid rgba(tokens.$color-text, 0.5);
-  
-  &:first-child {
+}
+
+&[data-step-status="locked"]:first-of-type {
   border-top: 1px solid rgba(tokens.$color-text, 0.5);
 }
 
@@ -18,12 +21,12 @@
     grid-template-rows: 1fr;
 }
 &[data-step-status="current"] {
-        border-top: none;
+    border-top: none;
 
-        .headerRow {
-    background-color: tokens.$color-light-pink;
-    color: tokens.$color-text;
-    cursor: default;
+    .headerRow {
+      background-color: tokens.$color-light-pink;
+      color: tokens.$color-text;
+      cursor: default;
 }
 
 }
@@ -48,6 +51,9 @@ display: block;
   }
 }
 }
+.item:not([data-step-status="locked"]) + .item[data-step-status="locked"] {
+  border-top: 1px solid rgba(tokens.$color-text, 0.5);
+}
 
 .headerRow {
   display: flex;
@@ -61,8 +67,8 @@ display: block;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-  
-    padding-block: calc(tokens.$space-sm);
+    min-height: 56px;
+    padding-block: tokens.$space-sm;
     padding-inline: tokens.$space-md;
     inline-size: 100%;
 

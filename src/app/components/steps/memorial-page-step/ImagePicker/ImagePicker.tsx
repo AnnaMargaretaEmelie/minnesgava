@@ -6,7 +6,8 @@ import styles from "./ImagePicker.module.scss";
 
 export default function ImagePicker({ images, register }: ImagePickerProps) {
   return (
-    <div>
+    <fieldset className={styles.fieldset}>
+      <legend className={styles.legend}>Välj motiv</legend>
       <div className={styles.pickerWrapper}>
         {images.map((image) => (
           <div key={image.id} className={styles.item}>
@@ -30,6 +31,6 @@ export default function ImagePicker({ images, register }: ImagePickerProps) {
           </div>
         ))}
       </div>
-    </div>
+    </fieldset>
   );
 }

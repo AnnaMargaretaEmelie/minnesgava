@@ -21,7 +21,7 @@
     border: 1px solid tokens.$color-text;
     font-size: tokens.$font-size-body;
     border-radius: 0;
-    padding: 0.7rem tokens.$space-md;
+    padding: 0.8rem tokens.$space-md;
     background-color: tokens.$color-bg;
     cursor: pointer;
 }
@@ -50,6 +50,7 @@
 .customInput {
     flex: 1;
     padding: tokens.$space-sm tokens.$space-sm;
+    block-size: 2.75rem;
     border-radius: 0;
     border: 1px solid tokens.$color-text;
 }
@@ -72,7 +73,6 @@
 .information > *:first-child {
     margin-top: 0;
 }
-
 
 .purposeTitle {
     font-size: tokens.$font-size-heading-md;

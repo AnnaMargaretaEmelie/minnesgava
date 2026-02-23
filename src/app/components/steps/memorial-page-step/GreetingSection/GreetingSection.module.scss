@@ -6,7 +6,7 @@
 }
 
 .label {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .textarea {
@@ -17,7 +17,6 @@
   resize: none;
   line-height: 1.4;
   font-family: var(--font-inter), system-ui, sans-serif;
-
 }
 
 .textareaError {
@@ -29,7 +28,6 @@
   display: flex;
   justify-content: flex-end;
 }
-
 
 .textareaWrap {
   position: relative;

@@ -1,10 +1,10 @@
 @use "../../../../styles/abstracts/tokens";
 
 .button {
-    background: tokens.$color-bg;
+    background: tokens.$color-accent;
     color: tokens.$color-text;
     font-size: tokens.$font-size-button;
-    border: solid 1px black;
+    border: none;
     padding: tokens.$space-sm tokens.$space-md;
     cursor: pointer;
     display: inline-flex;

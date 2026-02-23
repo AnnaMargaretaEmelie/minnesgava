@@ -24,14 +24,14 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: tokens.$space-md;
+  gap: tokens.$space-lg;
 }
 
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: tokens.$space-2xs;
+  gap: tokens.$space-xs;
 
   label {
     font-size: tokens.$font-size-body;
@@ -43,12 +43,12 @@
     padding: tokens.$space-sm tokens.$space-sm;
     border-radius: 0;
     font-size: tokens.$font-size-body;
+    block-size: 2.75rem;
   }
 }
 
 .field .error {
   font-size: tokens.$font-size-xs;
-  
 }
 
 .error {

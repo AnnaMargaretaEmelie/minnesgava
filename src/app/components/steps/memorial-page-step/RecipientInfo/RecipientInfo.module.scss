@@ -1,9 +1,14 @@
-/* Uppdatera med tokens mm*/
+@use "../../../../../styles/abstracts/tokens";
+
 
 .wrapper {
-  padding: 8px 0;
+  padding: tokens.$space-md;
   font-size: 0.875rem;
   color: #333;
+  background-color: tokens.$color-green-teal;
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$space-sm;
 }
 
 .label {
@@ -13,9 +18,15 @@
 
 .name {
   font-weight: 600;
+  font-size: tokens.$font-size-body;
 }
 
 .meta {
   margin-top: 2px;
   color: #555;
+}
+
+.checkIcon {
+  color: tokens.$color-valid;
+  margin-left: tokens.$space-sm;
 }
