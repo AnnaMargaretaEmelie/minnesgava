@@ -63,7 +63,7 @@ export default function MemorialPageStep({
     searchTerm.trim().length === 0
       ? []
       : MOCK_RECIPIENTS.filter((recipient) => {
-          const query = searchTerm.toLocaleLowerCase();
+          const query = searchTerm.toLowerCase();
 
           return (
             recipient.firstName.toLowerCase().includes(query) ||
