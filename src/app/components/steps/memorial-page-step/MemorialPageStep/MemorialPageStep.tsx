@@ -129,7 +129,7 @@ export default function MemorialPageStep({
           type="button"
           label="Välj belopp"
           onClick={handleNext}
-        ></StepPrimaryButton>
+        />
       </div>
       <MemorialPreviewDialog
         imageSrc={selectedImage.src}
