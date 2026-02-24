@@ -9,7 +9,6 @@ import { useRef, useEffect } from "react";
 type AccordionItemProps = {
   value: string;
   title: React.ReactNode;
-  disabled?: boolean;
   children?: React.ReactNode;
   className?: string;
   triggerClassName?: string;
