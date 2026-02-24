@@ -9,6 +9,7 @@ import { useRef, useEffect } from "react";
 type AccordionItemProps = {
   value: string;
   title: React.ReactNode;
+  titleText: string;
   children?: React.ReactNode;
   className?: string;
   triggerClassName?: string;
@@ -19,6 +20,7 @@ type AccordionItemProps = {
 export function AccordionItem({
   value,
   title,
+  titleText,
   children,
   className,
   triggerClassName,
@@ -92,6 +94,7 @@ export function AccordionItem({
         {status === "complete" && !open && (
           <button
             type="button"
+            aria-label={`Ändra ${titleText}`}
             className={styles.editLink}
             onClick={(e) => {
               e.preventDefault();
