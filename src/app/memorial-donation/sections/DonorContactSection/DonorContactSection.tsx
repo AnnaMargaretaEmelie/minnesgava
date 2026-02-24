@@ -16,6 +16,12 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
     accordion.goNext("donor-contact-step");
   }
 
+  const donorErrors = errors.donor;
+  const firstNameError = donorErrors?.firstName;
+  const lastNameError = donorErrors?.lastName;
+  const emailError = donorErrors?.email;
+  const phoneError = donorErrors?.phone;
+
   return (
     <section className={styles.section}>
       {copy.introSection?.title && <h3>{copy.introSection.title}</h3>}
@@ -34,11 +40,15 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             id="firstName"
             placeholder="T ex Anna"
             autoComplete="given-name"
+            aria-invalid={Boolean(firstNameError)}
+            aria-describedby={firstNameError ? "firstName-error" : undefined}
             {...register("donor.firstName", { required: "Obligatoriskt fält" })}
-            className={errors.donor?.firstName ? styles.inputError : undefined}
+            className={firstNameError ? styles.inputError : undefined}
           />
-          {errors.donor?.firstName && (
-            <p className={styles.error}>{errors.donor?.firstName?.message}</p>
+          {firstNameError && (
+            <p id="firstName-error" className={styles.error} role="alert">
+              {firstNameError.message}
+            </p>
           )}
         </div>
         <div className={styles.field}>
@@ -48,12 +58,14 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             id="lastName"
             placeholder="T ex Larsson"
             autoComplete="family-name"
+            aria-invalid={Boolean(lastNameError)}
+            aria-describedby={lastNameError ? "lastName-error" : undefined}
             {...register("donor.lastName", { required: "Obligatoriskt fält" })}
-            className={errors.donor?.lastName ? styles.inputError : undefined}
+            className={lastNameError ? styles.inputError : undefined}
           />
-          {errors.donor?.lastName && (
-            <p className={styles.error}>
-              {errors.donor?.lastName?.message as string}
+          {lastNameError && (
+            <p id="lastName-error" className={styles.error} role="alert">
+              {lastNameError.message}
             </p>
           )}
         </div>
@@ -94,6 +106,8 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             id="email"
             placeholder="T ex namn@domännamn.se"
             autoComplete="email"
+            aria-invalid={Boolean(emailError)}
+            aria-describedby={emailError ? "email-error" : undefined}
             {...register("donor.email", {
               required: "Obligatoriskt fält",
               pattern: {
@@ -101,10 +115,12 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
                 message: "Ange en giltig mejladress",
               },
             })}
-            className={errors.donor?.email ? styles.inputError : undefined}
+            className={emailError ? styles.inputError : undefined}
           />
-          {errors.donor?.email && (
-            <p className={styles.error}>{errors.donor?.email?.message}</p>
+          {emailError && (
+            <p id="email-error" className={styles.error} role="alert">
+              {emailError.message}
+            </p>
           )}
         </div>
         <div className={styles.field}>
@@ -114,6 +130,8 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
             id="phone"
             placeholder="T ex 0710203040"
             autoComplete="tel"
+            aria-invalid={Boolean(phoneError)}
+            aria-describedby={phoneError ? "phone-error" : undefined}
             {...register("donor.phone", {
               required: "Obligatoriskt fält",
               pattern: {
@@ -121,10 +139,12 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
                 message: "Ange ett giltigt mobilnummer",
               },
             })}
-            className={errors.donor?.phone ? styles.inputError : undefined}
+            className={phoneError ? styles.inputError : undefined}
           />
-          {errors.donor?.phone && (
-            <p className={styles.error}>{errors.donor?.phone?.message}</p>
+          {phoneError && (
+            <p id="phone-error" className={styles.error} role="alert">
+              {phoneError.message}
+            </p>
           )}
         </div>
         <StepPrimaryButton label="Välj betalmetod" type="submit" />

@@ -24,6 +24,10 @@ export function GreetingSection({
           id="greeting"
           rows={6}
           placeholder="T ex Vila i frid, hälsningar från Anna Larsson"
+          aria-invalid={hasError}
+          aria-describedby={
+            hasError ? "greeting-hint greeting-error" : "greeting-hint"
+          }
           className={clsx(styles.textarea, {
             [styles.textareaError]: hasError,
           })}
@@ -51,13 +55,15 @@ export function GreetingSection({
           }}
         />
         <div className={styles.meta}>
-          <span className={styles.counter}>
+          <span id="greeting-hint" className={styles.counter}>
             {lineCount}/{MAX_LINES}
           </span>
         </div>
       </div>
       {hasError && (
-        <p className="u-errorText">{errorMessage ?? "Skriv ett meddelande"}</p>
+        <p id="greeting-error" role="alert" className="u-errorText">
+          {errorMessage ?? "Skriv ett meddelande"}
+        </p>
       )}
     </section>
   );

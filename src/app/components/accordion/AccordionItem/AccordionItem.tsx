@@ -4,12 +4,13 @@ import { useAccordion } from "../Accordion/Accordion";
 import styles from "./AccordionItem.module.scss";
 import * as Accordion from "@radix-ui/react-accordion";
 import { CheckCircleIcon } from "../../shared/icons/CheckCircleIcon";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+import { getFirstFocusable } from "../../utils/focus";
 
 type AccordionItemProps = {
   value: string;
   title: React.ReactNode;
-  disabled?: boolean;
+  titleText: string;
   children?: React.ReactNode;
   className?: string;
   triggerClassName?: string;
@@ -20,6 +21,7 @@ type AccordionItemProps = {
 export function AccordionItem({
   value,
   title,
+  titleText,
   children,
   className,
   triggerClassName,
@@ -31,6 +33,28 @@ export function AccordionItem({
   const status = ctx.getStatus(value) ?? "locked";
   const triggerIsDisabled = status === "locked";
   const headerRef = useRef<HTMLDivElement | null>(null);
+  const contentInnerRef = useRef<HTMLDivElement | null>(null);
+  const shouldFocusContentRef = useRef(false);
+  const { focusOnOpenId, clearFocusOnOpen } = ctx;
+
+  useEffect(() => {
+    if (!open) return;
+    const shouldFocus =
+      shouldFocusContentRef.current || focusOnOpenId === value;
+    if (!shouldFocus) return;
+    shouldFocusContentRef.current = false;
+
+    const id = window.setTimeout(() => {
+      const root = contentInnerRef.current;
+      if (!root) return;
+
+      getFirstFocusable(root)?.focus();
+      if (focusOnOpenId === value) {
+        clearFocusOnOpen();
+      }
+    }, 0);
+    return () => window.clearTimeout(id);
+  }, [open, value, focusOnOpenId, clearFocusOnOpen]);
 
   return (
     <Accordion.Item
@@ -50,6 +74,7 @@ export function AccordionItem({
               e.stopPropagation();
               return;
             }
+            shouldFocusContentRef.current = true;
             ctx?.toggle(value);
             requestAnimationFrame(() =>
               headerRef.current?.scrollIntoView({ block: "nearest" }),
@@ -64,24 +89,29 @@ export function AccordionItem({
             )}
           </div>
         </Accordion.Trigger>
-
-        <button
-          type="button"
-          className={styles.editLink}
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            ctx.toggle(value);
-          }}
-        >
-          Ändra
-        </button>
+        {status === "complete" && !open && (
+          <button
+            type="button"
+            aria-label={`Ändra ${titleText}`}
+            className={styles.editLink}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              shouldFocusContentRef.current = true;
+              ctx.toggle(value);
+            }}
+          >
+            Ändra
+          </button>
+        )}
       </div>
 
       <Accordion.Content
         className={`${styles.content} ${contentClassName ?? ""}`}
       >
-        <div className={styles.contentInner}>{children}</div>
+        <div ref={contentInnerRef} className={styles.contentInner}>
+          {children}
+        </div>
       </Accordion.Content>
       {summary ? <div className={styles.summary}>{summary}</div> : null}
     </Accordion.Item>

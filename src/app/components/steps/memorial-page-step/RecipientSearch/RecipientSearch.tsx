@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useWatch } from "react-hook-form";
 import type { RecipientSearchProps } from "./RecipientSearch.types";
 import styles from "./RecipientSearch.module.scss";
@@ -9,6 +9,8 @@ export default function RecipientSearch({
   results,
   register,
   control,
+  onFocusReady,
+  hasError,
 }: RecipientSearchProps) {
   const selectedRecipientId = useWatch({
     control,
@@ -16,6 +18,11 @@ export default function RecipientSearch({
   });
   const isOpen = searchTerm.trim() !== "" && results.length > 0;
   const inputRef = useRef<HTMLInputElement>(null);
+  const focusInput = useCallback(() => inputRef.current?.focus(), []);
+  useEffect(() => {
+    onFocusReady?.(focusInput);
+  }, [onFocusReady, focusInput]);
+
   const listId = "recipient-results";
   const closeAndFocus = () => {
     onSearchChange("");
@@ -37,7 +44,12 @@ export default function RecipientSearch({
         aria-expanded={isOpen}
         aria-controls={isOpen ? listId : undefined}
         aria-haspopup="listbox"
-        aria-describedby="recipient-search-hint"
+        aria-invalid={hasError}
+        aria-describedby={
+          hasError
+            ? "recipient-search-hint recipient-error"
+            : "recipient-search-hint"
+        }
         value={searchTerm}
         onChange={(event) => onSearchChange(event.target.value)}
         placeholder="Sök efter namn"

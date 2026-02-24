@@ -2,7 +2,7 @@
 
 //logik och state
 import { MOCK_RECIPIENTS, Recipient } from "@/data/recipients.mock";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { MEMORIAL_PAGE_IMAGES } from "@/data/memorialPageImages";
 import { RecipientSection } from "../RecipientSection/RecipientSection";
 import { GreetingSection } from "../GreetingSection/GreetingSection";
@@ -41,11 +41,29 @@ export default function MemorialPageStep({
   const [searchTerm, setSearchTerm] = useState("");
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
+  const focusRecipientSearchRef = useRef<(() => void) | null>(null);
+  const returnToEditRef = useRef(false);
+  const openPreviewRef = useRef<HTMLButtonElement | null>(null);
+
+  const handlePreviewOpenChange = (nextOpen: boolean) => {
+    setIsPreviewOpen(nextOpen);
+    if (nextOpen) return;
+
+    window.setTimeout(() => {
+      if (returnToEditRef.current) {
+        returnToEditRef.current = false;
+        focusRecipientSearchRef.current?.();
+        return;
+      }
+      openPreviewRef.current?.focus();
+    }, 50);
+  };
+
   const filteredRecipients: Recipient[] =
     searchTerm.trim().length === 0
       ? []
       : MOCK_RECIPIENTS.filter((recipient) => {
-          const query = searchTerm.toLocaleLowerCase();
+          const query = searchTerm.toLowerCase();
 
           return (
             recipient.firstName.toLowerCase().includes(query) ||
@@ -94,6 +112,9 @@ export default function MemorialPageStep({
           control={control}
           hasError={Boolean(errors.memorialPage?.recipientId)}
           errorMessage={errors.memorialPage?.recipientId?.message}
+          onFocusReady={(focus) => {
+            focusRecipientSearchRef.current = focus;
+          }}
         />
         <GreetingSection
           register={register}
@@ -104,10 +125,11 @@ export default function MemorialPageStep({
 
         <ImageSection images={MEMORIAL_PAGE_IMAGES} register={register} />
         <StepPrimaryButton
+          ref={openPreviewRef}
           type="button"
           label="Välj belopp"
           onClick={handleNext}
-        ></StepPrimaryButton>
+        />
       </div>
       <MemorialPreviewDialog
         imageSrc={selectedImage.src}
@@ -115,8 +137,11 @@ export default function MemorialPageStep({
         fullName={fullName}
         greeting={greeting}
         open={isPreviewOpen}
-        onOpenChange={setIsPreviewOpen}
+        onOpenChange={handlePreviewOpenChange}
         onConfirm={handleConfirm}
+        onEdit={() => {
+          returnToEditRef.current = true;
+        }}
       />
     </>
   );

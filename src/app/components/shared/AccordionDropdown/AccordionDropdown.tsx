@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "./AccordionDropdown.module.scss";
 import type { AccordionDropdownProps } from "./AccordionDropdown.types";
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronIcon } from "../icons/ChevronIcon";
+import { getFirstFocusable } from "../../utils/focus";
 
 const ITEM_VALUE = "dropdown";
 
@@ -14,14 +15,28 @@ export function AccordionDropdown({
   className,
   contentClassName,
   triggerClassName,
+  focusOnOpen,
 }: AccordionDropdownProps) {
+  const innerContentRef = useRef<HTMLDivElement | null>(null);
+
   const [accordionValue, setAccordionValue] = useState<string>(
     defaultOpen ? ITEM_VALUE : "",
   );
 
   const open = accordionValue === ITEM_VALUE;
   const handleValueChange = (nextValue: string) => {
+    const isOpening = nextValue === ITEM_VALUE && !open;
     setAccordionValue(nextValue);
+
+    if (!focusOnOpen || !isOpening) return;
+
+    requestAnimationFrame(() => {
+      const root = innerContentRef.current;
+      if (!root) return;
+
+      getFirstFocusable(root)?.focus();
+      console.log(getFirstFocusable(root));
+    });
   };
   const triggerLabel = open && labelOpen ? labelOpen : label;
   return (
@@ -44,7 +59,9 @@ export function AccordionDropdown({
         <Accordion.Content
           className={`${styles.content} ${contentClassName ?? ""}`}
         >
-          <div className={styles.contentInner}>{children}</div>
+          <div ref={innerContentRef} className={styles.contentInner}>
+            {children}
+          </div>
         </Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>

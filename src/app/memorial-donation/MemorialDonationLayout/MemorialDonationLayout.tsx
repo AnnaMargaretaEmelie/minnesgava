@@ -54,6 +54,7 @@ export function MemorialDonationLayout({
             <AccordionItem
               value="memorial-card-step"
               title="1. Minnesblad"
+              titleText="Minnesblad"
               summary={<MemorialPageSummary />}
               className={styles.step}
             >
@@ -62,6 +63,7 @@ export function MemorialDonationLayout({
             <AccordionItem
               value="amount-step"
               title="2. Gåvobelopp"
+              titleText="Gåvobelopp"
               summary={<AmountSummary />}
               className={styles.step}
             >
@@ -70,6 +72,7 @@ export function MemorialDonationLayout({
             <AccordionItem
               value="donor-contact-step"
               title="3. Kontaktuppgifter"
+              titleText="Kontaktuppgifter"
               summary={<DonorContactSummary />}
               className={styles.step}
             >
@@ -79,6 +82,7 @@ export function MemorialDonationLayout({
             <AccordionItem
               value="payment-step"
               title="4. Betalsätt"
+              titleText="Betalsätt"
               className={styles.step}
             >
               <PaymentSection />

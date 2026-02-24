@@ -43,7 +43,6 @@
     right: tokens.$space-xs;
     inline-size: 2.75rem;
     block-size: 2.75rem;
-    border-radius: 999px;
     display: grid;
     place-items: center;
     background: transparent;
@@ -52,11 +51,12 @@
     font-size: tokens.$font-size-lg;
     line-height: 1;
     color: inherit;
+    outline: none;
+}
 
-    &:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 2px;
-  }
+.dialogClose:focus-visible {
+    box-shadow: 0 0 0 3px tokens.$color-accent;
+    outline-offset: 1px;
 }
 
 .imageWrapper {
@@ -104,9 +104,4 @@
     text-decoration: underline;
     font: inherit;
     cursor: pointer;
-
-    &:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 2px;
-  }
 }

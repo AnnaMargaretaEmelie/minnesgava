@@ -11,4 +11,6 @@ export type RecipientSectionProps = {
   control: Control<DonationFormValuesType>;
   hasError?: boolean;
   errorMessage?: string;
+  onFocusReady?: (focus: () => void) => void;
+
 };

@@ -5,5 +5,6 @@ export type MemorialPreviewDialogProps = {
     greeting: string; 
     open: boolean;
     onOpenChange: (open: boolean) => void;
-    onConfirm: ()=> void;
+    onConfirm: () => void;
+    onEdit?: () => void;
 }
