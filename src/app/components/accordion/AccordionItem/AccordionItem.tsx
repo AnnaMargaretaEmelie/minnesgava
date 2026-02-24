@@ -5,6 +5,7 @@ import styles from "./AccordionItem.module.scss";
 import * as Accordion from "@radix-ui/react-accordion";
 import { CheckCircleIcon } from "../../shared/icons/CheckCircleIcon";
 import { useRef, useEffect } from "react";
+import { getFirstFocusable } from "../../utils/focus";
 
 type AccordionItemProps = {
   value: string;
@@ -47,10 +48,7 @@ export function AccordionItem({
       const root = contentInnerRef.current;
       if (!root) return;
 
-      const first = root.querySelector<HTMLElement>(
-        'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])',
-      );
-      first?.focus();
+      getFirstFocusable(root)?.focus();
       if (focusOnOpenId === value) {
         clearFocusOnOpen();
       }

@@ -3,6 +3,7 @@ import styles from "./AccordionDropdown.module.scss";
 import type { AccordionDropdownProps } from "./AccordionDropdown.types";
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronIcon } from "../icons/ChevronIcon";
+import { getFirstFocusable } from "../../utils/focus";
 
 const ITEM_VALUE = "dropdown";
 
@@ -33,10 +34,8 @@ export function AccordionDropdown({
       const root = innerContentRef.current;
       if (!root) return;
 
-      const first = root.querySelector<HTMLElement>(
-        'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])',
-      );
-      first?.focus();
+      getFirstFocusable(root)?.focus();
+      console.log(getFirstFocusable(root));
     });
   };
   const triggerLabel = open && labelOpen ? labelOpen : label;
