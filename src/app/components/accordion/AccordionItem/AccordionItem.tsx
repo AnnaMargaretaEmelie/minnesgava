@@ -5,11 +5,12 @@ import styles from "./AccordionItem.module.scss";
 import * as Accordion from "@radix-ui/react-accordion";
 import { CheckCircleIcon } from "../../shared/icons/CheckCircleIcon";
 import { useRef, useEffect } from "react";
+import { getFirstFocusable } from "../../utils/focus";
 
 type AccordionItemProps = {
   value: string;
   title: React.ReactNode;
-  disabled?: boolean;
+  titleText: string;
   children?: React.ReactNode;
   className?: string;
   triggerClassName?: string;
@@ -20,6 +21,7 @@ type AccordionItemProps = {
 export function AccordionItem({
   value,
   title,
+  titleText,
   children,
   className,
   triggerClassName,
@@ -46,10 +48,7 @@ export function AccordionItem({
       const root = contentInnerRef.current;
       if (!root) return;
 
-      const first = root.querySelector<HTMLElement>(
-        'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])',
-      );
-      first?.focus();
+      getFirstFocusable(root)?.focus();
       if (focusOnOpenId === value) {
         clearFocusOnOpen();
       }
@@ -93,6 +92,7 @@ export function AccordionItem({
         {status === "complete" && !open && (
           <button
             type="button"
+            aria-label={`Ändra ${titleText}`}
             className={styles.editLink}
             onClick={(e) => {
               e.preventDefault();
