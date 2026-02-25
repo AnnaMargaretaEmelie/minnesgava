@@ -1,0 +1,206 @@
+import styles from "./AmountStep.module.scss";
+import type { AmountSectionProps } from "@/app/memorial-donation/sections/AmountSection/AmountSection.types";
+import { PortableText } from "next-sanity";
+import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
+import { AccordionDropdown } from "@/app/components/shared/AccordionDropdown/AccordionDropdown";
+import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
+import { useFormContext, useFormState, useWatch } from "react-hook-form";
+import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
+import {
+  PURPOSE_OPTIONS,
+  DEFAULT_PURPOSE,
+} from "@/app/memorial-donation/sections/AmountSection/amountPurpose.options";
+import clsx from "clsx";
+
+export function AmountStep({ copy }: AmountSectionProps) {
+  const accordion = useAccordion();
+  const { setValue, register, control, trigger } =
+    useFormContext<DonationFormValuesType>();
+  const preset = useWatch({ control, name: "amount.preset" });
+  const hasSelectedPreset =
+    useWatch({ control, name: "amount.hasSelectedPreset" }) ?? false;
+  const { errors } = useFormState({ control, name: ["amount.value"] });
+
+  const customAmountHasError = Boolean(errors.amount?.value);
+
+  function selectPreset(
+    amountNumber: number,
+    presetString: "1000" | "500" | "100",
+  ) {
+    setValue("amount.preset", presetString, { shouldDirty: true });
+    setValue("amount.value", amountNumber, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
+    setValue("amount.hasSelectedPreset", true, {
+      shouldDirty: true,
+      shouldValidate: true,
+    });
+  }
+
+  function selectCustom() {
+    setValue("amount.preset", "custom", { shouldDirty: true });
+    if (hasSelectedPreset === false) {
+      setValue("amount.value", null, {
+        shouldDirty: true,
+        shouldValidate: true,
+      });
+    }
+  }
+  async function handleNext() {
+    if (preset !== "custom") {
+      accordion.goNext("amount-step");
+      return;
+    }
+    const isValid = await trigger("amount.value", { shouldFocus: true });
+    if (!isValid) return;
+
+    accordion.goNext("amount-step");
+  }
+
+  return (
+    <section className="u-stepStack">
+      <div className={styles.amount}>
+        <p id="amount-legend" className="u-visuallyHidden">
+          Välj belopp
+        </p>
+        <div
+          role="radiogroup"
+          aria-labelledby="amount-legend"
+          className={styles.options}
+        >
+          <button
+            role="radio"
+            aria-checked={preset === "1000"}
+            type="button"
+            onClick={() => selectPreset(1000, "1000")}
+            className={clsx(
+              styles.option,
+              preset === "1000" && styles.optionSelected,
+            )}
+          >
+            1000 kr
+          </button>
+          <button
+            role="radio"
+            aria-checked={preset === "500"}
+            type="button"
+            onClick={() => selectPreset(500, "500")}
+            className={clsx(
+              styles.option,
+              preset === "500" && styles.optionSelected,
+            )}
+          >
+            500 kr
+          </button>
+          <button
+            role="radio"
+            aria-checked={preset === "100"}
+            type="button"
+            onClick={() => selectPreset(100, "100")}
+            className={clsx(
+              styles.option,
+              preset === "100" && styles.optionSelected,
+            )}
+          >
+            100 kr
+          </button>
+          <button
+            role="radio"
+            aria-checked={preset === "custom"}
+            type="button"
+            onClick={selectCustom}
+            className={clsx(
+              styles.option,
+              preset === "custom" && styles.optionSelected,
+            )}
+          >
+            Eget belopp
+          </button>
+        </div>
+
+        <div className={styles.customAmount} hidden={preset !== "custom"}>
+          <label htmlFor="customAmount" className={styles.customLabel}>
+            Eget belopp i kronor
+          </label>
+          <div className={styles.customInputRow}>
+            <input
+              id="customAmount"
+              inputMode="numeric"
+              min={100}
+              step={1}
+              type="number"
+              aria-invalid={Boolean(errors.amount?.value)}
+              aria-describedby={
+                customAmountHasError
+                  ? "custom-amount-hint custom-amount-error"
+                  : "custom-amount-hint"
+              }
+              className={`${styles.customInput} ${errors.amount?.value ? styles.inputError : ""}`}
+              placeholder="T ex 150"
+              {...register("amount.value", {
+                valueAsNumber: true,
+                validate: (value) => {
+                  if (preset !== "custom") return true;
+                  const msg = "Endast siffror och minsta belopp 100 kr";
+                  if (!Number.isFinite(value)) return msg;
+                  if (value == null) return msg;
+                  if (value < 100) return msg;
+                  return true;
+                },
+              })}
+            />
+            <p id="custom-amount-hint" className="u-visuallyHidden">
+              Ange belopp i kronor. Minsta belopp är 100 kr. Endast siffror.
+            </p>
+          </div>
+          {errors.amount?.value && (
+            <p id="custom-amount-error" role="alert" className={styles.error}>
+              {errors.amount.value.message as string}
+            </p>
+          )}
+        </div>
+      </div>
+
+      <div className={styles.information}>
+        {copy.infoText && <PortableText value={copy.infoText} />}
+      </div>
+      <div>
+        <h3 className={styles.purposeTitle}>Ändamål</h3>
+        <p className={styles.purposeIntro}>
+          Din gåva används till den bästa hjärnforskningen.
+        </p>
+        <div className={styles.purposeControl}>
+          <AccordionDropdown label="Välj diagnos">
+            <fieldset className={styles.purposeContent}>
+              <legend className="u-visuallyHidden">Välj diagnos</legend>
+
+              {PURPOSE_OPTIONS.map((option) => (
+                <label
+                  key={option.value}
+                  className={clsx(
+                    styles.purposeOption,
+                    option.value === DEFAULT_PURPOSE &&
+                      styles.purposeOptionDefault,
+                  )}
+                >
+                  <input
+                    type="radio"
+                    value={option.value}
+                    {...register("amount.purpose")}
+                  />
+                  <span>{option.label}</span>
+                </label>
+              ))}
+            </fieldset>
+          </AccordionDropdown>
+        </div>
+        <StepPrimaryButton
+          type="button"
+          label="Till kontaktuppgifter"
+          onClick={handleNext}
+        />
+      </div>
+    </section>
+  );
+}
