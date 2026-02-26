@@ -31,6 +31,10 @@
     gap: tokens.$space-xs;
 }
 
+.customAmount[hidden] {
+  display: none;
+}
+
 .customLabel {
     display: block;
 }
