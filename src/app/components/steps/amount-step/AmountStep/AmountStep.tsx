@@ -7,6 +7,7 @@ import { useFormContext, useFormState, useWatch } from "react-hook-form";
 import { AmountOptions } from "../AmountOptions/AmountOptions";
 import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 import { PurposeSection } from "../PurposeSection/PurposeSection";
+import { AmountInfoText } from "../AmountInfoText/AmountInfoText";
 
 export function AmountStep({ copy }: AmountSectionProps) {
   const accordion = useAccordion();
@@ -68,9 +69,7 @@ export function AmountStep({ copy }: AmountSectionProps) {
         customAmountErrorMessage={customAmountErrorMessage}
       />
 
-      <div className={styles.information}>
-        {copy.infoText && <PortableText value={copy.infoText} />}
-      </div>
+      <AmountInfoText infoText={copy.infoText} />
       <PurposeSection register={register} />
       <div>
         <StepPrimaryButton
