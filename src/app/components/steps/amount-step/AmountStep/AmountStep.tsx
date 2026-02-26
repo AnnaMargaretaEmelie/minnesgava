@@ -2,16 +2,11 @@ import styles from "./AmountStep.module.scss";
 import type { AmountSectionProps } from "@/app/memorial-donation/sections/AmountSection/AmountSection.types";
 import { PortableText } from "next-sanity";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
-import { AccordionDropdown } from "@/app/components/shared/AccordionDropdown/AccordionDropdown";
 import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
 import { useFormContext, useFormState, useWatch } from "react-hook-form";
 import { AmountOptions } from "../AmountOptions/AmountOptions";
 import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
-import {
-  PURPOSE_OPTIONS,
-  DEFAULT_PURPOSE,
-} from "@/app/memorial-donation/sections/AmountSection/amountPurpose.options";
-import clsx from "clsx";
+import { PurposeSection } from "../PurposeSection/PurposeSection";
 
 export function AmountStep({ copy }: AmountSectionProps) {
   const accordion = useAccordion();
@@ -50,6 +45,7 @@ export function AmountStep({ copy }: AmountSectionProps) {
       });
     }
   }
+
   async function handleNext() {
     if (preset !== "custom") {
       accordion.goNext("amount-step");
@@ -75,36 +71,8 @@ export function AmountStep({ copy }: AmountSectionProps) {
       <div className={styles.information}>
         {copy.infoText && <PortableText value={copy.infoText} />}
       </div>
+      <PurposeSection register={register} />
       <div>
-        <h3 className={styles.purposeTitle}>Ändamål</h3>
-        <p className={styles.purposeIntro}>
-          Din gåva används till den bästa hjärnforskningen.
-        </p>
-        <div className={styles.purposeControl}>
-          <AccordionDropdown label="Välj diagnos">
-            <fieldset className={styles.purposeContent}>
-              <legend className="u-visuallyHidden">Välj diagnos</legend>
-
-              {PURPOSE_OPTIONS.map((option) => (
-                <label
-                  key={option.value}
-                  className={clsx(
-                    styles.purposeOption,
-                    option.value === DEFAULT_PURPOSE &&
-                      styles.purposeOptionDefault,
-                  )}
-                >
-                  <input
-                    type="radio"
-                    value={option.value}
-                    {...register("amount.purpose")}
-                  />
-                  <span>{option.label}</span>
-                </label>
-              ))}
-            </fieldset>
-          </AccordionDropdown>
-        </div>
         <StepPrimaryButton
           type="button"
           label="Till kontaktuppgifter"
