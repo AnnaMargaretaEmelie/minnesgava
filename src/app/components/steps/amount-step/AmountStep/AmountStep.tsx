@@ -1,6 +1,4 @@
-import styles from "./AmountStep.module.scss";
 import type { AmountSectionProps } from "@/app/memorial-donation/sections/AmountSection/AmountSection.types";
-import { PortableText } from "next-sanity";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
 import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
 import { useFormContext, useFormState, useWatch } from "react-hook-form";
@@ -71,13 +69,12 @@ export function AmountStep({ copy }: AmountSectionProps) {
 
       <AmountInfoText infoText={copy.infoText} />
       <PurposeSection register={register} />
-      <div>
-        <StepPrimaryButton
-          type="button"
-          label="Till kontaktuppgifter"
-          onClick={handleNext}
-        />
-      </div>
+
+      <StepPrimaryButton
+        type="button"
+        label="Till kontaktuppgifter"
+        onClick={handleNext}
+      />
     </section>
   );
 }
