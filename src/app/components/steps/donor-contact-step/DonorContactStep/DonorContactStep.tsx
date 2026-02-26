@@ -5,6 +5,7 @@ import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimar
 import { useAccordion } from "@/app/components/accordion/Accordion/Accordion";
 import { useFormContext, useFormState } from "react-hook-form";
 import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
+import { DonorContactIntro } from "../DonorContactInfo/DonorContactIntro";
 
 export function DonorContactStep({ copy }: DonorContactSectionProps) {
   const accordion = useAccordion();
@@ -24,17 +25,7 @@ export function DonorContactStep({ copy }: DonorContactSectionProps) {
 
   return (
     <section className="u-stepStack">
-      <div className={styles.introBlock}>
-        {copy.introSection?.title && (
-          <h3 className={styles.title}>{copy.introSection.title}</h3>
-        )}
-
-        <div className={styles.intro}>
-          {copy.introSection?.text && (
-            <PortableText value={copy.introSection.text} />
-          )}
-        </div>
-      </div>
+      <DonorContactIntro introSection={copy.introSection} />
 
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.field}>
