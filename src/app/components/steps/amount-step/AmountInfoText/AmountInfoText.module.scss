@@ -1,0 +1,10 @@
+@use "../../../../../styles/abstracts/tokens";
+
+.information {
+    background-color: tokens.$color-beige;
+    padding: tokens.$space-md;
+}
+
+.information > *:first-child {
+    margin-top: 0;
+}

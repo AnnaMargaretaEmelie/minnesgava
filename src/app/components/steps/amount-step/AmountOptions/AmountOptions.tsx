@@ -1,5 +1,5 @@
 import type { AmountOptionsProps } from "./AmountOptions.types";
-import styles from "../AmountStep/AmountStep.module.scss";
+import styles from "./AmountOptions.module.scss";
 import clsx from "clsx";
 
 export function AmountOptions({

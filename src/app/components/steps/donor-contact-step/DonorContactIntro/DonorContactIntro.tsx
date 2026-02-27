@@ -1,5 +1,5 @@
 import { DonorContactIntroProps } from "./DonorContactIntro.types";
-import styles from "../../../../memorial-donation/sections/DonorContactSection/DonorContactSection.module.scss";
+import styles from "./DonorContactIntro.module.scss";
 import { PortableText } from "next-sanity";
 
 export function DonorContactIntro({ introSection }: DonorContactIntroProps) {

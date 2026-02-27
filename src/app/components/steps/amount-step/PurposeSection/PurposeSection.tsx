@@ -1,6 +1,6 @@
 import type { PurposeSectionProps } from "./PurposeSection.types";
 import { AccordionDropdown } from "@/app/components/shared/AccordionDropdown/AccordionDropdown";
-import styles from "../AmountStep/AmountStep.module.scss";
+import styles from "./PurposeSection.module.scss";
 import clsx from "clsx";
 import { PURPOSE_OPTIONS } from "@/app/memorial-donation/sections/AmountSection/amountPurpose.options";
 import { DEFAULT_PURPOSE } from "@/app/memorial-donation/sections/AmountSection/amountPurpose.options";

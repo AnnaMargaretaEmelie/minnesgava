@@ -1,6 +1,6 @@
 import { DonorContactIntegrityProps } from "./DonorContactIntegrity.types";
 import { PortableText } from "next-sanity";
-import styles from "../../../../memorial-donation/sections/DonorContactSection/DonorContactSection.module.scss";
+import styles from "./DonorContactIntegrity.module.scss";
 
 export function DonorContactIntegrity({
   integrity,

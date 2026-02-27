@@ -1,5 +1,5 @@
 import type { DonorContactFormProps } from "./DonorContactForm.types";
-import styles from "../../../../memorial-donation/sections/DonorContactSection/DonorContactSection.module.scss";
+import styles from "./DonorContactForm.module.scss";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
 import { DonorContactIntegrity } from "../DonorContactIntegrity/DonorContactIntegrity";
 
