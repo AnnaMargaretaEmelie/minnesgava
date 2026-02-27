@@ -2,7 +2,7 @@ import { useWatch, useFormContext } from "react-hook-form";
 import {
   PURPOSE_OPTIONS,
   DEFAULT_PURPOSE,
-} from "@/app/memorial-donation/sections/AmountSection/amountPurpose.options";
+} from "@/app/components/steps/amount-step/PurposeSection/amountPurpose.options";
 
 export function AmountSummary() {
   const { control } = useFormContext();

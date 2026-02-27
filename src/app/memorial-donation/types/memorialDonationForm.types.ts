@@ -1,4 +1,4 @@
-import { PurposeValueType } from "../sections/AmountSection/amountPurpose.options";
+import { PurposeValueType } from "../../components/steps/amount-step/PurposeSection/amountPurpose.options";
 
 export type DonationFormValuesType = {
     memorialPage: {

@@ -1,0 +1,40 @@
+@use "../../../../../styles/abstracts/tokens";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$space-lg;
+}
+
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$space-xs;
+
+  label {
+    font-size: tokens.$font-size-body;
+  }
+
+  input,
+  textarea {
+    border: 1px solid tokens.$color-text;
+    padding: tokens.$space-sm tokens.$space-sm;
+    border-radius: 0;
+    font-size: tokens.$font-size-body;
+    block-size: 2.75rem;
+  }
+}
+
+.field .error {
+  font-size: tokens.$font-size-xs;
+}
+
+.error {
+  color: tokens.$color-error-border;
+}
+
+.field .inputError {
+  border-color: tokens.$color-error-border;
+  background-color: #fde9e9;
+}

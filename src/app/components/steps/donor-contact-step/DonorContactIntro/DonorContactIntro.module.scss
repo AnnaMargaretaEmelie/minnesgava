@@ -1,0 +1,21 @@
+@use "../../../../../styles/abstracts/tokens";
+
+.introBlock {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$space-sm;
+}
+
+.title {
+  margin:0;
+}
+
+.intro {
+  :global(p) {
+    margin: 0;
+  }
+
+  :global(p + p) {
+    margin-top: tokens.$space-sm;
+  }
+}

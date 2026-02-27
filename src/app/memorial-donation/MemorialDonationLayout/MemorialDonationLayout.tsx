@@ -11,7 +11,7 @@ import { DonorContactSection } from "../sections/DonorContactSection/DonorContac
 import { PaymentSection } from "../sections/PaymentSection/PaymentSection";
 import { FormProvider, useForm } from "react-hook-form";
 import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
-import { DEFAULT_PURPOSE } from "../sections/AmountSection/amountPurpose.options";
+import { DEFAULT_PURPOSE } from "../../components/steps/amount-step/PurposeSection/amountPurpose.options";
 import { MEMORIAL_PAGE_IMAGES } from "@/data/memorialPageImages";
 import { MemorialPageSummary } from "@/app/components/steps/memorial-page-step/MemorialPageSummary/MemorialPageSummary";
 import { AmountSummary } from "@/app/components/steps/amount-step/AmountSummary/AmountSummary";

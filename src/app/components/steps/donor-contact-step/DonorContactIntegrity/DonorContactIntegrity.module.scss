@@ -1,0 +1,16 @@
+@use "../../../../../styles/abstracts/tokens";
+
+.integrity {
+  margin-top: tokens.$space-lg;
+  font-size: tokens.$font-size-body;
+}
+
+.integrityText {
+  p {
+    margin: 0;
+
+    & + p {
+      margin-top: tokens.$space-xs;
+    }
+  }
+}
