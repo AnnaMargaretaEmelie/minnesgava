@@ -2,8 +2,8 @@ import type { PurposeSectionProps } from "./PurposeSection.types";
 import { AccordionDropdown } from "@/app/components/shared/AccordionDropdown/AccordionDropdown";
 import styles from "./PurposeSection.module.scss";
 import clsx from "clsx";
-import { PURPOSE_OPTIONS } from "@/app/memorial-donation/sections/AmountSection/amountPurpose.options";
-import { DEFAULT_PURPOSE } from "@/app/memorial-donation/sections/AmountSection/amountPurpose.options";
+import { PURPOSE_OPTIONS } from "@/app/components/steps/amount-step/PurposeSection/amountPurpose.options";
+import { DEFAULT_PURPOSE } from "@/app/components/steps/amount-step/PurposeSection/amountPurpose.options";
 
 export function PurposeSection({ register }: PurposeSectionProps) {
   return (

@@ -1,6 +1,3 @@
-
-
-
 export const PURPOSE_OPTIONS = [
 { value: "default", label: "Den bästa hjärnforskningen med störst behov"}, 
 { value: "adhd", label: "ADHD" },
