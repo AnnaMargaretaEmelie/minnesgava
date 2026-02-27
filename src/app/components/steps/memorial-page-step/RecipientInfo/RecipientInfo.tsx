@@ -1,5 +1,6 @@
 //info-ruta med vald mottagare
 import { RecipientInfoProps } from "./RecipientInfo.types";
+import { CheckCircleIcon } from "@/app/components/shared/icons/CheckCircleIcon";
 import styles from "./RecipientInfo.module.scss";
 
 function formatDate(dateString: string) {
@@ -18,12 +19,17 @@ export default function RecipientInfo({ recipient }: RecipientInfoProps) {
 
   return (
     <div className={styles.wrapper}>
-      <p className={styles.name}>{fullName}</p>
-      <p>
-        {birth} - {death}
+      <p className={styles.name}>
+        {fullName}
+        <CheckCircleIcon className={styles.checkIcon} />
       </p>
-      <p>{recipient.city}</p>
-      <p>{recipient.funeralHome}</p>
+      <div>
+        <p>
+          {birth} - {death}
+        </p>
+        <p>{recipient.city}</p>
+        <p>{recipient.funeralHome}</p>
+      </div>
     </div>
   );
 }

@@ -1,29 +1,22 @@
 @use "../../../../styles/abstracts/tokens";
 
-.section {
-    padding-block: tokens.$space-md;
-}
-
 .amount {
-    margin-bottom: tokens.$space-md;
-}
-
-.legend {
-    font-weight: 500;
-    margin-bottom: tokens.$space-xs;
+    display: flex;
+    flex-direction: column;
+    gap: tokens.$space-md;
 }
 
 .options {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: tokens.$space-sm;
+    gap: tokens.$space-md;
 }
 
 .option {
     border: 1px solid tokens.$color-text;
     font-size: tokens.$font-size-body;
     border-radius: 0;
-    padding: tokens.$space-sm tokens.$space-md;
+    padding: 0.8rem tokens.$space-md;
     background-color: tokens.$color-bg;
     cursor: pointer;
 }
@@ -33,12 +26,13 @@
 }
 
 .customAmount {
-    margin-top: tokens.$space-md;
+    display: flex;
+    flex-direction: column;
+    gap: tokens.$space-xs;
 }
 
 .customLabel {
     display: block;
-    margin-bottom: tokens.$space-xs;
 }
 
 .customInputRow {
@@ -50,6 +44,7 @@
 .customInput {
     flex: 1;
     padding: tokens.$space-sm tokens.$space-sm;
+    block-size: 2.75rem;
     border-radius: 0;
     border: 1px solid tokens.$color-text;
 }
@@ -66,14 +61,11 @@
 
 .information {
     background-color: tokens.$color-beige;
-    padding-left: tokens.$space-md;
-    padding-top: tokens.$space-sm;
-    padding-right: tokens.$space-md;
-    padding-bottom: tokens.$space-md;
+    padding: tokens.$space-md;
 }
 
-.purpose {
-    margin-top: tokens.$space-lg;
+.information > *:first-child {
+    margin-top: 0;
 }
 
 .purposeTitle {
@@ -92,26 +84,14 @@
 }
 
 .purposeContent {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        column-gap: tokens.$space-lg;
-        row-gap: tokens.$space-lg;
-        margin-top: tokens.$space-md;
-        border: 0;
-        padding: tokens.$space-sm;
-        margin: 0;
-}
-
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    column-gap: tokens.$space-lg;
+    row-gap: tokens.$space-lg;
+    margin-top: tokens.$space-md;
+    border: 0;
+    padding: tokens.$space-sm;
+    margin: 0;
 }
 
 .purposeOption {
@@ -121,29 +101,29 @@
 }
 
 .purposeOption input[type="radio"]{
-appearance: none;
-  -webkit-appearance: none;
-  width: 20px;          
-  height: 20px;
-  border: 1px solid tokens.$color-text; 
-  border-radius: 50%;
-  display: grid;
-  place-content: center;
-  margin: 0;  
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;          
+    height: 20px;
+    border: 1px solid tokens.$color-text; 
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    margin: 0;  
 }
 
 .purposeOption input[type="radio"]::before {
-  content: "";
-  width: 10px;          
-  height: 10px;
-  border-radius: 50%;
-  transform: scale(0);  
-  transition: transform 120ms ease-in-out;
-  background-color: tokens.$color-accent; 
+    content: "";
+    width: 10px;          
+    height: 10px;
+    border-radius: 50%;
+    transform: scale(0);  
+    transition: transform 120ms ease-in-out;
+    background-color: tokens.$color-accent; 
 }
 
 .purposeOption input[type="radio"]:checked::before {
-  transform: scale(1);  
+    transform: scale(1);  
 }
 
 .purposeOptionDefault {

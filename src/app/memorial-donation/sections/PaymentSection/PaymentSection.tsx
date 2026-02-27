@@ -24,7 +24,7 @@ export function PaymentSection() {
     }
   };
   return (
-    <section className={styles.section}>
+    <section className="u-stepStack">
       <div
         role="radiogroup"
         aria-labelledby="payment-method-legend"

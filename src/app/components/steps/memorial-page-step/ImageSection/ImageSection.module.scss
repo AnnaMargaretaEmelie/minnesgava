@@ -1,17 +1,7 @@
-/* uppdatera med tokens mm */
+@use "../../../../../styles/abstracts/tokens";
 
 .imageSection {
   display: grid;
-  gap: 12px;
+  gap: tokens.$space-sm;
 }
 
-.heading {
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-.helperText {
-  font-size: 0.875rem;
-  color: #555;
-}

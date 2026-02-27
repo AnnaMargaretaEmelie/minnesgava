@@ -2,11 +2,15 @@
 
 .wrapper {
   display: grid;
-  gap: 8px;
+  gap: tokens.$space-xs;
+}
+
+.label {
+  font-weight: 500;
 }
 
 .input {
-  padding: 14px 12px;
+  padding: tokens.$space-md;
   border: 1px solid tokens.$color-text;
 }
 
@@ -21,7 +25,7 @@
 
 .listItem {
   position: relative;
-  padding: 6px 8px;
+  padding: tokens.$space-sm;
   cursor: pointer;
 }
 

@@ -14,13 +14,15 @@ export function MemorialPageSection({ copy }: MemorialPageSectionProps) {
   }
 
   return (
-    <section className={styles.section}>
-      <h3 className={styles.title}>{copy.title ?? "Titel saknas"}</h3>
-      {copy.text && (
-        <div className={styles.copy}>
-          <PortableText value={copy.text} />
-        </div>
-      )}
+    <section className="u-stepStack">
+      <div className={styles.introBlock}>
+        <h3 className={styles.title}>{copy.title ?? "Titel saknas"}</h3>
+        {copy.text && (
+          <div className={styles.copy}>
+            <PortableText value={copy.text} />
+          </div>
+        )}
+      </div>
       <MemorialPageStep onComplete={handleMemorialPageComplete} />
     </section>
   );

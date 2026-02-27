@@ -23,13 +23,17 @@ export function DonorContactSection({ copy }: DonorContactSectionProps) {
   const phoneError = donorErrors?.phone;
 
   return (
-    <section className={styles.section}>
-      {copy.introSection?.title && <h3>{copy.introSection.title}</h3>}
-
-      <div className={styles.intro}>
-        {copy.introSection?.text && (
-          <PortableText value={copy.introSection.text} />
+    <section className="u-stepStack">
+      <div className={styles.introBlock}>
+        {copy.introSection?.title && (
+          <h3 className={styles.title}>{copy.introSection.title}</h3>
         )}
+
+        <div className={styles.intro}>
+          {copy.introSection?.text && (
+            <PortableText value={copy.introSection.text} />
+          )}
+        </div>
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>

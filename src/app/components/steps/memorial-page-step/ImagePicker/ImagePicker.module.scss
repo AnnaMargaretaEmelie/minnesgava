@@ -1,5 +1,16 @@
 @use "../../../../../styles/abstracts/tokens";
 
+
+.fieldset {
+  border: none;
+  padding: 0;
+}
+
+.legend {
+  margin-bottom: tokens.$space-xs;
+  font-weight: 500;
+}
+
 .pickerWrapper {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -32,10 +43,9 @@
 }
 
 .radio:focus-visible + .label {
-  outline: 2px solid tokens.$color-accent;
+  outline: 3px solid tokens.$color-focus;
   outline-offset: 2px;
 }
-
 
 .thumbnail {
   display: block;

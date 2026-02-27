@@ -13,11 +13,19 @@
     transform: translate(-50%, -50%);
     background: white;
     padding-inline: 1rem;
-    padding-block: 2rem;
+    padding-block: 1.5rem;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .contentInner {
     position: relative;
+    max-height: 90vh;
+    overflow: auto;
+    flex: 1;
+    min-height: 0;
 }
 
 .dialog {
@@ -36,6 +44,7 @@
     padding: tokens.$space-sm;
     align-items: center;
     aspect-ratio: 210/297;
+    overflow: auto;
 }
 .dialogClose {
     position: absolute;
@@ -55,14 +64,13 @@
 }
 
 .dialogClose:focus-visible {
-    box-shadow: 0 0 0 3px tokens.$color-accent;
+    box-shadow: 0 0 0 3px tokens.$color-focus;
     outline-offset: 1px;
 }
 
 .imageWrapper {
     inline-size: 35%;
-    margin-top: tokens.$space-lg;
-    margin-bottom: tokens.$space-lg;
+    margin-block: tokens.$space-md;
 }
 
 .text {
@@ -91,14 +99,14 @@
 }
 
 .buttonRow {
-    margin-top: tokens.$space-md;
+    margin-top: tokens.$space-sm;
 }
 
 .closeButton {
     border: none;
     background: none;
     font-size: tokens.$font-size-body;
-    margin-top: tokens.$space-lg;
+    margin-top: tokens.$space-md;
     display: block;
     margin-inline: auto;
     text-decoration: underline;
