@@ -14,6 +14,6 @@ export type DonorContactFormProps = {
     emailErrorMessage?: string;
     hasPhoneError: boolean;
     phoneErrorMessage?: string;
-    integrityText?: DonorContactSectionCopy["integrity"];
+    integrity: DonorContactSectionCopy["integrity"];
 
 }

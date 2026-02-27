@@ -47,7 +47,7 @@ export function DonorContactStep({ copy }: DonorContactSectionProps) {
         emailErrorMessage={emailErrorMessage}
         hasPhoneError={hasPhoneError}
         phoneErrorMessage={phoneErrorMessage}
-        integrityText={copy.integrity}
+        integrity={copy.integrity}
       />
     </section>
   );

@@ -1,7 +1,7 @@
 import type { DonorContactFormProps } from "./DonorContactForm.types";
-import { PortableText } from "next-sanity";
 import styles from "../../../../memorial-donation/sections/DonorContactSection/DonorContactSection.module.scss";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
+import { DonorContactIntegrity } from "../DonorContactIntegrity/DonorContactIntegrity";
 
 export function DonorContactForm({
   register,
@@ -15,7 +15,7 @@ export function DonorContactForm({
   emailErrorMessage,
   hasPhoneError,
   phoneErrorMessage,
-  integrityText,
+  integrity,
 }: DonorContactFormProps) {
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -133,13 +133,7 @@ export function DonorContactForm({
           </p>
         )}
       </div>
-      {integrityText?.text && (
-        <div className={styles.integrity}>
-          <div className={styles.integrityText}>
-            <PortableText value={integrityText.text} />
-          </div>
-        </div>
-      )}
+      <DonorContactIntegrity integrity={integrity} />
       <StepPrimaryButton label="Välj betalmetod" type="submit" />
     </form>
   );
