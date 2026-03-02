@@ -16,6 +16,7 @@ import { MEMORIAL_PAGE_IMAGES } from "@/data/memorialPageImages";
 import { MemorialPageSummary } from "@/app/components/steps/memorial-page-step/MemorialPageSummary/MemorialPageSummary";
 import { AmountSummary } from "@/app/components/steps/amount-step/AmountSummary/AmountSummary";
 import { DonorContactSummary } from "@/app/components/steps/donor-contact-step/DonorContactSummary/DonorContactSummary";
+import { LivePreviewPanel } from "@/app/components/steps/memorial-page-step/LivePreviewPanel/LivePreviewPanel";
 
 const DEFAULT_DONATION_AMOUNT = { preset: "1000", value: 1000 } as const;
 
@@ -48,45 +49,48 @@ export function MemorialDonationLayout({
       <section className={styles.hero}>
         {heroCopy ? <HeroSection copy={heroCopy} /> : null}
       </section>
-      <section>
-        <FormProvider {...methods}>
-          <AccordionRoot>
-            <AccordionItem
-              value="memorial-card-step"
-              title="1. Minnesblad"
-              titleText="Minnesblad"
-              summary={<MemorialPageSummary />}
-            >
-              <MemorialPageSection copy={memorialPageCopy} />
-            </AccordionItem>
-            <AccordionItem
-              value="amount-step"
-              title="2. Gåvobelopp"
-              titleText="Gåvobelopp"
-              summary={<AmountSummary />}
-            >
-              <AmountSection copy={amountCopy} />
-            </AccordionItem>
-            <AccordionItem
-              value="donor-contact-step"
-              title="3. Kontaktuppgifter"
-              titleText="Kontaktuppgifter"
-              summary={<DonorContactSummary />}
-            >
-              <DonorContactSection copy={donorCopy} />
-            </AccordionItem>
+      <div className={styles.contentGrid}>
+        <section>
+          <FormProvider {...methods}>
+            <AccordionRoot>
+              <AccordionItem
+                value="memorial-card-step"
+                title="1. Minnesblad"
+                titleText="Minnesblad"
+                summary={<MemorialPageSummary />}
+              >
+                <MemorialPageSection copy={memorialPageCopy} />
+              </AccordionItem>
+              <AccordionItem
+                value="amount-step"
+                title="2. Gåvobelopp"
+                titleText="Gåvobelopp"
+                summary={<AmountSummary />}
+              >
+                <AmountSection copy={amountCopy} />
+              </AccordionItem>
+              <AccordionItem
+                value="donor-contact-step"
+                title="3. Kontaktuppgifter"
+                titleText="Kontaktuppgifter"
+                summary={<DonorContactSummary />}
+              >
+                <DonorContactSection copy={donorCopy} />
+              </AccordionItem>
 
-            <AccordionItem
-              value="payment-step"
-              title="4. Betalsätt"
-              titleText="Betalsätt"
-              className={styles.step}
-            >
-              <PaymentSection />
-            </AccordionItem>
-          </AccordionRoot>
-        </FormProvider>
-      </section>
+              <AccordionItem
+                value="payment-step"
+                title="4. Betalsätt"
+                titleText="Betalsätt"
+                className={styles.step}
+              >
+                <PaymentSection />
+              </AccordionItem>
+            </AccordionRoot>
+          </FormProvider>
+        </section>
+        <LivePreviewPanel />
+      </div>
     </div>
   );
 }

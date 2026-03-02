@@ -1,11 +1,33 @@
 @use "../../../styles/abstracts/tokens";
 
 .layout {
-  max-width: 620px;
+  display: block;
+  max-width: 940px;
   margin: 0 auto;
+}
+
+.contentGrid {
+  display: block;
 }
 
 .hero {
   margin-bottom: tokens.$space-lg;
+  max-inline-size: 620px;
 }
 
+.previewPanel {
+  display: none;
+}
+
+@media (min-width: 990px) {
+  .contentGrid {
+    display: grid;
+    grid-template-columns: 620px 300px;
+    gap: tokens.$space-lg;
+    align-items: start;
+  }
+  .previewPanel {
+    display: block;
+  }
+
+}
