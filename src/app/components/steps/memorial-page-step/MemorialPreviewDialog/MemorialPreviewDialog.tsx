@@ -4,7 +4,6 @@ import * as Dialog from "@radix-ui/react-dialog";
 import type { MemorialPreviewDialogProps } from "./MemorialPreviewDialog.types";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
 import styles from "./MemorialPreviewDialog.module.scss";
-import Image from "next/image";
 import { CloseIcon } from "@/app/components/shared/icons/CloseIcon";
 import { MemorialPreviewContent } from "../MemorialPreviewContent/MemorialPreviewContent";
 

@@ -1,0 +1,22 @@
+@use "../../../../../styles/abstracts/tokens";
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    max-width: 300px;
+}
+
+.content {
+    border: 1px solid tokens.$color-text;
+    aspect-ratio: 1 / 1.414;
+    inline-size: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.scaled {
+    transform: scale(0.72);
+    transform-origin: top left;
+    width: 100%;
+}
