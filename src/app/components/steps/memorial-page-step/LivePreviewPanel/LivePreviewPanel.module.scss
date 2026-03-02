@@ -7,16 +7,20 @@
     max-width: 300px;
 }
 
-.content {
+.frame {
     border: 1px solid tokens.$color-text;
-    aspect-ratio: 1 / 1.414;
     inline-size: 100%;
+    padding-top: tokens.$space-sm;
     margin: 0 auto;
     overflow: hidden;
+    aspect-ratio: 210/297;
+    position: relative;
 }
 
 .scaled {
-    transform: scale(0.72);
+    --s: 0.6;
+    transform: scale(var(--s));
     transform-origin: top left;
-    width: 100%;
+    width: calc(100% / var(--s));
+    height: calc(100% / var(--s));
 }

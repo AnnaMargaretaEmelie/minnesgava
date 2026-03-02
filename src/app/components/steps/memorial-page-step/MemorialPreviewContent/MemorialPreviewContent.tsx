@@ -1,5 +1,5 @@
 import type { MemorialPreviewContentProps } from "./MemorialPreviewContent.types";
-import styles from "../MemorialPreviewDialog/MemorialPreviewDialog.module.scss";
+import styles from "./MemorialPreviewContent.module.scss";
 import Image from "next/image";
 export function MemorialPreviewContent({
   imageSrc,
@@ -8,7 +8,7 @@ export function MemorialPreviewContent({
   greeting,
 }: MemorialPreviewContentProps) {
   return (
-    <div className={styles.preview}>
+    <div className={styles.root}>
       <div className={styles.imageWrapper}>
         <Image
           src={imageSrc}

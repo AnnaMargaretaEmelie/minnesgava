@@ -36,16 +36,19 @@
     padding-top: tokens.$space-md;
 }
 
-.preview {
-    display: flex;
-    flex-direction: column;
+.previewFrame {
     inline-size: min(90vw, 420px);
     border: 2px solid tokens.$color-accent;
     padding: tokens.$space-sm;
-    align-items: center;
-    aspect-ratio: 210/297;
-    overflow: auto;
+    box-sizing: border-box;
 }
+
+.previewPaper {
+    overflow: auto;
+    display: block;
+    aspect-ratio: 210/297;
+}
+
 .dialogClose {
     position: absolute;
     top: tokens.$space-xs;
@@ -66,36 +69,6 @@
 .dialogClose:focus-visible {
     box-shadow: 0 0 0 3px tokens.$color-focus;
     outline-offset: 1px;
-}
-
-.imageWrapper {
-    inline-size: 35%;
-    margin-block: tokens.$space-md;
-}
-
-.text {
-    gap: tokens.$space-xs;    
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    max-inline-size: 28ch;    
-    justify-content: center;
-}
-
-.fullName {
-    font-size: tokens.$font-size-lg;
-    font-weight: 500;
-    margin-block: tokens.$space-md;
-}
-
-.greeting {
-    margin-top: tokens.$space-md;
-    white-space: pre-wrap;
-    font-weight: 300;
-}
-
-.logoRow {
-    margin-top: auto;
 }
 
 .buttonRow {

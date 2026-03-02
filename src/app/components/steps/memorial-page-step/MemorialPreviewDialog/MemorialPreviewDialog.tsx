@@ -38,12 +38,16 @@ export function MemorialPreviewDialog({
             </Dialog.Title>
             <Dialog.Description asChild>
               <div className={styles.dialog}>
-                <MemorialPreviewContent
-                  imageSrc={imageSrc}
-                  imageAlt={imageAlt}
-                  fullName={fullName}
-                  greeting={greeting}
-                />
+                <div className={styles.previewFrame}>
+                  <div className={styles.previewPaper}>
+                    <MemorialPreviewContent
+                      imageSrc={imageSrc}
+                      imageAlt={imageAlt}
+                      fullName={fullName}
+                      greeting={greeting}
+                    />
+                  </div>
+                </div>
 
                 <div className={styles.buttonRow}>
                   <StepPrimaryButton
