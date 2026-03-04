@@ -49,9 +49,9 @@ export function MemorialDonationLayout({
       <section className={styles.hero}>
         {heroCopy ? <HeroSection copy={heroCopy} /> : null}
       </section>
-      <div className={styles.contentGrid}>
-        <section>
-          <FormProvider {...methods}>
+      <FormProvider {...methods}>
+        <div className={styles.contentGrid}>
+          <section>
             <AccordionRoot>
               <AccordionItem
                 value="memorial-card-step"
@@ -87,10 +87,12 @@ export function MemorialDonationLayout({
                 <PaymentSection />
               </AccordionItem>
             </AccordionRoot>
-          </FormProvider>
-        </section>
-        <LivePreviewPanel />
-      </div>
+          </section>
+          <aside className={styles.previewPanel}>
+            <LivePreviewPanel />
+          </aside>
+        </div>
+      </FormProvider>
     </div>
   );
 }

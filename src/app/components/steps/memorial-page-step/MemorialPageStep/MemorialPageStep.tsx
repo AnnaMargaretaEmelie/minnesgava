@@ -10,6 +10,7 @@ import { ImageSection } from "../ImageSection/ImageSection";
 import { StepPrimaryButton } from "../../../StepPrimaryButton/StepPrimaryButton";
 import { MemorialPageStepProps } from "./MemorialPageStep.types";
 import { useFormContext, useWatch, useFormState } from "react-hook-form";
+import { useSelectedRecipient } from "../hooks/useSelectedRecipient";
 import type { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 import styles from "./MemorialPageStep.module.scss";
 import { MemorialPreviewDialog } from "../MemorialPreviewDialog/MemorialPreviewDialog";
@@ -22,21 +23,14 @@ export default function MemorialPageStep({
 
   const { errors } = useFormState({ control });
 
-  const recipientId = useWatch({ control, name: "memorialPage.recipientId" });
+  const { fullName, selectedRecipient } = useSelectedRecipient();
+
   const imageId = useWatch({ control, name: "memorialPage.imageId" });
   const greeting = useWatch({ control, name: "memorialPage.greeting" });
-
-  const selectedRecipient = recipientId
-    ? (MOCK_RECIPIENTS.find((r) => r.id === recipientId) ?? null)
-    : null;
 
   const selectedImage =
     MEMORIAL_PAGE_IMAGES.find((i) => i.id === imageId) ??
     MEMORIAL_PAGE_IMAGES[0];
-
-  const fullName = selectedRecipient
-    ? `${selectedRecipient.firstName} ${selectedRecipient.lastName}`
-    : "Ingen mottagare vald";
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);

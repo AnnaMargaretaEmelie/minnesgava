@@ -1,20 +1,33 @@
 import { MemorialPreviewContent } from "../MemorialPreviewContent/MemorialPreviewContent";
+import { useSelectedRecipient } from "../hooks/useSelectedRecipient";
+import { MEMORIAL_PAGE_IMAGES } from "@/data/memorialPageImages";
 import styles from "./LivePreviewPanel.module.scss";
+import { useFormContext, useWatch } from "react-hook-form";
+import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 
 export function LivePreviewPanel() {
+  const { fullName } = useSelectedRecipient();
+  const { control } = useFormContext<DonationFormValuesType>();
+  const imageId = useWatch({ control, name: "memorialPage.imageId" });
+  const greeting = useWatch({ control, name: "memorialPage.greeting" });
+
+  const selectedImage =
+    MEMORIAL_PAGE_IMAGES.find((i) => i.id === imageId) ??
+    MEMORIAL_PAGE_IMAGES[0];
+
   return (
-    <aside className={styles.panel}>
+    <div className={styles.panel}>
       <h2>Din minneshälsning</h2>
       <div className={styles.frame}>
         <div className={styles.scaled}>
           <MemorialPreviewContent
-            imageSrc="/images/dove.png"
-            imageAlt="Test"
-            fullName="Test Person"
-            greeting="Vila i frid en längre text, med flera rader kanske, så vi får se om allt försvinner eller om saker skrivs över kanske? "
+            imageSrc={selectedImage.src}
+            imageAlt={selectedImage.alt}
+            fullName={fullName}
+            greeting={greeting}
           />
         </div>
       </div>
-    </aside>
+    </div>
   );
 }
