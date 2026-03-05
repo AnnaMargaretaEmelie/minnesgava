@@ -13,6 +13,11 @@
     margin-block: tokens.$space-md;
 }
 
+.image {
+    inline-size: 100%; 
+    block-size: auto 
+}
+
 .text {
     gap: tokens.$space-xs;    
     display: flex;

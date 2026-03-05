@@ -15,7 +15,7 @@ export function MemorialPreviewContent({
           alt={imageAlt}
           width={300}
           height={300}
-          style={{ width: "100%", height: "auto" }}
+          className={styles.image}
         />
       </div>
       <div className={styles.text}>
