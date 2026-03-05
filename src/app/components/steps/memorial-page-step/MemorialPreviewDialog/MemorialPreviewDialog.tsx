@@ -4,8 +4,8 @@ import * as Dialog from "@radix-ui/react-dialog";
 import type { MemorialPreviewDialogProps } from "./MemorialPreviewDialog.types";
 import { StepPrimaryButton } from "@/app/components/StepPrimaryButton/StepPrimaryButton";
 import styles from "./MemorialPreviewDialog.module.scss";
-import Image from "next/image";
 import { CloseIcon } from "@/app/components/shared/icons/CloseIcon";
+import { MemorialPreviewContent } from "../MemorialPreviewContent/MemorialPreviewContent";
 
 export function MemorialPreviewDialog({
   imageSrc,
@@ -38,34 +38,17 @@ export function MemorialPreviewDialog({
             </Dialog.Title>
             <Dialog.Description asChild>
               <div className={styles.dialog}>
-                <div className={styles.preview}>
-                  <div className={styles.imageWrapper}>
-                    <Image
-                      src={imageSrc}
-                      alt={imageAlt}
-                      width={300}
-                      height={300}
-                      style={{ width: "100%", height: "auto" }}
-                    />
-                  </div>
-                  <div className={styles.text}>
-                    <div>Till minne av</div>
-                    <div className={styles.fullName}>{fullName}</div>
-                    <p>
-                      har Hjärnfonden tacksamt mottagit en gåva till forskning
-                      om hjärnan.
-                    </p>
-                    <p className={styles.greeting}>{greeting || "-"}</p>
-                  </div>
-                  <div className={styles.logoRow}>
-                    <Image
-                      src="/images/logo.png"
-                      alt="Hjärnfonden"
-                      width={170}
-                      height={85}
+                <div className={styles.previewFrame}>
+                  <div className={styles.previewPaper}>
+                    <MemorialPreviewContent
+                      imageSrc={imageSrc}
+                      imageAlt={imageAlt}
+                      fullName={fullName}
+                      greeting={greeting}
                     />
                   </div>
                 </div>
+
                 <div className={styles.buttonRow}>
                   <StepPrimaryButton
                     onClick={onConfirm}

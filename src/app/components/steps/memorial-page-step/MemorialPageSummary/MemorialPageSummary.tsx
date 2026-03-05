@@ -1,23 +1,12 @@
+import { useSelectedRecipient } from "../hooks/useSelectedRecipient";
 import { useWatch, useFormContext } from "react-hook-form";
-import { MOCK_RECIPIENTS } from "@/data/recipients.mock";
+import { DonationFormValuesType } from "@/app/memorial-donation/types/memorialDonationForm.types";
 
 export function MemorialPageSummary() {
-  const { control } = useFormContext();
+  const { fullName } = useSelectedRecipient();
 
-  const recipientId = useWatch({ control, name: "memorialPage.recipientId" });
+  const { control } = useFormContext<DonationFormValuesType>();
   const greeting = useWatch({ control, name: "memorialPage.greeting" });
-
-  const selectedRecipient =
-    recipientId != null
-      ? (MOCK_RECIPIENTS.find((r) => r.id === recipientId) ?? null)
-      : null;
-
-  const fullName = selectedRecipient
-    ? `${selectedRecipient?.firstName} ${selectedRecipient?.lastName}`.trim()
-    : recipientId
-      ? "Okänd mottagare"
-      : "Ingen mottagare vald";
-
   const greetingText = String(greeting ?? "").trim();
 
   return (
