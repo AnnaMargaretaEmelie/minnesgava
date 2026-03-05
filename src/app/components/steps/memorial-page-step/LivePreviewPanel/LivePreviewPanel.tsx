@@ -15,6 +15,8 @@ export function LivePreviewPanel() {
     MEMORIAL_PAGE_IMAGES.find((i) => i.id === imageId) ??
     MEMORIAL_PAGE_IMAGES[0];
 
+  if (!selectedImage) return null;
+
   return (
     <div className={styles.panel}>
       <h2>Din minneshälsning</h2>
