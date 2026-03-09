@@ -3,7 +3,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: tokens.$space-lg;
+  gap: tokens.$space-md;
 }
 
 
@@ -12,18 +12,51 @@
   flex-direction: column;
   gap: tokens.$space-xs;
 
-  label {
+  .topLabel {
     font-size: tokens.$font-size-body;
+    display: block;
   }
 
   input,
   textarea {
     border: 1px solid tokens.$color-text;
-    padding: tokens.$space-sm tokens.$space-sm;
     border-radius: 0;
     font-size: tokens.$font-size-body;
-    block-size: 2.75rem;
   }
+}
+
+.inputWrap {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  block-size: 3rem;
+  padding: 1.45rem tokens.$space-md 0.25rem;
+  line-height: 1.1;
+}
+
+.floatingHint {
+  position: absolute;
+  left: tokens.$space-md;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+
+  transition: 
+    transform 200ms ease,
+    font-size 200ms ease,
+    opacity 200ms ease;
+
+  opacity: 0.5;
+}
+
+.input:focus + .floatingHint,
+.input:not(:placeholder-shown) ~ .floatingHint {
+  transform: translateY(-130%);
+  font-size: tokens.$font-size-xs;
+  opacity: 0.4;
 }
 
 .field .error {
