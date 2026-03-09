@@ -71,3 +71,9 @@
   border-color: tokens.$color-error-border;
   background-color: #fde9e9;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .floatingHint {
+    transition: none !important;
+  }
+}

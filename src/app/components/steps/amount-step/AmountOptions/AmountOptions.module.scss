@@ -87,3 +87,16 @@
     color: tokens.$color-error-border;
     font-size: tokens.$font-size-xs;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .option {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floatingHint {
+    transition: none !important;
+  }
+}

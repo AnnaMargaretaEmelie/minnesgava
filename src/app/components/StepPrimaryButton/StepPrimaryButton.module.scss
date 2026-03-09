@@ -22,3 +22,14 @@
     transform: translateX(4px);
     transition: transform 180ms ease-out;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow {
+    transition: none !important;
+  }
+
+  .stepPrimaryButton:hover .arrow,
+  .stepPrimaryButton:focus-within .arrow {
+    transform: none !important;
+  }
+}
