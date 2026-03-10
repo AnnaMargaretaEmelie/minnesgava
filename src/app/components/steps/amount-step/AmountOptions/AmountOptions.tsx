@@ -73,7 +73,7 @@ export function AmountOptions({
 
       <div className={styles.customAmount} hidden={preset !== "custom"}>
         <label htmlFor="customAmount" className={styles.customLabel}>
-          Eget belopp i kronor
+          Eget belopp i kronor*
         </label>
         <div className={styles.customInputRow}>
           <input
@@ -92,7 +92,7 @@ export function AmountOptions({
               styles.customInput,
               customAmountHasError && styles.inputError,
             )}
-            placeholder="T ex 150"
+            placeholder=" "
             {...register("amount.value", {
               valueAsNumber: true,
               validate: (value) => {
@@ -105,6 +105,9 @@ export function AmountOptions({
               },
             })}
           />
+          <span className={styles.floatingHint} aria-hidden="true">
+            T ex 150
+          </span>
           <p id="custom-amount-hint" className="u-visuallyHidden">
             Ange belopp i kronor. Minsta belopp är 100 kr. Endast siffror.
           </p>

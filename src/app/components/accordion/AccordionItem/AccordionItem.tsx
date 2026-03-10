@@ -18,6 +18,8 @@ type AccordionItemProps = {
   summary?: React.ReactNode;
 };
 
+const ACCORDION_ANIM_MS = 700;
+
 export function AccordionItem({
   value,
   title,
@@ -48,11 +50,11 @@ export function AccordionItem({
       const root = contentInnerRef.current;
       if (!root) return;
 
-      getFirstFocusable(root)?.focus();
+      getFirstFocusable(root)?.focus({ preventScroll: true } as FocusOptions);
       if (focusOnOpenId === value) {
         clearFocusOnOpen();
       }
-    }, 0);
+    }, ACCORDION_ANIM_MS);
     return () => window.clearTimeout(id);
   }, [open, value, focusOnOpenId, clearFocusOnOpen]);
 
@@ -76,9 +78,6 @@ export function AccordionItem({
             }
             shouldFocusContentRef.current = true;
             ctx?.toggle(value);
-            requestAnimationFrame(() =>
-              headerRef.current?.scrollIntoView({ block: "nearest" }),
-            );
           }}
         >
           {" "}
